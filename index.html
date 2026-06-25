@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to not ship slop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#16130F;
+  --bg2:#1E1A14;
+  --ink:#F4EEE3;
+  --ink2:#D8CFBE;
+  --muted:#9A917F;
+  --faint:#6E665A;
+  --line:rgba(244,238,227,.13);
+  --line2:rgba(244,238,227,.07);
+  --accent:#FF4D2E;
+  --accent-ink:#FF6A45;
+  --accent-soft:rgba(255,77,46,.12);
+  --card:#1E1A14;
+  --shadow:0 24px 48px -18px rgba(0,0,0,.6),0 8px 16px -10px rgba(0,0,0,.5);
+  --ring:0 0 0 1px var(--line);
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Hanken Grotesk",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --pad-x:8vmin;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;width:100%;overflow:hidden;background:#0b0a08}
+body{font-family:var(--sans);color:var(--ink2);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-optical-sizing:auto}
+.deck{position:fixed;inset:0;background:var(--bg);overflow:hidden}
+/* atmosphere */
+.deck::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(115% 80% at 8% -10%, rgba(255,77,46,.14), transparent 52%),
+    radial-gradient(95% 70% at 105% 112%, rgba(255,120,60,.08), transparent 48%),
+    linear-gradient(180deg,#1A1610,#13100B)}
+.deck::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.5;mix-blend-mode:soft-light;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* furniture */
+.bar{position:absolute;left:var(--pad-x);right:var(--pad-x);top:3.6vmin;display:flex;justify-content:space-between;
+  align-items:center;font-family:var(--mono);font-size:1.4vmin;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);z-index:30;font-weight:500}
+.bar .l{display:flex;align-items:center;gap:1.3vmin}
+.bar .dot{width:.85vmin;height:.85vmin;border-radius:50%;background:var(--accent);box-shadow:0 0 1.4vmin rgba(255,77,46,.7)}
+.bar b{color:var(--ink);font-weight:600}
+.progress{position:absolute;left:0;bottom:0;height:.4vmin;background:var(--accent);width:0;z-index:30;
+  box-shadow:0 0 1.2vmin rgba(255,77,46,.6);transition:width .5s cubic-bezier(.6,0,.2,1)}
+.footnote{position:absolute;left:var(--pad-x);right:var(--pad-x);bottom:3.4vmin;display:flex;justify-content:space-between;
+  align-items:baseline;font-family:var(--mono);font-size:1.25vmin;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);z-index:30;font-weight:500}
+
+/* slides */
+.slide{position:absolute;inset:0;padding:11vmin var(--pad-x) 8vmin;opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .45s ease;display:flex;flex-direction:column;justify-content:center;z-index:2}
+.slide.active{opacity:1;visibility:visible;pointer-events:auto}
+.slide.active .rise{animation:rise .6s cubic-bezier(.2,.7,.2,1) both}
+.slide.active .rise:nth-child(2){animation-delay:.06s}
+.slide.active .rise:nth-child(3){animation-delay:.12s}
+.slide.active .rise:nth-child(4){animation-delay:.18s}
+.slide.active .rise:nth-child(5){animation-delay:.24s}
+@keyframes rise{from{opacity:0;transform:translateY(2vmin)}to{opacity:1;transform:none}}
+
+/* type */
+.kicker{font-family:var(--mono);font-size:1.45vmin;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);
+  margin-bottom:3vmin;display:flex;align-items:center;gap:1.3vmin}
+.kicker::before{content:"";width:2.6vmin;height:1px;background:var(--accent);display:inline-block}
+.kicker.plain::before{display:none}
+.display{font-family:var(--serif);font-size:clamp(2.4rem,9vmin,9.6rem);font-weight:600;letter-spacing:-.025em;line-height:.98;color:var(--ink)}
+.h1{font-family:var(--serif);font-size:clamp(2rem,6.6vmin,6.8rem);font-weight:600;letter-spacing:-.02em;line-height:1.02;color:var(--ink)}
+.h2{font-family:var(--serif);font-size:clamp(1.7rem,5vmin,4.8rem);font-weight:600;letter-spacing:-.015em;line-height:1.06;color:var(--ink)}
+.lead{font-size:2.5vmin;line-height:1.52;font-weight:400;color:var(--ink2);max-width:50ch;margin-top:3.2vmin}
+.lead.lg{font-size:2.8vmin;max-width:46ch}
+.cap{font-family:var(--mono);font-size:1.5vmin;letter-spacing:.01em;color:var(--muted);margin-top:2.6vmin;max-width:60ch;line-height:1.55}
+.accent{color:var(--accent-ink)}
+em{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--accent-ink)}
+.dim{color:var(--faint)}
+strong{font-weight:700;color:var(--ink)}
+
+/* lists */
+.ul{list-style:none;margin-top:3.4vmin;display:flex;flex-direction:column;gap:2.2vmin;max-width:56ch}
+.ul li{position:relative;padding-left:3.6vmin;font-size:2.2vmin;line-height:1.42;color:var(--ink2)}
+.ul li::before{content:"";position:absolute;left:0;top:.9vmin;width:1.1vmin;height:1.1vmin;border-radius:50%;
+  background:var(--accent)}
+.ul.check li::before{content:"";width:1.7vmin;height:1.0vmin;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);
+  background:none;border-radius:0;transform:rotate(-45deg);top:.6vmin}
+.ul li b{color:var(--ink);font-weight:650}
+.ul li span{color:var(--muted)}
+
+/* section divider */
+.sec-num{font-family:var(--mono);font-size:1.5vmin;font-weight:500;color:var(--accent-ink);letter-spacing:.16em;text-transform:uppercase;margin-bottom:2.6vmin}
+.sec-title{font-family:var(--serif);font-size:clamp(2.2rem,7.2vmin,7.4rem);font-weight:600;letter-spacing:-.02em;line-height:1.0;color:var(--ink);max-width:16ch}
+.sec-list{margin-top:4.2vmin;display:flex;gap:2vmin;flex-wrap:wrap}
+.sec-list span{font-family:var(--mono);font-size:1.55vmin;font-weight:500;letter-spacing:.06em;color:var(--ink);padding:1.1vmin 2.2vmin;border:1px solid var(--line);
+  border-radius:999px;background:var(--card)}
+
+/* cards */
+.card{background:var(--card);border-radius:.4vmin;box-shadow:var(--ring),var(--shadow);padding:3.2vmin;border-top:2px solid var(--accent)}
+.tilt{transform:rotate(-1.2deg)}
+.tilt2{transform:rotate(1deg)}
+
+/* two col */
+.cols{display:grid;grid-template-columns:1.25fr 1fr;gap:7vmin;align-items:center;width:100%}
+.cols.top{align-items:start}
+
+/* photo */
+.figure{position:relative;justify-self:end;width:100%;max-width:33vmin;border-radius:.4vmin;overflow:hidden;
+  background:linear-gradient(158deg,#160f0a 0%,#3a1409 38%,#C8412a 118%);box-shadow:var(--shadow);border:1px solid var(--line)}
+.figure img{display:block;width:100%;height:auto;mix-blend-mode:luminosity;filter:grayscale(1) contrast(1.07) brightness(1.03)}
+.figure::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05);
+  background:radial-gradient(120% 90% at 50% 0%,transparent 55%,rgba(0,0,0,.35))}
+.figure figcaption{position:absolute;left:0;right:0;bottom:0;z-index:2;font-family:var(--mono);font-size:1.25vmin;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink);padding:2.6vmin 1.8vmin 1.4vmin;
+  background:linear-gradient(0deg,rgba(8,6,4,.82),transparent)}
+.figure figcaption b{color:var(--accent-ink)}
+
+/* triptych */
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:2.6vmin;margin-top:4vmin;width:100%}
+.tri .card{padding:3vmin}
+.tri .n{font-family:var(--mono);font-size:1.4vmin;font-weight:600;color:var(--accent-ink);margin-bottom:1.8vmin;letter-spacing:.12em}
+.tri h3{font-family:var(--serif);font-size:2.7vmin;font-weight:600;color:var(--ink);letter-spacing:-.01em;margin-bottom:1.6vmin;line-height:1.1}
+.tri p{font-size:1.75vmin;line-height:1.5;color:var(--muted)}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:1.2vmin;margin-top:2vmin}
+.chip{font-size:1.6vmin;font-weight:500;color:var(--ink2);background:var(--card);border:1px solid var(--line);
+  border-radius:999px;padding:.8vmin 1.8vmin}
+.chip.mono{font-family:var(--mono);font-size:1.45vmin;color:var(--accent-ink);background:var(--accent-soft);border-color:rgba(255,77,46,.3)}
+
+/* families */
+.fam{display:flex;flex-direction:column;gap:0;margin-top:3.6vmin;width:100%;max-width:78ch;border-top:1px solid var(--line)}
+.fam .row{display:grid;grid-template-columns:auto 1fr;gap:2.4vmin;align-items:baseline;padding:2vmin 0;
+  border-bottom:1px solid var(--line)}
+.fam .t{font-family:var(--serif);font-size:2.1vmin;font-weight:600;color:var(--ink);white-space:nowrap}
+.fam .e{font-family:var(--mono);font-size:1.7vmin;color:var(--muted)}
+
+/* compare */
+.compare{display:flex;flex-direction:column;gap:2.6vmin;margin-top:3.6vmin;width:100%;max-width:72ch}
+.compare .item{display:flex;gap:2.4vmin;align-items:flex-start}
+.compare .mk{flex:0 0 auto;width:3.4vmin;height:3.4vmin;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:1.9vmin;font-weight:700;margin-top:.3vmin}
+.compare .bad .mk{color:var(--faint);box-shadow:inset 0 0 0 1.5px var(--line)}
+.compare .good .mk{color:#fff;background:var(--accent);box-shadow:0 0 2vmin rgba(255,77,46,.45)}
+.compare .tx{font-size:2.5vmin;line-height:1.32;font-weight:500}
+.compare .bad .tx{color:var(--faint)}
+.compare .good .tx{color:var(--ink)}
+.compare .tx small{display:block;font-family:var(--mono);font-size:1.45vmin;color:var(--muted);font-weight:500;margin-top:.7vmin}
+
+/* quote */
+.quote{font-family:var(--serif);font-size:3vmin;line-height:1.34;font-weight:500;color:var(--ink);max-width:24ch}
+.quote .mark{color:var(--accent);font-weight:700}
+
+/* convergence */
+.converge{position:relative;height:42vmin;display:flex;align-items:center;justify-content:center}
+.converge .g{position:absolute;font-family:var(--serif);font-style:italic;font-size:9vmin;font-weight:500;letter-spacing:-.02em;color:var(--ink);white-space:nowrap}
+.converge .lead-word{position:relative;font-family:var(--serif);font-style:italic;font-size:10vmin;font-weight:600;letter-spacing:-.02em;color:var(--accent)}
+
+/* matrix scale */
+.scale{display:flex;flex-direction:column;gap:1.6vmin;margin-top:3.6vmin;width:100%;max-width:62ch}
+.scale .g{display:flex;align-items:center;gap:2.2vmin;padding:1.9vmin 2.4vmin;border-radius:.4vmin;background:var(--card);
+  box-shadow:var(--ring);font-size:2.1vmin;font-weight:600;color:var(--ink2)}
+.scale .g .lbl{flex:0 0 auto;width:3vmin;font-family:var(--mono);color:var(--faint);font-size:1.5vmin;font-weight:600}
+.scale .g.soft{color:var(--faint)}
+.scale .g.win{background:var(--accent);color:#fff;box-shadow:0 0 3vmin rgba(255,77,46,.4),var(--shadow)}
+.scale .g.win .lbl{color:rgba(255,255,255,.8)}
+.scale .g .note{margin-left:auto;font-family:var(--mono);font-size:1.4vmin;font-weight:500;opacity:.85}
+
+/* wireframe — the "mean" specimen, deliberately generic */
+.wire{width:42vmin;border:1px solid #d8d8df;background:#fff;border-radius:1.2vmin;padding:2.2vmin;box-shadow:var(--shadow);position:relative}
+.wire .dots{display:flex;gap:1vmin;margin-bottom:2.2vmin}
+.wire .dots i{width:1.3vmin;height:1.3vmin;border-radius:50%;background:#e4e4ea}
+.wire .hero{height:9vmin;border-radius:1vmin;background:linear-gradient(120deg,#c7c9f7,#b6e0f3);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:1.2vmin;margin-bottom:2.2vmin}
+.wire .hero .b1{width:52%;height:1.7vmin;border-radius:1vmin;background:rgba(24,24,27,.22)}
+.wire .hero .b2{width:30%;height:1.2vmin;border-radius:1vmin;background:rgba(24,24,27,.12)}
+.wire .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4vmin}
+.wire .cards3 .c{height:7vmin;border:1px solid #e4e4ea;border-radius:1vmin;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:.9vmin}
+.wire .cards3 .c .ic{width:2.3vmin;height:2.3vmin;border-radius:50%;background:#e4e4ea}
+.wire .cards3 .c .ln{width:58%;height:.95vmin;border-radius:1vmin;background:#e4e4ea}
+.wire .stamp{position:absolute;right:-2.4vmin;top:-2.4vmin;background:var(--accent);color:#fff;font-family:var(--mono);font-size:1.35vmin;
+  letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:.9vmin 1.6vmin;border-radius:999px;box-shadow:var(--shadow);transform:rotate(4deg)}
+
+/* lineup */
+.lineup{display:grid;grid-template-columns:repeat(4,1fr);gap:2.4vmin;margin-top:3.6vmin;width:100%}
+.lineup .m{background:var(--bg2);border:1px solid var(--line);border-radius:1vmin;padding:1.8vmin;box-shadow:var(--ring);position:relative}
+.lineup .m .h{height:5.2vmin;border-radius:.7vmin;background:#2a251d;margin-bottom:1.6vmin}
+.lineup .m .l{height:1.1vmin;border-radius:1vmin;background:var(--line);margin-bottom:1.1vmin}
+.lineup .m .l.s{width:62%}
+.lineup .m .tag{position:absolute;top:-1.5vmin;left:-1.5vmin;width:3.6vmin;height:3.6vmin;border-radius:50%;
+  background:var(--accent);color:#fff;font-family:var(--mono);font-weight:700;font-size:1.6vmin;display:flex;align-items:center;justify-content:center}
+
+/* client phrases */
+.phrases{display:flex;flex-direction:column;gap:1.6vmin;margin-top:1vmin}
+.phrases .p{font-family:var(--serif);font-size:2.4vmin;font-weight:500;color:var(--ink2);font-style:italic}
+.phrases .p::before{content:"\201C"}
+.phrases .p::after{content:"\201D"}
+
+/* tweet card */
+.tweetcard{justify-self:end;width:100%;max-width:46vmin;background:var(--card);border:1px solid var(--line);
+  border-radius:1.6vmin;padding:2.8vmin 3vmin;box-shadow:var(--shadow);font-family:var(--sans);position:relative}
+.tweetcard::before{content:"";position:absolute;left:0;top:0;width:100%;height:2px;border-radius:1.6vmin 1.6vmin 0 0;
+  background:linear-gradient(90deg,var(--accent),transparent 70%)}
+.tw-top{display:flex;align-items:center;gap:1.4vmin;margin-bottom:2vmin}
+.tw-av{width:5.2vmin;height:5.2vmin;border-radius:50%;flex:0 0 auto;box-shadow:var(--ring)}
+.tw-id{display:flex;flex-direction:column;line-height:1.25;margin-right:auto;min-width:0}
+.tw-name{display:flex;align-items:center;gap:.7vmin;font-weight:700;color:var(--ink);font-size:2vmin}
+.tw-name svg{width:1.95vmin;height:1.95vmin;flex:0 0 auto}
+.tw-handle{color:var(--muted);font-size:1.65vmin;font-family:var(--mono)}
+.tw-logo{width:2.5vmin;height:2.5vmin;color:var(--ink);opacity:.85;flex:0 0 auto}
+.tw-body{font-size:2.05vmin;line-height:1.5;color:var(--ink2)}
+.tw-body strong{color:var(--ink);font-weight:700}
+.tw-body a{color:var(--accent-ink);text-decoration:none}
+.tw-foot{display:flex;justify-content:space-between;align-items:center;gap:1.4vmin;margin-top:2.2vmin;padding-top:1.8vmin;
+  border-top:1px solid var(--line);font-family:var(--mono);font-size:1.4vmin;letter-spacing:.02em;color:var(--muted)}
+.tw-foot a{color:var(--accent-ink);text-decoration:none}
+
+/* per-slide QR */
+.qr{position:absolute;right:3vmin;bottom:7vmin;z-index:35;display:flex;flex-direction:column;align-items:center;gap:.9vmin;
+  transition:opacity .3s ease}
+.qr.hidden{opacity:0;pointer-events:none}
+.qbox{width:9.2vmin;height:9.2vmin;padding:.7vmin;background:var(--ink);border-radius:1.1vmin;box-shadow:var(--shadow);
+  outline:1.5px solid var(--accent);outline-offset:.5vmin}
+.qbox img{width:100%;height:100%;display:block}
+.qcap{font-family:var(--mono);font-size:1.15vmin;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.qcap b{color:var(--accent-ink);font-weight:600}
+
+/* meta / title */
+.title-slide{justify-content:space-between}
+.title-top{display:flex;justify-content:space-between;align-items:flex-start;font-family:var(--mono);font-size:1.4vmin;letter-spacing:.14em;text-transform:uppercase}
+.meta{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid var(--line);padding-top:2.8vmin}
+.meta div{font-family:var(--mono);font-size:1.45vmin;letter-spacing:.04em;color:var(--muted);font-weight:500;line-height:1.7}
+.meta .r{text-align:right}
+.meta b{color:var(--ink);font-weight:600}
+.endrow{display:flex;align-items:center;gap:3vmin}
+.endrow .avatar{flex:0 0 auto;width:13vmin;height:13vmin;border-radius:50%;overflow:hidden;background:linear-gradient(158deg,#160f0a,#C8412a);border:1px solid var(--line);box-shadow:var(--shadow)}
+.endrow .avatar img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;mix-blend-mode:luminosity;filter:grayscale(1) contrast(1.07)}
+
+.hint{position:absolute;left:50%;transform:translateX(-50%);bottom:1vmin;font-family:var(--mono);font-size:1.2vmin;letter-spacing:.06em;color:var(--faint);z-index:40;opacity:0;
+  transition:opacity .4s;pointer-events:none}
+.deck:hover .hint{opacity:1}
+
+/* speaker notes */
+.nbtn{font-family:var(--mono);font-size:1.25vmin;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);background:none;border:1px solid var(--line);
+  border-radius:999px;padding:.6vmin 1.5vmin;cursor:pointer;margin-right:1.6vmin;line-height:1}
+.nbtn:hover{color:var(--accent-ink);border-color:var(--accent)}
+.notes-on .nbtn{color:#fff;background:var(--accent);border-color:var(--accent)}
+#notes{position:absolute;left:0;right:0;bottom:0;z-index:45;background:#100d09;color:var(--ink2);
+  padding:3vmin 8vmin 3.4vmin;box-shadow:0 -12px 34px rgba(0,0,0,.5);border-top:2px solid var(--accent);
+  transform:translateY(101%);transition:transform .3s cubic-bezier(.5,0,.2,1);max-height:46vh;overflow:auto}
+.notes-on #notes{transform:none}
+#notes .hd{font-family:var(--mono);font-size:1.25vmin;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:1.6vmin;font-weight:600}
+#notes .ntext{font-size:2vmin;line-height:1.62;color:var(--ink2);max-width:92ch}
+#notes .ntext b{color:#fff;font-weight:700}
+#notes .ntext .demo{font-family:var(--mono);font-size:1.6vmin;color:var(--accent-ink);font-weight:700}
+@media print{.nbtn,#notes{display:none!important}}
+
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body,.deck{position:static;height:auto;overflow:visible;background:var(--bg)}
+  .deck::before,.deck::after{position:absolute}
+  .slide{position:relative;opacity:1!important;visibility:visible!important;width:1280px;height:720px;page-break-after:always;break-after:page}
+  .hint,.qr{display:none}
+}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <div class="bar">
+    <span class="l"><span class="dot"></span>How to not ship slop</span>
+    <span class="bar-r"><button id="notesBtn" class="nbtn" type="button">Notes</button><b id="cnum">01</b> / <span id="ctot">33</span></span>
+  </div>
+
+  <!-- 1 TITLE -->
+  <section class="slide title-slide">
+    <div class="title-top rise">
+      <span>AI Tooling CoP</span>
+      <span>Reaktor</span>
+    </div>
+    <div class="rise">
+      <div class="display">How to not<br>ship <em>slop</em>.</div>
+      <p class="lead lg">Just stop being average.</p>
+    </div>
+    <div class="meta rise">
+      <div><b>Perttu Lähteenlahti</b><br>Senior Developer Advocate, RevenueCat</div>
+      <div class="r">25 June 2026<br>perttu.dev</div>
+    </div>
+  </section>
+
+  <!-- 2 WHO -->
+  <section class="slide">
+    <div class="cols">
+      <div>
+        <span class="kicker rise">Hi, I'm Perttu</span>
+        <h2 class="h2 rise">I make things<br>for a living.</h2>
+        <p class="lead rise">Articles, videos, talks, and code. Which means I use AI constantly. Which means I'm at constant risk of shipping <em>slop</em>.</p>
+        <p class="cap rise">Senior Developer Advocate at RevenueCat. Next month we're running the world's largest mobile hackathon.</p>
+      </div>
+      <figure class="figure rise">
+        <img src="portrait.jpg" alt="Perttu Lähteenlahti speaking on stage">
+        <figcaption>Perttu Lähteenlahti · <b>perttu.dev</b></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 3 SECTION: BACKGROUND -->
+  <section class="slide">
+    <div class="sec-num rise">Background</div>
+    <div class="sec-title rise">The time we tried to hire an AI.</div>
+  </section>
+
+  <!-- 4 JOB POSTING -->
+  <section class="slide">
+    <div class="cols top">
+      <div>
+        <span class="kicker rise">Earlier this year · the actual posting</span>
+        <h1 class="h1 rise" style="max-width:14ch">We posted a job for an <em>agentic</em> Developer Advocate.</h1>
+        <p class="lead rise">A real role. Real <strong>$10k / month</strong>. The job: produce articles, videos and demos for developers. We were, sincerely, trying to hire an AI.</p>
+      </div>
+      <article class="tweetcard rise">
+        <header class="tw-top">
+          <img class="tw-av" src="rc-avatar.jpg" alt="RevenueCat">
+          <div class="tw-id">
+            <div class="tw-name">RevenueCat
+              <svg viewBox="0 0 24 24" aria-label="Verified"><path fill="#1d9bf0" d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"/></svg>
+            </div>
+            <div class="tw-handle">@RevenueCat</div>
+          </div>
+          <svg class="tw-logo" viewBox="0 0 24 24" aria-label="X"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </header>
+        <p class="tw-body">We're hiring for a new role: <strong>Agentic AI Developer Advocate</strong><br><br>This is a paid contract role (<strong>$10k/month</strong>) for an agent that will create content, run growth experiments, and provide product feedback<br><br>Are you (or did you build) the right agent? <a href="https://x.com/RevenueCat/status/2029232043838644407">rev.cat/agentic</a></p>
+        <footer class="tw-foot"><span>9:01 AM · Mar 4, 2026</span><a href="https://x.com/RevenueCat/status/2029232043838644407">View on X →</a></footer>
+      </article>
+    </div>
+  </section>
+
+  <!-- 5 ~100 APPLIED + TASKS -->
+  <section class="slide">
+    <span class="kicker rise">~100 agents applied. We judged them by their output.</span>
+    <h2 class="h2 rise">Each had to do three things:</h2>
+    <ul class="ul rise">
+      <li>Build something real on a new API <span>· e.g. a revenue-insights demo</span></li>
+      <li>Write the launch article <span>· in our house style</span></li>
+      <li>Cut a short YouTube video <span>· explaining how it works</span></li>
+    </ul>
+  </section>
+
+  <!-- 6 RESULT -->
+  <section class="slide">
+    <span class="kicker rise">The result</span>
+    <h1 class="h1 rise">Every single one failed.</h1>
+    <p class="lead rise lg">Not because the models were bad, the brief too hard, or the task too big. They just produced very <em>average</em> work.</p>
+  </section>
+
+  <!-- 7 DEFINITION / CONVERGENCE -->
+  <section class="slide">
+    <div class="cols">
+      <div>
+        <span class="kicker rise">The whole talk, in two words</span>
+        <div class="display rise">Slop is<br><em>average</em>.</div>
+        <p class="cap rise">A model predicts the most likely next token. Averaged over everything it has read, the most likely is the most average.</p>
+      </div>
+      <div class="converge rise">
+        <span class="g" style="opacity:.10;transform:translate(-2vmin,-6vmin) rotate(-4deg)">average</span>
+        <span class="g" style="opacity:.12;transform:translate(4vmin,5vmin) rotate(3deg)">average</span>
+        <span class="g" style="opacity:.10;transform:translate(7vmin,-1vmin) rotate(-2deg)">average</span>
+        <span class="g" style="opacity:.13;transform:translate(-4vmin,3vmin) rotate(4deg)">average</span>
+        <span class="lead-word">average</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 RESTATE -->
+  <section class="slide">
+    <h1 class="h1 rise" style="max-width:20ch">So not shipping slop is just <em>not shipping average</em>.</h1>
+  </section>
+
+  <!-- 9 MATRIX -->
+  <section class="slide">
+    <span class="kicker rise">Average kills companies. So our hiring scale has four grades.</span>
+    <div class="scale rise">
+      <div class="g soft"><span class="lbl">1</span>Definitely no</div>
+      <div class="g soft"><span class="lbl">2</span>No</div>
+      <div class="g soft"><span class="lbl">3</span>Yes <span class="note">often a soft no</span></div>
+      <div class="g win"><span class="lbl">4</span>Definitely yes <span class="note">I'd fight to have them</span></div>
+    </div>
+  </section>
+
+  <!-- 10 PRINCIPLE -->
+  <section class="slide">
+    <span class="kicker rise plain">The same bar applies to anything you make with AI</span>
+    <div class="display rise" style="max-width:16ch">If you wouldn't fight for it, don't ship it.</div>
+  </section>
+
+  <!-- 11 SECTION: WHAT IS SLOP -->
+  <section class="slide">
+    <div class="sec-num rise">The definition</div>
+    <div class="sec-title rise">What is slop, exactly?</div>
+    <p class="cap rise">Because not everything AI makes is slop.</p>
+  </section>
+
+  <!-- 12 KOMMERS -->
+  <section class="slide">
+    <span class="kicker rise">Kommers et al., "Why Slop Matters"</span>
+    <h2 class="h2 rise">Three features of slop.</h2>
+    <div class="tri rise">
+      <div class="card"><div class="n">01</div><h3>Superficial competence</h3><p>It looks well made. It lacks real depth.</p></div>
+      <div class="card"><div class="n">02</div><h3>Asymmetric effort</h3><p>Far less effort to make than it would take without AI.</p></div>
+      <div class="card"><div class="n">03</div><h3>Mass producibility</h3><p>It can be churned out and spread at scale.</p></div>
+    </div>
+    <p class="cap rise">For our work, the first two are what bite.</p>
+  </section>
+
+  <!-- 13 TRUST EROSION -->
+  <section class="slide">
+    <div class="cols">
+      <div>
+        <span class="kicker rise">Why those two erode trust</span>
+        <p class="lead rise lg">The moment you say <em>"oh, that's just an AI hallucination,"</em> you've admitted no one stood behind it.</p>
+        <p class="cap rise">And it's not just that one line that's now in question. It's everything.</p>
+      </div>
+      <div class="card tilt rise" style="max-width:42vmin">
+        <div class="quote"><span class="mark">"</span>The slides looked good. But now I question all of it. Turns out this polished thing was never really their bar.<span class="mark">"</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 SECTION: THREE THINGS -->
+  <section class="slide">
+    <div class="sec-num rise">The core</div>
+    <div class="sec-title rise">Three things AI can't give you.</div>
+    <div class="sec-list rise"><span>Context</span><span>Taste</span><span>Ownership</span></div>
+  </section>
+
+  <!-- 15 CONTEXT -->
+  <section class="slide">
+    <span class="kicker rise">01 / Context</span>
+    <h1 class="h1 rise" style="max-width:17ch">The only lever you have left.</h1>
+    <p class="lead rise">After training, the model knows the average of everything. The one thing you can change is what you put in. And the best context isn't on the internet: your data, your taste, the thing that happened on Tuesday.</p>
+  </section>
+
+  <!-- 16 TASTE -->
+  <section class="slide">
+    <span class="kicker rise">02 / Taste</span>
+    <h1 class="h1 rise" style="max-width:18ch">It can't tell the good answer from the average one.</h1>
+    <p class="lead rise">It writes a cliché and a sharp line with identical confidence. It has read everything and prefers nothing. Taste is mostly knowing what to cut.</p>
+  </section>
+
+  <!-- 17 OWNERSHIP -->
+  <section class="slide">
+    <span class="kicker rise">03 / Ownership</span>
+    <h1 class="h1 rise" style="max-width:17ch">Someone has to put their name on it.</h1>
+    <p class="lead rise">Not approve it. <em>Defend</em> it. Making things faster or easier is not the same as making them better.</p>
+  </section>
+
+  <!-- 18 SECTION: GUIDELINES -->
+  <section class="slide">
+    <div class="sec-num rise">Practice</div>
+    <div class="sec-title rise">Five guidelines for not generating slop.</div>
+  </section>
+
+  <!-- 19 G1 TALK TO AI -->
+  <section class="slide">
+    <div class="cols top">
+      <div>
+        <span class="kicker rise">Guideline 01</span>
+        <h2 class="h2 rise">Stop talking to AI like a client.</h2>
+        <p class="lead rise">Being specific is literally the job. Apply context, taste and ownership to turn a vague brief into an actual thing.</p>
+      </div>
+      <div class="card rise" style="align-self:center">
+        <div class="phrases">
+          <span class="p">Can you make it pop?</span>
+          <span class="p">Make it more white.</span>
+          <span class="p">The app is broken.</span>
+        </div>
+        <p class="cap" style="margin-top:2.4vmin">You know who else talks like this? You. To the model.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 20 G2 SHOW GOOD -->
+  <section class="slide">
+    <span class="kicker rise">Guideline 02</span>
+    <h2 class="h2 rise">Reference, don't adjective.</h2>
+    <p class="lead rise">"Make it professional" asks for the average, because it describes ten million things. Show good instead of describing it: paste your best work, a style guide, a real reference. Keep a swipe file. Bake it into a custom style.</p>
+  </section>
+
+  <!-- 21 G3 CUT -->
+  <section class="slide">
+    <span class="kicker rise">Guideline 03</span>
+    <h2 class="h2 rise">Cut until it bleeds.</h2>
+    <p class="lead rise lg">The model adds. Your job is to subtract. Every draft is a third too long and far too smooth, and the smoothness is the slop.</p>
+  </section>
+
+  <!-- 22 THE 5 FAMILIES -->
+  <section class="slide">
+    <span class="kicker rise">The tells. Wikipedia keeps a whole page of them.</span>
+    <div class="fam rise">
+      <div class="row"><div class="t">Significance inflation</div><div class="e">"pivotal," "crucial," "a testament to"</div></div>
+      <div class="row"><div class="t">Vocabulary fingerprint</div><div class="e">"delve," "tapestry," "intricate"</div></div>
+      <div class="row"><div class="t">Structure tells</div><div class="e">Title Case, over-bolding, em-dashes ×3</div></div>
+      <div class="row"><div class="t">Sycophancy residue</div><div class="e">"Great question!", "I hope this helps!"</div></div>
+      <div class="row"><div class="t">Avoidance patterns</div><div class="e">rule of three, "not just X but Y," vague optimism</div></div>
+    </div>
+  </section>
+
+  <!-- 23 CATALONIA COMPARE -->
+  <section class="slide">
+    <span class="kicker rise">Same facts, two versions</span>
+    <div class="cols rise" style="margin-top:1vmin">
+      <div class="card tilt">
+        <div style="font-family:var(--mono);font-size:1.35vmin;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--faint);margin-bottom:1.8vmin">The AI</div>
+        <div style="font-family:var(--serif);font-size:2.2vmin;line-height:1.42;color:var(--ink2)">"...established in 1989, <span class="accent">marking a pivotal moment in the evolution</span> of regional statistics in Spain."</div>
+        <div class="cap" style="margin-top:1.8vmin">A statistics office. Made to sound like the Magna Carta.</div>
+      </div>
+      <div class="card tilt2">
+        <div style="font-family:var(--mono);font-size:1.35vmin;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--accent-ink);margin-bottom:1.8vmin">A Human</div>
+        <div style="font-family:var(--serif);font-size:2.2vmin;line-height:1.42;color:var(--ink)">"...established in 1989 to collect regional statistics independently from Spain's national office."</div>
+        <div class="cap" style="margin-top:1.8vmin">Same facts. No inflation.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 24 ADD YOURSELF BACK -->
+  <section class="slide">
+    <span class="kicker rise">But cutting is only half of it</span>
+    <h1 class="h1 rise" style="max-width:20ch">Cutting removes the robot. Only you add the human.</h1>
+    <div class="compare rise">
+      <div class="item bad"><span class="mk">✕</span><span class="tx">"Remote work has several advantages."<small>clean, and completely dead</small></span></div>
+      <div class="item good"><span class="mk">✓</span><span class="tx">"I was a remote-work skeptic for years. I was mostly wrong."<small>a person</small></span></div>
+    </div>
+    <p class="cap rise">Read it aloud. If you wouldn't say it to a colleague, cut it.</p>
+  </section>
+
+  <!-- 25 G4 DEFAULT LOOK -->
+  <section class="slide">
+    <div class="cols">
+      <div>
+        <span class="kicker rise">Guideline 04 / the UI</span>
+        <h2 class="h2 rise">Don't accept the default look.</h2>
+        <p class="cap rise" style="max-width:34ch">Designers call it distributional convergence: Inter, a purple gradient, a hero, three cards, no real motion. Competent, and identical to everyone else.</p>
+      </div>
+      <div class="rise" style="display:flex;justify-content:center">
+        <div class="wire">
+          <div class="stamp">the mean</div>
+          <div class="dots"><i></i><i></i><i></i></div>
+          <div class="hero"><div class="b1"></div><div class="b2"></div></div>
+          <div class="cards3"><div class="c"><span class="ic"></span><span class="ln"></span></div><div class="c"><span class="ic"></span><span class="ln"></span></div><div class="c"><span class="ic"></span><span class="ln"></span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 26 VAGUE VS SPECIFIC HEADLINE -->
+  <section class="slide">
+    <span class="kicker rise">The easiest tell: the vague headline</span>
+    <div class="compare rise">
+      <div class="item bad"><span class="mk">✕</span><span class="tx">"Build the future of work."<small>could belong to anyone</small></span></div>
+      <div class="item good"><span class="mk">✓</span><span class="tx">Stripe: "Financial infrastructure for the internet."<small>Linear: "Plan and build products."</small></span></div>
+    </div>
+    <p class="cap rise">Specific beats aspirational. Same rule as the writing half.</p>
+  </section>
+
+  <!-- 27 FOUR DIMENSIONS -->
+  <section class="slide">
+    <span class="kicker rise">Pull a UI off the mean. Guide four dimensions on purpose. (Frontend cookbook)</span>
+    <ul class="ul rise">
+      <li><b>Typography</b> <span>· drop Inter for type with a point of view</span></li>
+      <li><b>Color</b> <span>· semantic, not a decorative gradient</span></li>
+      <li><b>Imagery</b> <span>· real screenshots, not stock or 3D blobs</span></li>
+      <li><b>Motion</b> <span>· one orchestrated load, not random fade-ins</span></li>
+    </ul>
+  </section>
+
+  <!-- 28 LINEUP -->
+  <section class="slide">
+    <span class="kicker rise">The test before you ship</span>
+    <h2 class="h2 rise">The lineup test.</h2>
+    <div class="lineup rise">
+      <div class="m"><span class="tag">A</span><div class="h"></div><div class="l"></div><div class="l s"></div></div>
+      <div class="m"><span class="tag">B</span><div class="h"></div><div class="l"></div><div class="l s"></div></div>
+      <div class="m"><span class="tag">C</span><div class="h"></div><div class="l"></div><div class="l s"></div></div>
+      <div class="m"><span class="tag">D</span><div class="h"></div><div class="l"></div><div class="l s"></div></div>
+    </div>
+    <p class="cap rise">Next to three real competitors: if a stranger can't tell which is yours, you shipped the default.</p>
+  </section>
+
+  <!-- 29 G5 VERIFY + FIGHT -->
+  <section class="slide">
+    <span class="kicker rise">Guideline 05</span>
+    <h2 class="h2 rise">Verify it, then fight for it.</h2>
+    <ul class="ul check rise">
+      <li>Check every number, name, quote and API against a real source</li>
+      <li>Run the code and read it <span>· "it ran once" is not the bar</span></li>
+      <li>Be able to defend every single slide</li>
+    </ul>
+    <p class="cap rise">Then the gate, the same one from hiring: <span class="accent" style="font-weight:600">would you fight for it?</span></p>
+  </section>
+
+  <!-- 30 CONCLUSION -->
+  <section class="slide">
+    <span class="kicker rise">The whole thing</span>
+    <h1 class="h1 rise" style="max-width:18ch">Cut the average out. Put yourself back in.</h1>
+    <p class="lead rise">Context, taste, ownership. The model has none of them, and it never will. That isn't a limitation to wait out. It's the job.</p>
+  </section>
+
+  <!-- 31 THE SHIFT -->
+  <section class="slide">
+    <span class="kicker rise">And here's the part worth sitting with</span>
+    <h2 class="h2 rise" style="max-width:20ch">Everyone has the same tools now.</h2>
+    <p class="lead rise lg">When the tools are identical, the only edge left is the part they can't supply. Taste and ownership just became the whole game.</p>
+  </section>
+
+  <!-- 32 KICKER CLOSE -->
+  <section class="slide">
+    <div class="display rise">Would you<br>fight for it?</div>
+    <p class="lead rise lg">If yes, ship it. If not, you already know what it is.</p>
+  </section>
+
+  <!-- 33 END -->
+  <section class="slide title-slide">
+    <div class="title-top rise">
+      <span>Thank you</span>
+      <span>Questions →</span>
+    </div>
+    <div class="rise endrow">
+      <div class="avatar"><img src="portrait.jpg" alt="Perttu Lähteenlahti"></div>
+      <div class="display">Thanks.</div>
+    </div>
+    <div class="meta rise">
+      <div><b>Perttu Lähteenlahti</b><br>perttu.dev</div>
+      <div class="r">@plahteenlahti<br>Senior Developer Advocate, RevenueCat</div>
+    </div>
+  </section>
+
+  <div class="footnote">
+    <span>How to not ship slop</span>
+    <span>Perttu Lähteenlahti</span>
+  </div>
+  <div class="progress" id="prog"></div>
+  <div class="qr" id="qr"><div class="qbox"><img id="qrimg" alt="Scan to open this slide"></div><div class="qcap">scan&nbsp;→&nbsp;slide&nbsp;<b id="qrn">04</b></div></div>
+  <div class="hint">← → move · F fullscreen · N notes · Q qr</div>
+  <div id="notes"><div class="hd">Speaker notes · <span id="nnum">1</span> / 33</div><div class="ntext" id="ntext"></div></div>
+</div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0,n=slides.length;
+  var cnum=document.getElementById('cnum'),ctot=document.getElementById('ctot'),prog=document.getElementById('prog');
+  var notesEl=document.getElementById('ntext'),nnum=document.getElementById('nnum'),notesBtn=document.getElementById('notesBtn');
+  var qr=document.getElementById('qr'),qrimg=document.getElementById('qrimg'),qrn=document.getElementById('qrn');
+  ctot.textContent=String(n).padStart(2,'0');
+  // Set DECK_URL to your deployed address so the codes resolve for the audience;
+  // empty falls back to wherever the file is served from.
+  var DECK_URL='https://perttu.dev/slop';
+  qrimg.onerror=function(){this.style.visibility='hidden';};
+  function themeHex(name,fallback){
+    var v=getComputedStyle(document.documentElement).getPropertyValue(name).trim().replace('#','');
+    return /^[0-9a-fA-F]{6}$/.test(v)?v:fallback;
+  }
+  function updateQR(){
+    var base=DECK_URL||(location.origin+location.pathname+location.search);
+    var url=base+'#'+(i+1);
+    var mod=themeHex('--bg','16130F'),bg=themeHex('--ink','F4EEE3');
+    qrimg.style.visibility='visible';
+    qrimg.src='https://api.qrserver.com/v1/create-qr-code/?size=260x260&margin=0&qzone=2&format=svg'+
+      '&color='+mod+'&bgcolor='+bg+'&data='+encodeURIComponent(url);
+  }
+  var NOTES=[
+    "Don't read the title. Open warm and fast: “Today is one idea, that AI slop is just <b>average</b>, and how to stop shipping it.” Set expectations: ~45 min, then Q&A. The session is recorded.",
+    "30 seconds on you. The hook: you ship a <b>lot</b> with AI (articles, videos, talks, code), so you've lived the slop trap. Drop the hackathon line for credibility and a smile.",
+    "Transition slide. “Let me start with the time we literally tried to hire an AI.” Pause before moving on.",
+    "Tell it deadpan. The joke is that it was <b>real</b>: a real role, real $10k a month. We were sincerely trying to hire an AI Developer Advocate.",
+    "~100 agents actually applied. We judged on <b>output</b>, not promises. Walk the three tasks quickly, don't dwell.",
+    "Beat for emphasis: <b>every one failed</b>. Knock down the easy excuses (bad model, hard brief, too much). Then land it: they were just average. Let the silence sit.",
+    "The thesis. Explain convergence in one breath: most likely next token = most average. Let the graphic do the work. Do <b>not</b> go down an ML rabbit hole.",
+    "Say it slowly, it's the spine of the talk: “Not shipping slop is not shipping average.” One sentence, then move.",
+    "RevenueCat hiring scale. The twist: no neutral middle. “Yes” is a soft no. Only <b>Definitely yes</b> = I'd fight to have them. This reframes every decision.",
+    "The portable line. Say it, pause, let them write it down. Then bridge: “Getting AI there feels impossible, so let's get practical.”",
+    "Quick definitional detour. “Not everything AI makes is slop, so let's be precise for a second.”",
+    "Cite the paper, it buys credibility. Three features. Flag that for our work (client decks, articles, code) the first two bite, we're not mass-producing.",
+    "The money point for a consulting room. One bad stat and the client doubts <b>everything</b>. “It's an AI hallucination” is a confession that nobody owned it. Read the card.",
+    "The backbone of the talk. “Whatever you've seen, it comes down to three things the model can't give you.”",
+    "Context = the only lever after training. Best context isn't on the internet: your data, your taste, Tuesday's meeting. Sets up guidelines 1 and 2.",
+    "It can't tell good from average. Taste = knowing what to cut. Callback: this is exactly why all ~100 agents failed.",
+    "Approve vs <b>defend</b>. “Faster or easier is not better.” Callback to the hiring gate.",
+    "Pace up, this is the practical core. “Now, five guidelines.”",
+    "The funny one. Read the client phrases out loud, then the turn: you talk to the model exactly like this. <span class=\"demo\">DEMO:</span> paste the same vague phrases into Codex/Claude for the laugh. Being specific is the job.",
+    "Reference, don't adjective. <span class=\"demo\">DEMO:</span> same brief plain vs “in this voice [paste 200 words of your writing].” Read both aloud. Mention a swipe file and a saved custom style.",
+    "Set up the edit. The model adds; you subtract. The draft is ~30% too long and too smooth, and the smoothness is the slop.",
+    "Don't read all five, pick the 2-3 you love. Note that Wikipedia literally keeps this list. These are pattern recognition, not hard rules.",
+    "The killer example. Read the AI version with mock gravitas (“the Magna Carta”), then the human version flat. Same facts, no inflation.",
+    "The non-obvious point, don't skip it. Scrubbing tells alone = clean but dead. You have to add voice back. Read both remote-work lines. End on the read-aloud test.",
+    "The UI guideline, the code promise. Name it: distributional convergence. The wireframe is the mean, everyone has seen this exact site.",
+    "Headlines. “Build the future of work” = anyone. Stripe / Linear = specific. Same specificity rule as the writing half.",
+    "Straight from Anthropic's frontend cookbook. Four levers: type, color, imagery, motion. <span class=\"demo\">DEMO:</span> the cookbook before/after on a SaaS page if time allows.",
+    "The ship test. Yours next to three competitors: if a stranger can't tell which is yours, it's slop. <b>Ask the room</b>: show four, which one is 'the brand'?",
+    "Ownership as a checklist. Numbers, names, APIs. Run <b>and</b> read the code. The gate returns: would you fight for it. <span class=\"demo\">YOUR STORY:</span> a hallucination you caught on the last pass.",
+    "Pull it together: cut the average out, put yourself back in. Context / taste / ownership = the job, not a limitation to wait out.",
+    "Forward-looking beat. Everyone has the same tools now. The edge is the part they can't supply. Taste + ownership = the whole game.",
+    "The closer. Big question, let the silence work. “If not, you already know what it is.”",
+    "Thanks + open Q&A. Point them to perttu.dev and @plahteenlahti. Breathe."
+  ];
+  function pad(x){return String(x+1).padStart(2,'0');}
+  function show(k){
+    i=Math.max(0,Math.min(n-1,k));
+    slides.forEach(function(s,idx){s.classList.toggle('active',idx===i);});
+    cnum.textContent=pad(i);
+    prog.style.width=(i/(n-1)*100)+'%';
+    notesEl.innerHTML=NOTES[i]||'';nnum.textContent=i+1;
+    qrn.textContent=pad(i);updateQR();
+    location.hash=i+1;
+  }
+  function toggleNotes(){deck.classList.toggle('notes-on');}
+  function next(){show(i+1);} function prev(){show(i-1);}
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '||e.key==='l'){e.preventDefault();next();}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'||e.key==='h'){e.preventDefault();prev();}
+    else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(n-1);}
+    else if(e.key==='f'||e.key==='F'){if(!document.fullscreenElement){document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();}else{document.exitFullscreen&&document.exitFullscreen();}}
+    else if(e.key==='n'||e.key==='N'){toggleNotes();}
+    else if(e.key==='q'||e.key==='Q'){qr.classList.toggle('hidden');}
+  });
+  var deck=document.getElementById('deck');
+  deck.addEventListener('click',function(e){if(e.clientX<window.innerWidth*0.28){prev();}else{next();}});
+  notesBtn.addEventListener('click',function(e){e.stopPropagation();toggleNotes();});
+  document.getElementById('notes').addEventListener('click',function(e){e.stopPropagation();});
+  var x0=null;
+  deck.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+  deck.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40){dx<0?next():prev();}x0=null;},{passive:true});
+  var start=parseInt(location.hash.replace('#',''),10);
+  show(isNaN(start)?0:start-1);
+})();
+</script>
+</body>
+</html>

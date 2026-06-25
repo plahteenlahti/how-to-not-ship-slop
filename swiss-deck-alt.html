@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Doesn't Ship Slop. You Do.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Expanded:wght@600;700;800;900&family=Archivo+Narrow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F1ECE0;
+  --ink:#161412;
+  --red:#E11A12;
+  --mute:#9C968A;
+  --line:rgba(22,20,18,.20);
+  --line-strong:rgba(22,20,18,.55);
+  --pad-y:5.2vmin;
+  --pad-x:6.8vmin;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;width:100%;overflow:hidden;background:#0e0d0c}
+body{
+  font-family:"Archivo",system-ui,sans-serif;
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+.deck{position:fixed;inset:0;background:var(--paper);overflow:hidden}
+
+/* ---------- persistent furniture ---------- */
+.bar{
+  position:absolute;left:var(--pad-x);right:var(--pad-x);top:2.6vmin;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:"Archivo Narrow",sans-serif;
+  font-size:1.55vmin;letter-spacing:.34em;text-transform:uppercase;
+  font-weight:600;color:var(--ink);z-index:30;
+}
+.bar .dot{display:inline-block;width:.9vmin;height:.9vmin;background:var(--red);border-radius:50%;margin-right:1.1vmin;vertical-align:middle}
+.bar__r{color:var(--mute)}
+.bar__r b{color:var(--ink);font-weight:700}
+.rule-top{position:absolute;left:var(--pad-x);right:var(--pad-x);top:6.0vmin;height:1px;background:var(--line);z-index:30}
+.progress{position:absolute;left:0;bottom:0;height:.55vmin;background:var(--red);width:0;z-index:30;transition:width .45s cubic-bezier(.7,0,.2,1)}
+.footnote{
+  position:absolute;left:var(--pad-x);right:var(--pad-x);bottom:2.4vmin;
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-family:"Archivo Narrow",sans-serif;font-size:1.45vmin;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--mute);z-index:30;
+}
+
+/* ---------- slides ---------- */
+.slide{
+  position:absolute;inset:0;
+  padding:9.4vmin var(--pad-x) 6.4vmin;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .5s ease;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.slide.active{opacity:1;visibility:visible;pointer-events:auto}
+.slide.active .rise{animation:rise .65s cubic-bezier(.2,.7,.2,1) both}
+.slide.active .rise:nth-child(2){animation-delay:.06s}
+.slide.active .rise:nth-child(3){animation-delay:.12s}
+.slide.active .rise:nth-child(4){animation-delay:.18s}
+@keyframes rise{from{opacity:0;transform:translateY(2.4vmin)}to{opacity:1;transform:none}}
+
+/* ---------- type system ---------- */
+.kicker{font-family:"Archivo Narrow",sans-serif;font-weight:600;text-transform:uppercase;
+  letter-spacing:.32em;font-size:1.9vmin;color:var(--red);margin-bottom:2.4vmin}
+.kicker.ink{color:var(--ink)}
+.display{font-family:"Archivo Expanded","Archivo",sans-serif;font-weight:800;
+  line-height:.92;letter-spacing:-.018em;font-size:clamp(2.2rem,9.6vmin,12rem)}
+.h1{font-family:"Archivo",sans-serif;font-weight:800;line-height:.98;
+  letter-spacing:-.02em;font-size:clamp(2rem,7.4vmin,9rem)}
+.h2{font-weight:700;line-height:1.02;letter-spacing:-.015em;font-size:clamp(1.7rem,5.4vmin,6rem)}
+.lead{font-size:2.5vmin;line-height:1.4;font-weight:500;max-width:64ch}
+.note{font-size:2.05vmin;line-height:1.45;font-weight:500;color:#3b3833;max-width:58ch}
+.small{font-family:"Archivo Narrow",sans-serif;font-size:1.7vmin;letter-spacing:.04em;color:var(--mute)}
+.red{color:var(--red)}
+.mutetext{color:var(--mute)}
+em{font-style:normal;color:var(--red)}
+strong{font-weight:800}
+.stack-gap>*+*{margin-top:3vmin}
+.maxw{max-width:24ch}
+
+/* ---------- section numerals ---------- */
+.sectionnum{font-family:"Archivo Expanded","Archivo",sans-serif;font-weight:900;
+  color:var(--red);font-size:clamp(7rem,34vmin,40rem);line-height:.8;letter-spacing:-.03em}
+.section-row{display:flex;align-items:flex-end;gap:5vmin}
+.section-meta .label{font-family:"Archivo Narrow",sans-serif;text-transform:uppercase;
+  letter-spacing:.3em;font-size:1.8vmin;color:var(--mute);margin-bottom:1.4vmin}
+.section-meta .title{font-weight:800;font-size:clamp(2rem,6.6vmin,7rem);line-height:.98;letter-spacing:-.02em;max-width:13ch}
+.section-list{margin-top:3.4vmin;display:flex;gap:3.4vmin;flex-wrap:wrap}
+.section-list span{font-family:"Archivo Narrow",sans-serif;text-transform:uppercase;
+  letter-spacing:.18em;font-size:1.9vmin;font-weight:600;padding-top:1.4vmin;border-top:2px solid var(--ink)}
+
+/* ---------- triptych ---------- */
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:1vmin;border-top:2px solid var(--ink)}
+.tri > div{padding:3vmin 2.6vmin 0 0;border-right:1px solid var(--line)}
+.tri > div:last-child{border-right:0;padding-right:0}
+.tri .num{font-family:"Archivo Narrow",sans-serif;color:var(--red);font-size:1.7vmin;letter-spacing:.2em;margin-bottom:1.6vmin}
+.tri h3{font-weight:800;font-size:3.4vmin;letter-spacing:-.01em;margin-bottom:1.6vmin}
+.tri p{font-size:1.85vmin;line-height:1.42;color:#3b3833;font-weight:500}
+
+/* ---------- two-column generic layout ---------- */
+.cols{display:grid;grid-template-columns:1.35fr .9fr;gap:6vmin;align-items:end;width:100%}
+.cols .aside{font-size:1.95vmin;line-height:1.45;color:#3b3833;font-weight:500;border-left:2px solid var(--red);padding-left:2.4vmin}
+.tag{display:inline-block;font-family:"Archivo Narrow",sans-serif;text-transform:uppercase;
+  letter-spacing:.22em;font-size:1.5vmin;font-weight:600;color:var(--ink);
+  border:1.5px solid var(--ink);border-radius:100px;padding:.7vmin 1.6vmin;margin:.5vmin .6vmin 0 0}
+
+/* ---------- concept: convergence ---------- */
+.converge{position:relative;height:46vmin;display:flex;align-items:center;justify-content:flex-start}
+.converge .ghost{position:absolute;font-family:"Archivo Expanded",sans-serif;font-weight:800;
+  font-size:11vmin;letter-spacing:-.02em;color:var(--ink);white-space:nowrap}
+.converge .lead-word{position:relative;font-family:"Archivo Expanded",sans-serif;font-weight:900;
+  font-size:12vmin;letter-spacing:-.025em;color:var(--ink)}
+
+/* ---------- concept: wireframe ---------- */
+.wire{width:46vmin;border:2px solid var(--ink);background:#fff;padding:2vmin;position:relative}
+.wire .dots{display:flex;gap:1vmin;margin-bottom:2vmin}
+.wire .dots i{width:1.4vmin;height:1.4vmin;border-radius:50%;background:var(--line-strong)}
+.wire .hero{height:9vmin;background:linear-gradient(120deg,#cfc9bd,#e7e2d6);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:1vmin;margin-bottom:2vmin}
+.wire .hero .b1{width:55%;height:1.8vmin;background:var(--line-strong)}
+.wire .hero .b2{width:32%;height:1.4vmin;background:var(--line)}
+.wire .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4vmin}
+.wire .cards .c{height:7vmin;border:1.5px solid var(--line-strong);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8vmin}
+.wire .cards .c .ic{width:2.4vmin;height:2.4vmin;border-radius:50%;background:var(--line-strong)}
+.wire .cards .c .ln{width:60%;height:1vmin;background:var(--line)}
+.noslash{position:absolute;inset:-3vmin;pointer-events:none}
+.noslash svg{width:100%;height:100%}
+
+/* ---------- concept: lineup ---------- */
+.lineup{display:grid;grid-template-columns:repeat(4,1fr);gap:2.4vmin;width:100%;margin-top:1vmin}
+.lineup .mini{border:2px solid var(--ink);background:#fff;padding:1.6vmin;position:relative}
+.lineup .mini .h{height:5.4vmin;background:#d8d2c6;margin-bottom:1.4vmin}
+.lineup .mini .l{height:1.1vmin;background:var(--line-strong);margin-bottom:1vmin}
+.lineup .mini .l.s{width:60%}
+.lineup .mini .tagm{position:absolute;top:-1.4vmin;left:-1.4vmin;width:4vmin;height:4vmin;background:var(--ink);
+  color:var(--paper);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:2vmin}
+
+/* ---------- specificity compare ---------- */
+.compare{display:flex;flex-direction:column;gap:2.6vmin;margin-top:1vmin}
+.compare .row{display:flex;align-items:center;gap:2.4vmin}
+.compare .mark{flex:0 0 auto;width:4.6vmin;height:4.6vmin;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:2.4vmin}
+.compare .bad .mark{color:var(--mute);border:2px solid var(--mute)}
+.compare .good .mark{color:var(--paper);background:var(--red)}
+.compare .txt{font-size:2.7vmin;font-weight:600;line-height:1.2}
+.compare .bad .txt{color:var(--mute);text-decoration:line-through;text-decoration-thickness:2px}
+
+/* ---------- title slide ---------- */
+.title-slide{justify-content:space-between}
+.title-top{display:flex;justify-content:space-between;align-items:flex-start}
+.title-main .display{margin-top:auto}
+.cover-meta{display:flex;justify-content:space-between;align-items:flex-end;border-top:2px solid var(--ink);padding-top:2.2vmin}
+.cover-meta div{font-family:"Archivo Narrow",sans-serif;text-transform:uppercase;letter-spacing:.2em;font-size:1.7vmin;font-weight:600}
+.cover-meta .r{text-align:right;color:var(--mute)}
+
+/* closing */
+.endmark{font-family:"Archivo Expanded",sans-serif;font-weight:900;font-size:clamp(2.4rem,12vmin,16rem);
+  line-height:.9;letter-spacing:-.03em}
+
+/* ---------- hint ---------- */
+.hint{position:absolute;right:2.4vmin;bottom:2.2vmin;font-family:"Archivo Narrow",sans-serif;
+  font-size:1.4vmin;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);z-index:40;
+  opacity:.0;transition:opacity .4s;pointer-events:none}
+.deck:hover .hint{opacity:.7}
+
+/* ---------- print / PDF ---------- */
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body,.deck{position:static;height:auto;overflow:visible;background:#fff}
+  .bar,.rule-top,.footnote,.progress{position:absolute}
+  .slide{position:relative;opacity:1!important;visibility:visible!important;
+    width:1280px;height:720px;page-break-after:always;break-after:page}
+  .hint{display:none}
+}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <div class="bar">
+    <span><span class="dot"></span>Avoiding Slop</span>
+    <span class="bar__r"><b id="cnum">01</b> / <span id="ctot">29</span></span>
+  </div>
+  <div class="rule-top"></div>
+
+  <!-- 1 TITLE -->
+  <section class="slide title-slide">
+    <div class="title-top rise">
+      <span class="small" style="letter-spacing:.3em;text-transform:uppercase">A talk on AI tooling</span>
+      <span class="small" style="letter-spacing:.3em;text-transform:uppercase">Reaktor · GenAI</span>
+    </div>
+    <div class="title-main rise">
+      <div class="display">AI DOESN'T<br>SHIP SLOP.<br><span class="red">YOU DO.</span></div>
+      <p class="lead" style="margin-top:3.4vmin">How to keep the model's average out of your work.</p>
+    </div>
+    <div class="cover-meta rise">
+      <div>Perttu Lähteenlahti<br><span style="color:var(--mute)">RevenueCat</span></div>
+      <div class="r">25 June 2026<br>14:00 EET</div>
+    </div>
+  </section>
+
+  <!-- 2 RECOGNITION -->
+  <section class="slide">
+    <span class="kicker rise">01 · The feeling</span>
+    <h1 class="h1 rise">You can smell it<br>before you can<br>explain it.</h1>
+    <p class="note rise" style="margin-top:3.2vmin">The page that could belong to any product. The post that tells you what it's about, then tells you again. Nothing is wrong with it. That's the problem.</p>
+  </section>
+
+  <!-- 3 WORD OF THE YEAR -->
+  <section class="slide">
+    <div class="cols">
+      <div>
+        <span class="kicker rise">Merriam-Webster · Word of the Year</span>
+        <div class="display rise" style="font-size:clamp(3rem,20vmin,26rem)">SLOP</div>
+      </div>
+      <div class="aside rise"><strong>2025.</strong> "Low-quality digital content produced in quantity by artificial intelligence." The word stuck because everyone already knew the feeling.</div>
+    </div>
+  </section>
+
+  <!-- 4 REFRAME -->
+  <section class="slide">
+    <span class="kicker rise">The uncomfortable part</span>
+    <div class="h1 rise"><span class="mutetext">The AI isn't<br>producing slop.</span></div>
+    <div class="display rise" style="margin-top:2vmin">YOU ARE.</div>
+    <p class="note rise" style="margin-top:3.4vmin">Slop is a workflow failure wearing a technology costume. The model gives you exactly what you asked for, when you didn't really ask for anything.</p>
+  </section>
+
+  <!-- 5 WHAT SLOP IS -->
+  <section class="slide">
+    <span class="kicker rise">What it actually is</span>
+    <h2 class="h2 rise" style="max-width:22ch">Content optimized to <span class="red">exist</span>.<br>Not to be read or used.</h2>
+    <p class="note rise" style="margin-top:3.4vmin">The giveaway is always an <strong>absence</strong>: no specific person, no stake, no point of view, no detail that could only have come from someone who was actually there.</p>
+  </section>
+
+  <!-- 6 MECHANISM / CONVERGENCE -->
+  <section class="slide">
+    <span class="kicker rise">Why the machine defaults to it</span>
+    <div class="cols" style="align-items:center">
+      <div class="converge rise">
+        <span class="ghost" style="opacity:.10;transform:translate(-1vmin,-7vmin) rotate(-3deg)">average</span>
+        <span class="ghost" style="opacity:.12;transform:translate(3vmin,6vmin) rotate(2deg)">average</span>
+        <span class="ghost" style="opacity:.10;transform:translate(8vmin,-2vmin) rotate(-1deg)">average</span>
+        <span class="ghost" style="opacity:.14;transform:translate(-2vmin,3vmin) rotate(4deg)">average</span>
+        <span class="lead-word">AVERAGE</span>
+      </div>
+      <div class="aside rise">Most probable = most&nbsp;average. A thin prompt asks for the center of the distribution. The center is, by definition, the part nobody remembers.</div>
+    </div>
+  </section>
+
+  <!-- 7 THE JOB -->
+  <section class="slide">
+    <span class="kicker rise">So the whole job is one thing</span>
+    <h1 class="h1 rise" style="max-width:18ch">Drag your work <span class="red">away</span> from the center.</h1>
+    <p class="note rise" style="margin-top:3.2vmin">Everything that follows is a way of doing exactly that.</p>
+  </section>
+
+  <!-- 8 SECTION 01 -->
+  <section class="slide">
+    <div class="section-row rise">
+      <div class="sectionnum">01</div>
+      <div class="section-meta">
+        <div class="label">The spine</div>
+        <div class="title">Three things a model can't give you</div>
+      </div>
+    </div>
+    <div class="section-list rise">
+      <span>Context</span><span>Taste</span><span>An owner</span>
+    </div>
+  </section>
+
+  <!-- 9 TRIPTYCH -->
+  <section class="slide">
+    <span class="kicker rise">Slop is what you get when all three are missing</span>
+    <div class="tri rise">
+      <div><div class="num">A · RAW MATERIAL</div><h3>Context</h3><p>The specific facts, real data, the thing that happened on Tuesday. Without it, the model reaches for the generic version of your topic.</p></div>
+      <div><div class="num">B · JUDGMENT</div><h3>Taste</h3><p>The model has read everything and prefers nothing. It writes the cliché and the fresh line with equal enthusiasm. Taste says: not that, the other one.</p></div>
+      <div><div class="num">C · A HUMAN</div><h3>An owner</h3><p>Someone who will <em>defend</em> every word and pixel. Not approve. Defend. Slop is what no one decided on purpose.</p></div>
+    </div>
+  </section>
+
+  <!-- 10 SECTION 02 -->
+  <section class="slide">
+    <div class="section-row rise">
+      <div class="sectionnum">02</div>
+      <div class="section-meta">
+        <div class="label">Practice · words</div>
+        <div class="title">Not shipping written slop</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 MATERIAL -->
+  <section class="slide">
+    <div class="cols">
+      <div>
+        <span class="kicker rise">Habit 01</span>
+        <h2 class="h2 rise">Generate from<br><span class="red">material</span>, not a topic.</h2>
+      </div>
+      <div class="aside rise"><strong>"Write about onboarding"</strong> → the median.<br><br><strong>Your support tickets + the number that made you angry</strong> → something only you could have written. Output is capped by input. A topic is nearly nothing.</div>
+    </div>
+  </section>
+
+  <!-- 12 POINT FIRST -->
+  <section class="slide">
+    <span class="kicker rise">Habit 02</span>
+    <h2 class="h2 rise" style="max-width:20ch">Decide the point <span class="red">before</span> you prompt.</h2>
+    <p class="note rise" style="margin-top:3.4vmin">A model can't hold an opinion you haven't given it, and it will never tell you that you don't have one. Using the model to find your take is how you publish the absence of one.</p>
+  </section>
+
+  <!-- 13 SPECIFICITY -->
+  <section class="slide">
+    <span class="kicker rise">Habit 03 · the most reliable tell</span>
+    <h2 class="h2 rise">Specificity is the antidote.</h2>
+    <div class="compare rise" style="margin-top:3.6vmin">
+      <div class="row bad"><span class="mark">✕</span><span class="txt">"Businesses today leverage cutting-edge solutions."</span></div>
+      <div class="row good"><span class="mark">✓</span><span class="txt">"We cut onboarding from 9 steps to 3. Activation rose 14%."</span></div>
+    </div>
+    <p class="small rise" style="margin-top:3.2vmin">Test: could this sentence sit, word for word, on a competitor's page? Then cut it or make it specific.</p>
+  </section>
+
+  <!-- 14 EDIT -->
+  <section class="slide">
+    <span class="kicker rise">Habit 04</span>
+    <h2 class="h2 rise" style="max-width:22ch">Edit destructively. Hardest at the open and the close.</h2>
+    <div class="rise" style="margin-top:3.4vmin">
+      <p class="small" style="margin-bottom:1.6vmin;color:var(--ink)">KILL THE TELLS</p>
+      <span class="tag">rule-of-three lists</span>
+      <span class="tag">"not just X, it's Y"</span>
+      <span class="tag">hedging</span>
+      <span class="tag">throat-clearing intros</span>
+      <span class="tag">summary that restates the intro</span>
+      <span class="tag">em-dash pile-ups</span>
+    </div>
+  </section>
+
+  <!-- 15 READ ALOUD -->
+  <section class="slide">
+    <span class="kicker rise">Habit 05 · the cheapest check</span>
+    <h1 class="h1 rise" style="max-width:16ch">Read it out loud.</h1>
+    <p class="note rise" style="margin-top:3.2vmin">Anything you wouldn't actually say to a colleague over coffee is slop. Your mouth catches the AI register before your eyes do.</p>
+  </section>
+
+  <!-- 16 SECTION 03 -->
+  <section class="slide">
+    <div class="section-row rise">
+      <div class="sectionnum">03</div>
+      <div class="section-meta">
+        <div class="label">Practice · pixels</div>
+        <div class="title">Not shipping design slop</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 17 DESIGN MEAN / WIREFRAME -->
+  <section class="slide">
+    <div class="cols" style="align-items:center">
+      <div>
+        <span class="kicker rise">The visual center of the distribution</span>
+        <h2 class="h2 rise" style="max-width:14ch">The design mean.</h2>
+        <p class="small rise" style="margin-top:2.4vmin;max-width:30ch">Inter. Purple gradient. Centered hero. Three icon cards. Testimonial carousel. None of it bad. All of it average.</p>
+      </div>
+      <div class="rise" style="display:flex;justify-content:center;position:relative">
+        <div class="wire">
+          <div class="noslash"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="50" cy="50" r="46" fill="none" stroke="#E11A12" stroke-width="3"/><line x1="18" y1="18" x2="82" y2="82" stroke="#E11A12" stroke-width="3"/></svg></div>
+          <div class="dots"><i></i><i></i><i></i></div>
+          <div class="hero"><div class="b1"></div><div class="b2"></div></div>
+          <div class="cards">
+            <div class="c"><span class="ic"></span><span class="ln"></span></div>
+            <div class="c"><span class="ic"></span><span class="ln"></span></div>
+            <div class="c"><span class="ic"></span><span class="ln"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 18 CONSTRAIN -->
+  <section class="slide">
+    <div class="cols">
+      <div>
+        <span class="kicker rise">Habit 06</span>
+        <h2 class="h2 rise">Constrain<br>before you<br>generate.</h2>
+      </div>
+      <div class="aside rise">Decide type, colour, layout and motion as deliberate choices. Then subtract the defaults with <strong>negative constraints</strong>:
+        <div style="margin-top:2.2vmin">
+          <span class="tag">No Inter</span><span class="tag">No centred hero</span><span class="tag">No purple gradient</span><span class="tag">No card grid</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 19 REFERENCES -->
+  <section class="slide">
+    <span class="kicker rise">Habit 07</span>
+    <h2 class="h2 rise" style="max-width:20ch">References, not adjectives.</h2>
+    <p class="note rise" style="margin-top:3.2vmin">"Modern" and "clean" constrain nothing. Every product claims them. A real reference ("lay it out like an editorial spread") carries a thousand borrowed decisions. An adjective carries none.</p>
+  </section>
+
+  <!-- 20 LINEUP -->
+  <section class="slide">
+    <span class="kicker rise">Habit 08 · the distinctiveness test</span>
+    <h2 class="h2 rise" style="margin-bottom:2vmin">The lineup test.</h2>
+    <div class="lineup rise">
+      <div class="mini"><span class="tagm">A</span><div class="h"></div><div class="l"></div><div class="l s"></div></div>
+      <div class="mini"><span class="tagm">B</span><div class="h"></div><div class="l"></div><div class="l s"></div></div>
+      <div class="mini"><span class="tagm">C</span><div class="h"></div><div class="l"></div><div class="l s"></div></div>
+      <div class="mini"><span class="tagm">D</span><div class="h"></div><div class="l"></div><div class="l s"></div></div>
+    </div>
+    <p class="small rise" style="margin-top:3vmin">If a stranger can't tell which one is yours, you shipped slop, however polished each pixel is.</p>
+  </section>
+
+  <!-- 21 SECTION 04 -->
+  <section class="slide">
+    <div class="section-row rise">
+      <div class="sectionnum">04</div>
+      <div class="section-meta">
+        <div class="label">The deeper shift</div>
+        <div class="title">What the tools actually changed</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 22 BOTTLENECK -->
+  <section class="slide">
+    <span class="kicker rise">The scarce skill moved</span>
+    <div class="h1 rise"><span class="mutetext">Production was the bottleneck.</span></div>
+    <div class="h1 rise" style="margin-top:1.6vmin">Now it's <span class="red">judgment</span>.</div>
+    <p class="note rise" style="margin-top:3.4vmin">Making is nearly free. So the valuable part is knowing what's worth making, and telling the good version from the average one. Taste was always valuable. Now it's the whole job.</p>
+  </section>
+
+  <!-- 23 VOLUME -->
+  <section class="slide">
+    <span class="kicker rise">The trap that makes most of the slop</span>
+    <h2 class="h2 rise" style="max-width:22ch">Don't spend the speed on <span class="mutetext">volume</span>.<br>Spend it on <span class="red">quality</span>.</h2>
+    <p class="note rise" style="margin-top:3.4vmin">Slop is, economically, a quantity play. Make fewer things, or make the same thing five times until it's good. Compete on the one axis the machine can't: whether anyone gives a damn.</p>
+  </section>
+
+  <!-- 24 DISCIPLINES -->
+  <section class="slide">
+    <span class="kicker rise">In practice · three unglamorous disciplines</span>
+    <div class="tri rise">
+      <div><div class="num">01</div><h3>One owner</h3><p>Every artifact has a single accountable human who can defend every choice in it. "No one decided this" is the definition of slop.</p></div>
+      <div><div class="num">02</div><h3>Codify taste</h3><p>Write it down where the tool can use it: a voice file, a design system, a folder of good-versus-bad examples. Make "good" a thing you can point at.</p></div>
+      <div><div class="num">03</div><h3>Last-mile pass</h3><p>A human edit on anything that ships. Most attention on what faces other people: claims, the open, the close, the gut-check.</p></div>
+    </div>
+  </section>
+
+  <!-- 25 COUNTERPOINT -->
+  <section class="slide">
+    <span class="kicker ink rise">An honest counterpoint</span>
+    <h2 class="h2 rise" style="max-width:20ch">Don't become the em-dash police.</h2>
+    <p class="note rise" style="margin-top:3.2vmin">Detectors are barely better than coin flips. A tic isn't a crime. The problem was never the em-dash. It was the absence of a person. Plenty of slop has no em-dashes at all.</p>
+  </section>
+
+  <!-- 26 GOOD ENOUGH -->
+  <section class="slide">
+    <span class="kicker ink rise">And the other half of honesty</span>
+    <h2 class="h2 rise" style="max-width:22ch">Good-enough is sometimes good enough.</h2>
+    <p class="note rise" style="margin-top:3.2vmin">The status update, the throwaway script, the draft no one else reads. Ship the average version and save your taste for where it counts. Caring about everything equally is its own failure.</p>
+  </section>
+
+  <!-- 27 AVERAGE WORTH NOTHING -->
+  <section class="slide">
+    <span class="kicker rise">When production is free…</span>
+    <h1 class="h1 rise" style="max-width:18ch">…competent-and-average is worth roughly <span class="red">nothing</span>.</h1>
+    <p class="note rise" style="margin-top:3.2vmin">It's the new floor. What keeps its value is what the average doesn't have: a point of view, specific knowledge, real taste, and a person willing to stand behind it.</p>
+  </section>
+
+  <!-- 28 CLOSE -->
+  <section class="slide">
+    <span class="kicker rise">The entire job</span>
+    <div class="endmark rise">Be the part<br>it <span class="red">can't</span> be.</div>
+  </section>
+
+  <!-- 29 END -->
+  <section class="slide title-slide">
+    <div class="title-top rise">
+      <span class="small" style="letter-spacing:.3em;text-transform:uppercase">Thank you</span>
+      <span class="small" style="letter-spacing:.3em;text-transform:uppercase">Questions →</span>
+    </div>
+    <div class="rise">
+      <div class="display" style="font-size:clamp(2.4rem,11vmin,14rem)">LET'S TALK.</div>
+    </div>
+    <div class="cover-meta rise">
+      <div>Perttu Lähteenlahti<br><span style="color:var(--mute)">perttu@lahteenlahti.com</span></div>
+      <div class="r">Avoiding Slop<br>AI Tooling CoP · 2026</div>
+    </div>
+  </section>
+
+  <div class="footnote">
+    <span id="fnote">AI Doesn't Ship Slop. You Do.</span>
+    <span>Perttu Lähteenlahti</span>
+  </div>
+  <div class="progress" id="prog"></div>
+  <div class="hint">← → to move · F fullscreen</div>
+</div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0, n=slides.length;
+  var cnum=document.getElementById('cnum'), ctot=document.getElementById('ctot');
+  var prog=document.getElementById('prog');
+  ctot.textContent=String(n).padStart(2,'0');
+  function pad(x){return String(x+1).padStart(2,'0');}
+  function show(k){
+    i=Math.max(0,Math.min(n-1,k));
+    slides.forEach(function(s,idx){s.classList.toggle('active',idx===i);});
+    cnum.textContent=pad(i);
+    prog.style.width=((i)/(n-1)*100)+'%';
+    location.hash=i+1;
+  }
+  function next(){show(i+1);}
+  function prev(){show(i-1);}
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '||e.key==='l'){e.preventDefault();next();}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'||e.key==='h'){e.preventDefault();prev();}
+    else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(n-1);}
+    else if(e.key==='f'||e.key==='F'){
+      if(!document.fullscreenElement){document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();}
+      else{document.exitFullscreen&&document.exitFullscreen();}
+    }
+  });
+  var deck=document.getElementById('deck');
+  deck.addEventListener('click',function(e){
+    if(e.clientX < window.innerWidth*0.28){prev();}else{next();}
+  });
+  // touch
+  var x0=null;
+  deck.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+  deck.addEventListener('touchend',function(e){
+    if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;
+    if(Math.abs(dx)>40){dx<0?next():prev();}x0=null;
+  },{passive:true});
+  var start=parseInt(location.hash.replace('#',''),10);
+  show(isNaN(start)?0:start-1);
+})();
+</script>
+</body>
+</html>
