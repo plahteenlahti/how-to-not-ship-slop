@@ -78,6 +78,9 @@ body{font-family:var(--sans);color:var(--ink2);-webkit-font-smoothing:antialiase
 .lead{font-size:2.5vmin;line-height:1.52;font-weight:400;color:var(--ink2);max-width:50ch;margin-top:3.2vmin}
 .lead.lg{font-size:2.8vmin;max-width:46ch}
 .cap{font-family:var(--mono);font-size:1.5vmin;letter-spacing:.01em;color:var(--muted);margin-top:2.6vmin;max-width:60ch;line-height:1.55}
+.lead a,.cap a{color:var(--accent-ink);text-decoration:none;border-bottom:1px solid rgba(255,77,46,.45);
+  transition:color .2s,border-color .2s}
+.lead a:hover,.cap a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 .readlink{font-family:var(--mono);font-size:1.5vmin;letter-spacing:.02em;color:var(--muted);margin-top:2.4vmin;
   display:inline-flex;align-items:center;gap:.6vmin;padding:1.1vmin 1.8vmin;border:1px solid var(--line);border-radius:999px;background:var(--card)}
 .readlink a{color:var(--accent-ink);text-decoration:none}
@@ -103,6 +106,23 @@ strong{font-weight:700;color:var(--ink)}
 .sec-list{margin-top:4.2vmin;display:flex;gap:2vmin;flex-wrap:wrap}
 .sec-list span{font-family:var(--mono);font-size:1.55vmin;font-weight:500;letter-spacing:.06em;color:var(--ink);padding:1.1vmin 2.2vmin;border:1px solid var(--line);
   border-radius:999px;background:var(--card)}
+/* three things — distinctive triad */
+.triad{display:flex;margin-top:4.4vmin;width:100%;border-top:1px solid var(--line)}
+.triad .ti{flex:1;display:flex;flex-direction:column;gap:1.3vmin;padding:2.8vmin 2.6vmin 0 0;border-right:1px solid var(--line)}
+.triad .ti:last-child{border-right:0;padding-right:0}
+.triad .ti-n{font-family:var(--mono);font-size:1.5vmin;letter-spacing:.12em;color:var(--accent)}
+.triad .ti-w{font-family:var(--serif);font-size:clamp(1.6rem,5.2vmin,4.6rem);font-weight:600;letter-spacing:-.02em;line-height:1;color:var(--ink)}
+.triad .ti-d{font-family:var(--mono);font-size:1.4vmin;letter-spacing:.02em;color:var(--muted);line-height:1.5;margin-top:.4vmin}
+
+/* agenda / recap numbered list */
+.agenda{list-style:none;margin-top:3.6vmin;width:100%;max-width:84ch;border-top:1px solid var(--line)}
+.agenda li{display:grid;grid-template-columns:auto 1fr;gap:2.8vmin;align-items:baseline;padding:1.9vmin 0;border-bottom:1px solid var(--line)}
+.agenda .ag-n{font-family:var(--mono);font-size:1.6vmin;font-weight:600;letter-spacing:.1em;color:var(--accent)}
+.agenda .ag-t{font-family:var(--serif);font-size:2.9vmin;font-weight:600;letter-spacing:-.01em;line-height:1.1;color:var(--ink)}
+.agenda .ag-meta{font-family:var(--mono);font-size:1.45vmin;letter-spacing:.04em;color:var(--muted);margin-left:1.2vmin}
+.agenda li.q .ag-t{color:var(--accent)}
+.agenda li.q{border-bottom:0}
+.agenda.stacked .ag-meta{display:block;margin-left:0;margin-top:.7vmin}
 
 /* cards */
 .card{background:var(--card);border-radius:.4vmin;box-shadow:var(--ring),var(--shadow);padding:3.2vmin;border-top:2px solid var(--accent)}
@@ -131,6 +151,11 @@ strong{font-weight:700;color:var(--ink)}
 .videoframe figcaption{position:absolute;left:0;right:0;bottom:0;z-index:2;font-family:var(--mono);font-size:1.25vmin;letter-spacing:.09em;
   text-transform:uppercase;color:var(--ink);padding:2.6vmin 1.8vmin 1.4vmin;background:linear-gradient(0deg,rgba(8,6,4,.82),transparent)}
 .videoframe figcaption b{color:var(--accent-ink)}
+.vstack{justify-self:end;display:flex;flex-direction:column;gap:2vmin;width:100%;max-width:48vmin}
+.vclip{position:relative;border-radius:1vmin;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:#000}
+.vclip video{display:block;width:100%;height:auto}
+.vtag{position:absolute;left:1vmin;top:1vmin;z-index:2;font-family:var(--mono);font-size:1.2vmin;letter-spacing:.08em;text-transform:uppercase;padding:.5vmin 1.1vmin;border-radius:.5vmin;background:rgba(8,6,4,.72);color:var(--faint)}
+.vtag.after{background:var(--accent);color:#fff}
 
 /* triptych */
 .tri{display:grid;grid-template-columns:repeat(3,1fr);gap:2.6vmin;margin-top:4vmin;width:100%}
@@ -177,6 +202,9 @@ strong{font-weight:700;color:var(--ink)}
 /* quote */
 .quote{font-family:var(--serif);font-size:3vmin;line-height:1.34;font-weight:500;color:var(--ink);max-width:24ch}
 .quote .mark{color:var(--accent);font-weight:700}
+.quote-by{margin-top:2.4vmin;font-family:var(--mono);font-size:1.5vmin;letter-spacing:.06em;color:var(--accent-ink)}
+.pull{margin-top:3.8vmin;font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(1.4rem,3.6vmin,3.2rem);line-height:1.24;color:var(--ink);max-width:20ch;border-left:2px solid var(--accent);padding-left:2.8vmin}
+.pull em{font-style:italic;color:var(--accent-ink)}
 
 /* convergence */
 .converge{position:relative;height:42vmin;display:flex;align-items:center;justify-content:center}
@@ -267,7 +295,10 @@ strong{font-weight:700;color:var(--ink)}
 .pc-top{display:flex;align-items:center;gap:1vmin;padding:1.5vmin 1.9vmin;border-bottom:1px solid var(--line);background:var(--card)}
 .pc-dot{width:1.1vmin;height:1.1vmin;border-radius:50%;background:#3a352c}
 .pc-file{margin-left:auto;font-size:1.3vmin;letter-spacing:.04em;color:var(--faint)}
-.pc-body{margin:0;padding:2.1vmin 2.3vmin;font-size:1.5vmin;line-height:1.62;color:var(--ink2);white-space:pre-wrap}
+.pc-body{margin:0;padding:2.1vmin 2.3vmin;font-size:1.4vmin;line-height:1.5;color:var(--ink2);white-space:pre-wrap;max-height:56vmin;overflow-y:auto;overscroll-behavior:contain}
+.pc-body::-webkit-scrollbar{width:.9vmin}
+.pc-body::-webkit-scrollbar-thumb{background:var(--line);border-radius:1vmin}
+.pc-body::-webkit-scrollbar-track{background:transparent}
 .pc-k{color:var(--accent-ink);font-weight:600}
 .pc-hl{color:var(--accent);font-weight:700}
 .pc-link{display:block;padding:1.5vmin 2.3vmin;border-top:1px solid var(--line);background:var(--card);font-size:1.35vmin;
@@ -308,7 +339,7 @@ strong{font-weight:700;color:var(--ink)}
 .deck:hover .hint{opacity:1}
 
 /* speaker notes */
-.nbtn{font-family:var(--mono);font-size:1.25vmin;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);background:none;border:1px solid var(--line);
+.nbtn{display:none;font-family:var(--mono);font-size:1.25vmin;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);background:none;border:1px solid var(--line);
   border-radius:999px;padding:.6vmin 1.5vmin;cursor:pointer;margin-right:1.6vmin;line-height:1}
 .nbtn:hover{color:var(--accent-ink);border-color:var(--accent)}
 .notes-on .nbtn{color:#fff;background:var(--accent);border-color:var(--accent)}
@@ -336,7 +367,7 @@ strong{font-weight:700;color:var(--ink)}
 
   <div class="bar">
     <span class="l"><span class="bar-av"><img src="portrait.jpg" alt="Perttu Lähteenlahti"></span><b>Perttu Lähteenlahti</b></span>
-    <span class="bar-r"><button id="notesBtn" class="nbtn" type="button">Notes</button><b id="cnum">01</b> / <span id="ctot">36</span></span>
+    <span class="bar-r"><button id="notesBtn" class="nbtn" type="button">Notes</button><b id="cnum">01</b> / <span id="ctot">37</span></span>
   </div>
 
   <!-- 1 TITLE -->
@@ -359,10 +390,10 @@ strong{font-weight:700;color:var(--ink)}
   <section class="slide">
     <div class="cols">
       <div>
-        <span class="kicker rise">Hi, I'm Perttu</span>
-        <h2 class="h2 rise">I make things<br>for a living.</h2>
+        <span class="kicker rise">Hi, I'm Perttu, a developer advocate</span>
+        <h2 class="h2 rise">Helping developers<br>make more money.</h2>
         <p class="lead rise">Articles, videos, talks, and code. Which means I use AI constantly. Which means I'm at constant risk of shipping <em>slop</em>.</p>
-        <p class="cap rise">Senior Developer Advocate at RevenueCat. Next month we're running the world's largest mobile hackathon.</p>
+        <p class="cap rise">Senior Developer Advocate at RevenueCat. Next month we're running <a href="https://www.shipaton.com/">the world's largest mobile hackathon</a>.</p>
         <p class="readlink rise">Prefer to read? Long version → <a href="https://perttu.dev/articles/how-not-to-ship-slop">perttu.dev/articles/how-not-to-ship-slop</a></p>
       </div>
       <figure class="figure rise">
@@ -388,7 +419,20 @@ strong{font-weight:700;color:var(--ink)}
     </div>
   </section>
 
-  <!-- 4 SECTION: BACKGROUND -->
+  <!-- 4 AGENDA -->
+  <section class="slide">
+    <span class="kicker rise">The plan · ~45 min</span>
+    <h2 class="h2 rise">That's enough about me.<br>Let's get started.</h2>
+    <ol class="agenda rise">
+      <li><span class="ag-n">01</span><span class="ag-t">The time we tried to hire an AI</span></li>
+      <li><span class="ag-n">02</span><span class="ag-t">What slop actually is</span></li>
+      <li><span class="ag-n">03</span><span class="ag-t">Three things AI can't give you</span></li>
+      <li><span class="ag-n">04</span><span class="ag-t">Five guidelines for not shipping it</span></li>
+      <li class="q"><span class="ag-n">05</span><span class="ag-t">Questions <span class="ag-meta">— and examples if I can give some more</span></span></li>
+    </ol>
+  </section>
+
+  <!-- 5 SECTION: BACKGROUND -->
   <section class="slide">
     <div class="sec-num rise">Background</div>
     <div class="sec-title rise">The time we tried to hire an AI.</div>
@@ -522,11 +566,12 @@ strong{font-weight:700;color:var(--ink)}
     <div class="cols">
       <div>
         <span class="kicker rise">Why those two erode trust</span>
-        <p class="lead rise lg">The moment you say <em>"oh, that's just an AI hallucination,"</em> you've admitted no one stood behind it.</p>
+        <p class="lead rise lg">The moment you say <em>"oh, that's just AI,"</em> you've admitted no one stood behind it.</p>
         <p class="cap rise">And it's not just that one line that's now in question. It's everything.</p>
       </div>
       <div class="card tilt rise" style="max-width:42vmin">
         <div class="quote"><span class="mark">"</span>The slides looked good. But now I question all of it. Turns out this polished thing was never really their bar.<span class="mark">"</span></div>
+        <div class="quote-by">— a customer, maybe</div>
       </div>
     </div>
   </section>
@@ -535,20 +580,24 @@ strong{font-weight:700;color:var(--ink)}
   <section class="slide">
     <div class="sec-num rise">The core</div>
     <div class="sec-title rise">Three things AI can't give you.</div>
-    <div class="sec-list rise"><span>Context</span><span>Taste</span><span>Ownership</span></div>
+    <div class="triad rise">
+      <div class="ti"><span class="ti-n">01</span><span class="ti-w">Context</span><span class="ti-d">your data, your Tuesday</span></div>
+      <div class="ti"><span class="ti-n">02</span><span class="ti-w">Taste</span><span class="ti-d">knowing what to cut</span></div>
+      <div class="ti"><span class="ti-n">03</span><span class="ti-w">Ownership</span><span class="ti-d">your name on it</span></div>
+    </div>
   </section>
 
   <!-- 15 CONTEXT -->
   <section class="slide">
     <span class="kicker rise">01 / Context</span>
-    <h1 class="h1 rise" style="max-width:17ch">The only lever you have left.</h1>
+    <h1 class="h1 rise" style="max-width:17ch">Your most powerful tool.</h1>
     <p class="lead rise">After training, the model knows the average of everything. The one thing you can change is what you put in. And the best context isn't on the internet: your data, your taste, the thing that happened on Tuesday.</p>
   </section>
 
   <!-- 16 TASTE -->
   <section class="slide">
     <span class="kicker rise">02 / Taste</span>
-    <h1 class="h1 rise" style="max-width:18ch">It can't tell the good answer from the average one.</h1>
+    <h1 class="h1 rise" style="max-width:18ch">AI can't tell the good answer from the average one.</h1>
     <p class="lead rise">It writes a cliché and a sharp line with identical confidence. It has read everything and prefers nothing. Taste is mostly knowing what to cut.</p>
   </section>
 
@@ -557,6 +606,7 @@ strong{font-weight:700;color:var(--ink)}
     <span class="kicker rise">03 / Ownership</span>
     <h1 class="h1 rise" style="max-width:17ch">Someone has to put their name on it.</h1>
     <p class="lead rise">Not approve it. <em>Defend</em> it. Making things faster or easier is not the same as making them better.</p>
+    <blockquote class="pull rise">Use AI, but <em>own the output</em>.</blockquote>
   </section>
 
   <!-- 18 SECTION: GUIDELINES -->
@@ -586,9 +636,17 @@ strong{font-weight:700;color:var(--ink)}
 
   <!-- 20 G2 SHOW GOOD -->
   <section class="slide">
-    <span class="kicker rise">Guideline 02</span>
-    <h2 class="h2 rise">Reference, don't adjective.</h2>
-    <p class="lead rise">"Make it professional" asks for the average, because it describes ten million things. Show good instead of describing it: paste your best work, a style guide, a real reference. Keep a swipe file. Bake it into a custom style.</p>
+    <div class="cols">
+      <div>
+        <span class="kicker rise">Guideline 02</span>
+        <h2 class="h2 rise">Reference, don't adjective.</h2>
+        <p class="lead rise">"Make it professional" asks for the average, because it describes ten million things. Show good instead of describing it: paste your best work, a style guide, a real reference. Keep a swipe file. Bake it into a custom style.</p>
+      </div>
+      <div class="vstack rise">
+        <figure class="vclip"><span class="vtag">Before</span><video src="old.mp4" autoplay muted loop playsinline></video></figure>
+        <figure class="vclip"><span class="vtag after">After</span><video src="new.mp4" autoplay muted loop playsinline></video></figure>
+      </div>
+    </div>
   </section>
 
   <!-- 21 G3 CUT -->
@@ -632,22 +690,6 @@ strong{font-weight:700;color:var(--ink)}
     </div>
   </section>
 
-  <!-- 23 CATALONIA COMPARE -->
-  <section class="slide">
-    <span class="kicker rise">Same facts, two versions</span>
-    <div class="cols rise" style="margin-top:1vmin">
-      <div class="card tilt">
-        <div style="font-family:var(--mono);font-size:1.35vmin;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--faint);margin-bottom:1.8vmin">The AI</div>
-        <div style="font-family:var(--serif);font-size:2.2vmin;line-height:1.42;color:var(--ink2)">"...established in 1989, <span class="accent">marking a pivotal moment in the evolution</span> of regional statistics in Spain."</div>
-        <div class="cap" style="margin-top:1.8vmin">A statistics office. Made to sound like the Magna Carta.</div>
-      </div>
-      <div class="card tilt2">
-        <div style="font-family:var(--mono);font-size:1.35vmin;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--accent-ink);margin-bottom:1.8vmin">A Human</div>
-        <div style="font-family:var(--serif);font-size:2.2vmin;line-height:1.42;color:var(--ink)">"...established in 1989 to collect regional statistics independently from Spain's national office."</div>
-        <div class="cap" style="margin-top:1.8vmin">Same facts. No inflation.</div>
-      </div>
-    </div>
-  </section>
 
   <!-- 24 ADD YOURSELF BACK -->
   <section class="slide">
@@ -705,18 +747,23 @@ strong{font-weight:700;color:var(--ink)}
       <aside class="promptcard rise">
         <div class="pc-top"><span class="pc-dot"></span><span class="pc-dot"></span><span class="pc-dot"></span><span class="pc-file">frontend_aesthetics.txt</span></div>
 <pre class="pc-body">&lt;frontend_aesthetics&gt;
-You converge toward generic,
-"on distribution" output — the
-<span class="pc-hl">"AI slop"</span> aesthetic. Avoid it.
+You tend to converge toward generic, "on distribution" outputs. In frontend design, this creates what users call the <span class="pc-hl">"AI slop"</span> aesthetic. Avoid this: make creative, distinctive frontends that surprise and delight. Focus on:
 
-<span class="pc-k">Typography</span>  beautiful, unusual.
-            not Arial, not Inter.
-<span class="pc-k">Color</span>       one dominant + sharp
-            accents. no purple-on-white.
-<span class="pc-k">Motion</span>      one orchestrated load.
-<span class="pc-k">Backgrounds</span> atmosphere, depth.
+<span class="pc-k">Typography:</span> Choose fonts that are beautiful, unique, and interesting. Avoid generic fonts like Arial and Inter; opt instead for distinctive choices that elevate the frontend's aesthetics.
 
-Think outside the box.
+<span class="pc-k">Color &amp; Theme:</span> Commit to a cohesive aesthetic. Use CSS variables for consistency. Dominant colors with sharp accents outperform timid, evenly-distributed palettes. Draw from IDE themes and cultural aesthetics for inspiration.
+
+<span class="pc-k">Motion:</span> Use animations for effects and micro-interactions. Prioritize CSS-only solutions for HTML. Use Motion library for React when available. Focus on high-impact moments: one well-orchestrated page load with staggered reveals (animation-delay) creates more delight than scattered micro-interactions.
+
+<span class="pc-k">Backgrounds:</span> Create atmosphere and depth rather than defaulting to solid colors. Layer CSS gradients, use geometric patterns, or add contextual effects that match the overall aesthetic.
+
+Avoid generic AI-generated aesthetics:
+- Overused font families (Inter, Roboto, Arial, system fonts)
+- Clichéd color schemes (particularly purple gradients on white backgrounds)
+- Predictable layouts and component patterns
+- Cookie-cutter design that lacks context-specific character
+
+Interpret creatively and make unexpected choices that feel genuinely designed for the context. Vary between light and dark themes, different fonts, different aesthetics. You still tend to converge on common choices (Space Grotesk, for example) across generations. Avoid this: it is critical that you think outside the box!
 &lt;/frontend_aesthetics&gt;</pre>
         <a class="pc-link" href="https://platform.claude.com/cookbook/coding-prompting-for-frontend-aesthetics">platform.claude.com/cookbook → frontend aesthetics ↗</a>
       </aside>
@@ -771,7 +818,20 @@ Think outside the box.
     <p class="cap rise">Then the gate, the same one from hiring: <span class="accent" style="font-weight:600">would you fight for it?</span></p>
   </section>
 
-  <!-- 30 CONCLUSION -->
+  <!-- 30 RECAP -->
+  <section class="slide">
+    <span class="kicker rise">If you keep five things</span>
+    <h2 class="h2 rise">The recap.</h2>
+    <ol class="agenda stacked rise">
+      <li><span class="ag-n">01</span><span class="ag-t">Stop talking to AI like a client <span class="ag-meta">— specific is the job</span></span></li>
+      <li><span class="ag-n">02</span><span class="ag-t">Reference, don't adjective <span class="ag-meta">— show good, don't describe it</span></span></li>
+      <li><span class="ag-n">03</span><span class="ag-t">Cut until it bleeds <span class="ag-meta">— the smoothness is the slop</span></span></li>
+      <li><span class="ag-n">04</span><span class="ag-t">Don't accept the default look <span class="ag-meta">— get off the mean</span></span></li>
+      <li class="q"><span class="ag-n">05</span><span class="ag-t">Verify it, then fight for it <span class="ag-meta">— or don't ship it</span></span></li>
+    </ol>
+  </section>
+
+  <!-- 31 CONCLUSION -->
   <section class="slide">
     <span class="kicker rise">The whole thing</span>
     <h1 class="h1 rise" style="max-width:18ch">Cut the average out. Put yourself back in.</h1>
@@ -780,7 +840,7 @@ Think outside the box.
 
   <!-- 31 THE SHIFT -->
   <section class="slide">
-    <span class="kicker rise">And here's the part worth sitting with</span>
+    <span class="kicker rise">You will lose unless you have something unique to give</span>
     <h2 class="h2 rise" style="max-width:20ch">Everyone has the same tools now.</h2>
     <p class="lead rise lg">When the tools are identical, the only edge left is the part they can't supply. Taste and ownership just became the whole game.</p>
   </section>
@@ -816,8 +876,8 @@ Think outside the box.
   </div>
   <div class="progress" id="prog"></div>
   <div class="qr" id="qr"><div class="qbox"><img id="qrimg" alt="Scan to open this slide"></div></div>
-  <div class="hint">← → move · F fullscreen · N notes · Q qr</div>
-  <div id="notes"><div class="hd">Speaker notes · <span id="nnum">1</span> / 36</div><div class="ntext" id="ntext"></div></div>
+  <div class="hint">← → move · F fullscreen · Q qr</div>
+  <div id="notes"><div class="hd">Speaker notes · <span id="nnum">1</span> / 37</div><div class="ntext" id="ntext"></div></div>
 </div>
 
 <script>
@@ -859,6 +919,7 @@ Think outside the box.
     "Don't read the title. Open warm and fast: “Today is one idea, that AI slop is just <b>average</b>, and how to stop shipping it.” Set expectations: ~45 min, then Q&A. The session is recorded.",
     "30 seconds on you. The hook: you ship a <b>lot</b> with AI (articles, videos, talks, code), so you've lived the slop trap. Drop the hackathon line for credibility and a smile. <b>Point at the article link</b> (perttu.dev/articles/how-not-to-ship-slop) for anyone who'd rather read — slides + QR live at ai-tooling-cop.perttu.dev.",
     "Exhibit A: the cleaning app, <b>siivous</b>. The bit: three users total — you and the two people who clean your rentals — and you still gave it real-time notifications. Terrible product, perfect for exactly three people. Let the clip loop while you land the real point: you ship a <b>ton</b> with AI, so slop is a live risk for you. Keep it light, ~20 seconds.",
+    "The pivot out of the intro: “That's enough about me — let's get started.” Then the map, ~15 seconds: the hiring story, what slop is, the three things AI can't give you, the five guidelines, then questions. <b>Point at line 05</b>: we end on Q&A, so park questions till then (or take them live, your call).",
     "Transition slide. “Let me start with the time we literally tried to hire an AI.” Pause before moving on.",
     "Tell it deadpan. The joke is that it was <b>real</b>: a real role, real $10k a month. We were sincerely trying to hire an AI Developer Advocate.",
     "~100 agents actually applied. We judged on <b>output</b>, not promises. Walk the three tasks quickly, don't dwell.",
@@ -880,14 +941,14 @@ Think outside the box.
     "Reference, don't adjective. <span class=\"demo\">DEMO:</span> same brief plain vs “in this voice [paste 200 words of your writing].” Read both aloud. Mention a swipe file and a saved custom style.",
     "Set up the edit. The model adds; you subtract. The draft is ~30% too long and too smooth, and the smoothness is the slop. The card on the right is the move: don't re-explain the bar each time — bake it into a skill. <b>CopyCat</b> carries RevenueCat's house style so drafts start closer to the cut. (Pairs with the frontend_aesthetics skill later — same idea, different medium.)",
     "Don't read all five, pick the 2-3 you love. Note that Wikipedia literally keeps this list. These are pattern recognition, not hard rules.",
-    "The killer example. Read the AI version with mock gravitas (“the Magna Carta”), then the human version flat. Same facts, no inflation.",
     "The non-obvious point, don't skip it. Scrubbing tells alone = clean but dead. You have to add voice back. Read both remote-work lines. End on the read-aloud test.",
     "The UI guideline, the code promise. Name it: distributional convergence. The wireframe is the mean, everyone has seen this exact site.",
     "Headlines. “Build the future of work” = anyone. RevenueCat's “Build and grow your app business” is concrete — but the blunt version, “help developers make more money,” is better still. Specific beats aspirational; same rule as the writing half.",
-    "Straight from Anthropic's frontend cookbook. Four levers: type, color, imagery, motion. The actual prompt is on the right — read the two lines that matter: <b>not Inter</b>, <b>no purple-on-white</b>. Next slide is the proof.",
+    "Straight from Anthropic's frontend cookbook. Four levers: type, color, imagery, motion. The full prompt is on the right (scroll it) — read the two lines that matter: <b>not Inter</b>, <b>no purple-on-white</b>. Next slide is the proof.",
     "The receipts. <b>Same model, same brief</b> — the only change is that one aesthetics prompt. Walk left to right: default (purple-on-white, Inter) vs guided. This A/B basically <b>is</b> the whole talk. <span class=\"demo\">DEMO:</span> the QR / link goes to the cookbook if anyone wants the prompt.",
     "The ship test. Yours next to three competitors: if a stranger can't tell which is yours, it's slop. <b>Ask the room</b>: show four, which one is 'the brand'?",
     "Ownership as a checklist. Numbers, names, APIs. Run <b>and</b> read the code. The gate returns: would you fight for it. <span class=\"demo\">YOUR STORY:</span> a hallucination you caught on the last pass.",
+    "Recap — the five guidelines on one slide. Don't re-explain them; read each line and let it land. The kicker is the point: all five collapse into one gate. Then bridge to the close: would you fight for it?",
     "Pull it together: cut the average out, put yourself back in. Context / taste / ownership = the job, not a limitation to wait out.",
     "Forward-looking beat. Everyone has the same tools now. The edge is the part they can't supply. Taste + ownership = the whole game.",
     "The closer. Big question, let the silence work. “If not, you already know what it is.”",
@@ -901,8 +962,7 @@ Think outside the box.
     prog.style.width=(i/(n-1)*100)+'%';
     notesEl.innerHTML=NOTES[i]||'';nnum.textContent=i+1;
     updateQR();
-    slides.forEach(function(s){var v=s.querySelector('video');if(v&&s!==slides[i]){try{v.pause();}catch(e){}}});
-    var av=slides[i].querySelector('video');if(av){try{av.currentTime=0;av.play();}catch(e){}}
+    slides.forEach(function(s,idx){var vids=s.querySelectorAll('video');for(var k=0;k<vids.length;k++){if(idx===i){try{vids[k].currentTime=0;vids[k].play();}catch(e){}}else{try{vids[k].pause();}catch(e){}}}});
     applyQrVis();
     location.hash=i+1;
   }
