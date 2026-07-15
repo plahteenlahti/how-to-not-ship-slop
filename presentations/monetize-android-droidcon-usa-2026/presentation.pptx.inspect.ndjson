@@ -1,0 +1,572 @@
+{"kind":"deck","id":"pr/oq09k0","name":"Deck"}
+{"kind":"layout","layoutId":"81308ae7-a665-48d2-8735-10cf8301173b","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"46065f04-40b3-48b3-94d8-133c505d5325","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/pd6yo9","slide":1,"title":"REVENUECAT","textShapes":6}
+{"kind":"textbox","id":"sh/18bih0ve","slide":1,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/el0j6lcn","slide":1,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/fm90fqd8","slide":1,"text":"ANDROID MONETIZATION, WITHOUT THE MAZE","textPreview":"ANDROID MONETIZATION, WITHOUT THE MAZE","textChars":38,"textLines":1,"bbox":[84,92,940,22]}
+{"kind":"textbox","id":"sh/ob21cfup","slide":1,"text":"Monetize your Android app\nthe right way.","textPreview":"Monetize your Android app | the right way.","textChars":40,"textLines":2,"bbox":[84,154,660,230]}
+{"kind":"textbox","id":"sh/pcbilkva","slide":1,"text":"Perttu Lähteenlahti\nSenior Developer Advocate, RevenueCat","textPreview":"Perttu Lähteenlahti | Senior Developer Advocate, RevenueCat","textChars":57,"textLines":2,"bbox":[84,426,520,86]}
+{"kind":"textbox","id":"sh/nat0jadk","slide":1,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"image","id":"im/bmlc7210","slide":1,"name":"","geometry":"rect","alt":"android monetization ecosystem.png","bbox":[745,112,475,470]}
+{"kind":"notes","id":"nt/pd6yo9","slide":1,"text":"Open by framing monetization as product design, not extraction. This talk builds the whole path from value to durable access."}
+{"kind":"slide","id":"sl/yrurp7","slide":2,"title":"REVENUECAT","textShapes":6}
+{"kind":"textbox","id":"sh/xkfupob2","slide":2,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/axovetcr","slide":2,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/byxcnytw","slide":2,"text":"THE UNCOMFORTABLE TRUTH","textPreview":"THE UNCOMFORTABLE TRUTH","textChars":23,"textLines":1,"bbox":[84,92,940,22]}
+{"kind":"textbox","id":"sh/knqdk3ut","slide":2,"text":"A great app with no business model is still a side project.","textPreview":"A great app with no business model is still a side project.","textChars":59,"textLines":1,"bbox":[150,210,980,220]}
+{"kind":"textbox","id":"sh/lozet8be","slide":2,"text":"Monetization is part of product design, not the thing you bolt on at launch.","textPreview":"Monetization is part of product design, not the thing you bolt on at launch.","textChars":76,"textLines":1,"bbox":[260,474,760,72]}
+{"kind":"textbox","id":"sh/ylovitcn","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"notes","id":"nt/yrurp7","slide":2,"text":"Many strong apps never become durable businesses because billing is postponed until launch week."}
+{"kind":"slide","id":"sl/fzlcef","slide":3,"title":"REVENUECAT","textShapes":11}
+{"kind":"textbox","id":"sh/83218zup","slide":3,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/729kzut4","slide":3,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/m10j6pcj","slide":3,"text":"PERTTU LÄHTEENLAHTI","textPreview":"PERTTU LÄHTEENLAHTI","textChars":19,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/l0r2xkby","slide":3,"text":"I help developers\nmake more money.","textPreview":"I help developers | make more money.","textChars":34,"textLines":2,"bbox":[84,144,580,150]}
+{"kind":"textbox","id":"sh/kzi14fut","slide":3,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,350,26,32]}
+{"kind":"textbox","id":"sh/zy9kvut8","slide":3,"text":"Senior Developer Advocate at RevenueCat","textPreview":"Senior Developer Advocate at RevenueCat","textChars":39,"textLines":1,"bbox":[120,350,524,60]}
+{"kind":"textbox","id":"sh/yx0j2pcn","slide":3,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,414,26,32]}
+{"kind":"textbox","id":"sh/5wv29obi","slide":3,"text":"Android, Flutter, and subscription infrastructure","textPreview":"Android, Flutter, and subscription infrastructure","textChars":49,"textLines":1,"bbox":[120,414,524,60]}
+{"kind":"shape","id":"sh/4vm1gjux","slide":3,"bbox":[84,404,560,0]}
+{"kind":"textbox","id":"sh/29cfy5sv","slide":3,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,478,26,32]}
+{"kind":"textbox","id":"sh/3ulwrq9g","slide":3,"text":"@plahteenlahti · perttu.dev","textPreview":"@plahteenlahti · perttu.dev","textChars":27,"textLines":1,"bbox":[120,478,524,60]}
+{"kind":"shape","id":"sh/4vux0val","slide":3,"bbox":[84,468,560,0]}
+{"kind":"textbox","id":"sh/u5sfulsj","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"image","id":"im/6dcbe9s3","slide":3,"name":"","geometry":"roundRect","alt":"perttu on stage.png","bbox":[780,92,360,520]}
+{"kind":"notes","id":"nt/fzlcef","slide":3,"text":"Keep the introduction short. Establish Android and subscription credibility, then continue."}
+{"kind":"slide","id":"sl/bco36f","slide":4,"title":"REVENUECAT","textShapes":6}
+{"kind":"textbox","id":"sh/lojy58rq","slide":4,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/ylsfudsz","slide":4,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/jm1g3i9k","slide":4,"text":"THE THESIS","textPreview":"THE THESIS","textChars":10,"textLines":1,"bbox":[84,92,940,22]}
+{"kind":"textbox","id":"sh/czqxs3at","slide":4,"text":"Monetization is a system, not a checkout button.","textPreview":"Monetization is a system, not a checkout button.","textChars":48,"textLines":1,"bbox":[150,210,980,220]}
+{"kind":"textbox","id":"sh/x0zy18re","slide":4,"text":"Model, catalog, identity, paywall, access, recovery, measurement.","textPreview":"Model, catalog, identity, paywall, access, recovery, measurement.","textChars":65,"textLines":1,"bbox":[260,474,760,72]}
+{"kind":"textbox","id":"sh/ax8fqts3","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"notes","id":"nt/bco36f","slide":4,"text":"This system framing is the backbone. A checkout button can work while the business still fails."}
+{"kind":"slide","id":"sl/hfae3a","slide":5,"title":"REVENUECAT","textShapes":12}
+{"kind":"textbox","id":"sh/2hkzyp0v","slide":5,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/pkby9kjm","slide":5,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/oj2h0fi1","slide":5,"text":"115,000+ SUBSCRIPTION APPS · $16B+ OBSERVED REVENUE","textPreview":"115,000+ SUBSCRIPTION APPS · $16B+ OBSERVED REVENUE","textChars":51,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/fetg3a1k","slide":5,"text":"Android’s gap happens before the trial.","textPreview":"Android’s gap happens before the trial.","textChars":39,"textLines":1,"bbox":[84,124,900,100]}
+{"kind":"shape","id":"sh/et0zu50z","slide":5,"bbox":[84,294,325,0]}
+{"kind":"textbox","id":"sh/1gby5kja","slide":5,"text":"0.9%","textPreview":"0.9%","textChars":4,"textLines":1,"bbox":[84,314,325,90]}
+{"kind":"textbox","id":"sh/0f2hwfip","slide":5,"text":"Google Play median\ndownload → paid by day 35","textPreview":"Google Play median | download → paid by day 35","textChars":44,"textLines":2,"bbox":[84,420,325,80]}
+{"kind":"shape","id":"sh/zad0fu1o","slide":5,"bbox":[462,294,325,0]}
+{"kind":"textbox","id":"sh/yp4z6903","slide":5,"text":"2.6%","textPreview":"2.6%","textChars":4,"textLines":1,"bbox":[462,314,325,90]}
+{"kind":"textbox","id":"sh/4rad8bit","slide":5,"text":"App Store median\ndownload → paid by day 35","textPreview":"App Store median | download → paid by day 35","textChars":42,"textLines":2,"bbox":[462,420,325,80]}
+{"kind":"shape","id":"sh/5sju1gze","slide":5,"bbox":[840,294,325,0]}
+{"kind":"textbox","id":"sh/ipsv610n","slide":5,"text":"32.5%","textPreview":"32.5%","textChars":5,"textLines":1,"bbox":[840,314,325,90]}
+{"kind":"textbox","id":"sh/jq1cz6h8","slide":5,"text":"Google Play median trial → paid\n— almost identical to iOS","textPreview":"Google Play median trial → paid | — almost identical to iOS","textChars":57,"textLines":2,"bbox":[840,420,325,80]}
+{"kind":"textbox","id":"sh/wnat4rix","slide":5,"text":"RevenueCat · State of Subscription Apps 2026","textPreview":"RevenueCat · State of Subscription Apps 2026","textChars":44,"textLines":1,"bbox":[84,681,960,16]}
+{"kind":"textbox","id":"sh/hojuxwz2","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"notes","id":"nt/hfae3a","slide":5,"text":"The Android disadvantage is early in the funnel. Once users start a trial, median paid conversion is essentially at parity with iOS."}
+{"kind":"slide","id":"sl/abhhc7","slide":6,"title":"REVENUECAT","textShapes":20}
+{"kind":"textbox","id":"sh/h8nit4ni","slide":6,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/a5wzypo7","slide":6,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/v6507u5c","slide":6,"text":"TODAY","textPreview":"TODAY","textChars":5,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/4byh4z69","slide":6,"text":"Build the whole path from value to access.","textPreview":"Build the whole path from value to access.","textChars":42,"textLines":1,"bbox":[84,118,880,105]}
+{"kind":"shape","id":"sh/5c7ix4nu","slide":6,"bbox":[84,310,190,0]}
+{"kind":"textbox","id":"sh/i9wz2po3","slide":6,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[84,332,50,24]}
+{"kind":"textbox","id":"sh/ja50vu5o","slide":6,"text":"MODEL","textPreview":"MODEL","textChars":5,"textLines":1,"bbox":[84,374,190,32]}
+{"kind":"textbox","id":"sh/sfyh8j65","slide":6,"text":"What customers pay for","textPreview":"What customers pay for","textChars":22,"textLines":1,"bbox":[84,422,190,72]}
+{"kind":"shape","id":"sh/t07i1onq","slide":6,"bbox":[310,310,190,0]}
+{"kind":"textbox","id":"sh/lov6p0z2","slide":6,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[310,332,50,24]}
+{"kind":"textbox","id":"sh/0n2pwvih","slide":6,"text":"CATALOG","textPreview":"CATALOG","textChars":7,"textLines":1,"bbox":[310,374,190,32]}
+{"kind":"textbox","id":"sh/z2tonqhw","slide":6,"text":"Products, packages, offerings","textPreview":"Products, packages, offerings","textChars":29,"textLines":1,"bbox":[310,422,190,72]}
+{"kind":"shape","id":"sh/y1k7ul0b","slide":6,"bbox":[536,310,190,0]}
+{"kind":"textbox","id":"sh/9sv6t0zy","slide":6,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[536,332,50,24]}
+{"kind":"textbox","id":"sh/8rmp0vid","slide":6,"text":"PAYWALL","textPreview":"PAYWALL","textChars":7,"textLines":1,"bbox":[536,374,190,32]}
+{"kind":"textbox","id":"sh/nqdorqhs","slide":6,"text":"How the choice is presented","textPreview":"How the choice is presented","textChars":27,"textLines":1,"bbox":[536,422,190,72]}
+{"kind":"shape","id":"sh/mp47y507","slide":6,"bbox":[762,310,190,0]}
+{"kind":"textbox","id":"sh/pwr6hgzu","slide":6,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[762,332,50,24]}
+{"kind":"textbox","id":"sh/ovi5obi9","slide":6,"text":"ENTITLEMENT","textPreview":"ENTITLEMENT","textChars":11,"textLines":1,"bbox":[762,374,190,32]}
+{"kind":"textbox","id":"sh/gr6xkvuh","slide":6,"text":"What the purchase unlocks","textPreview":"What the purchase unlocks","textChars":25,"textLines":1,"bbox":[762,422,190,72]}
+{"kind":"shape","id":"sh/1sfyt0bm","slide":6,"bbox":[988,310,190,0]}
+{"kind":"textbox","id":"sh/epofi5cb","slide":6,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[988,332,50,24]}
+{"kind":"textbox","id":"sh/fqxgratw","slide":6,"text":"ROUTES","textPreview":"ROUTES","textChars":6,"textLines":1,"bbox":[988,374,190,32]}
+{"kind":"textbox","id":"sh/ofqxofud","slide":6,"text":"Store, web, restore, support","textPreview":"Store, web, restore, support","textChars":28,"textLines":1,"bbox":[988,422,190,72]}
+{"kind":"textbox","id":"sh/pgzyxkby","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"notes","id":"nt/abhhc7","slide":6,"text":"Use the dependency chain as the agenda: model, catalog, paywall, entitlement, routes."}
+{"kind":"slide","id":"sl/ihpzxp","slide":7,"title":"REVENUECAT","textShapes":25}
+{"kind":"textbox","id":"sh/nel4nqd0","slide":7,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/ofu5gvel","slide":7,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/9g3mp0v6","slide":7,"text":"CHOOSE THE MODEL","textPreview":"CHOOSE THE MODEL","textChars":16,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/e9s3alwj","slide":7,"text":"Charge in the same rhythm that users receive value.","textPreview":"Charge in the same rhythm that users receive value.","textChars":51,"textLines":1,"bbox":[84,118,980,100]}
+{"kind":"shape","id":"sh/za14jqdo","slide":7,"bbox":[84,274,202,304]}
+{"kind":"textbox","id":"sh/0balcbe9","slide":7,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[102,294,40,20]}
+{"kind":"textbox","id":"sh/1cjmlgvu","slide":7,"text":"PAID APP","textPreview":"PAID APP","textChars":8,"textLines":1,"bbox":[102,346,166,50]}
+{"kind":"textbox","id":"sh/qls361w7","slide":7,"text":"One payment before the first experience.","textPreview":"One payment before the first experience.","textChars":40,"textLines":1,"bbox":[102,416,166,78]}
+{"kind":"textbox","id":"sh/r614f6ds","slide":7,"text":"Durable utility","textPreview":"Durable utility","textChars":15,"textLines":1,"bbox":[102,530,166,28]}
+{"kind":"shape","id":"sh/fyp8rm9c","slide":7,"bbox":[310,274,202,304]}
+{"kind":"textbox","id":"sh/uxg7ihsr","slide":7,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[328,294,40,20]}
+{"kind":"textbox","id":"sh/h07qtwri","slide":7,"text":"ADS","textPreview":"ADS","textChars":3,"textLines":1,"bbox":[328,346,166,50]}
+{"kind":"textbox","id":"sh/gzypkrax","slide":7,"text":"Monetize attention across a large free audience.","textPreview":"Monetize attention across a large free audience.","textChars":48,"textLines":1,"bbox":[328,416,166,78]}
+{"kind":"textbox","id":"sh/32p8vm9o","slide":7,"text":"Scale","textPreview":"Scale","textChars":5,"textLines":1,"bbox":[328,530,166,28]}
+{"kind":"shape","id":"sh/21g7m1s3","slide":7,"bbox":[536,274,202,304]}
+{"kind":"textbox","id":"sh/p4rqxwre","slide":7,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[554,294,40,20]}
+{"kind":"textbox","id":"sh/43iporat","slide":7,"text":"CONSUMABLES","textPreview":"CONSUMABLES","textChars":11,"textLines":1,"bbox":[554,346,166,50]}
+{"kind":"textbox","id":"sh/j65oj294","slide":7,"text":"Pay whenever a scarce unit is used.","textPreview":"Pay whenever a scarce unit is used.","textChars":35,"textLines":1,"bbox":[554,416,166,78]}
+{"kind":"textbox","id":"sh/y5w7axsj","slide":7,"text":"Credits / boosts","textPreview":"Credits / boosts","textChars":16,"textLines":1,"bbox":[554,530,166,28]}
+{"kind":"shape","id":"sh/m1kbi5c7","slide":7,"bbox":[762,274,202,304]}
+{"kind":"textbox","id":"sh/n2dsrats","slide":7,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[780,294,40,20]}
+{"kind":"textbox","id":"sh/onmtkfud","slide":7,"text":"SUBSCRIPTION","textPreview":"SUBSCRIPTION","textChars":12,"textLines":1,"bbox":[780,346,166,50]}
+{"kind":"textbox","id":"sh/9ovatkby","slide":7,"text":"Recurring payment for recurring outcomes.","textPreview":"Recurring payment for recurring outcomes.","textChars":41,"textLines":1,"bbox":[780,416,166,78]}
+{"kind":"textbox","id":"sh/exkrelcb","slide":7,"text":"Evolving products","textPreview":"Evolving products","textChars":17,"textLines":1,"bbox":[780,530,166,28]}
+{"kind":"shape","id":"sh/zytsnqtw","slide":7,"bbox":[988,274,202,304]}
+{"kind":"textbox","id":"sh/0z2tgvu1","slide":7,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1006,294,40,20]}
+{"kind":"textbox","id":"sh/10bap0bm","slide":7,"text":"CURRENCY","textPreview":"CURRENCY","textChars":8,"textLines":1,"bbox":[1006,346,166,50]}
+{"kind":"textbox","id":"sh/qt0ralcz","slide":7,"text":"A wallet for repeated micro-transactions.","textPreview":"A wallet for repeated micro-transactions.","textChars":41,"textLines":1,"bbox":[1006,416,166,78]}
+{"kind":"textbox","id":"sh/ru9sjqtk","slide":7,"text":"Economies / AI","textPreview":"Economies / AI","textChars":14,"textLines":1,"bbox":[1006,530,166,28]}
+{"kind":"textbox","id":"sh/t0jm5sze","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"notes","id":"nt/ihpzxp","slide":7,"text":"The right model follows the frequency and shape of value. Hybrid models are valid when each layer has a clear job."}
+{"kind":"slide","id":"sl/voesqo","slide":8,"title":"REVENUECAT","textShapes":11}
+{"kind":"textbox","id":"sh/jed47m1c","slide":8,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/4fml0rix","slide":8,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/5gvm9wji","slide":8,"text":"ADS · MONETIZE AT SCALE","textPreview":"ADS · MONETIZE AT SCALE","textChars":23,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/6h43210n","slide":8,"text":"Ads optimize attention, not access.","textPreview":"Ads optimize attention, not access.","textChars":35,"textLines":1,"bbox":[84,134,560,120]}
+{"kind":"textbox","id":"sh/rid4b618","slide":8,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,330,26,32]}
+{"kind":"textbox","id":"sh/sjml4rit","slide":8,"text":"Low friction for a large free audience","textPreview":"Low friction for a large free audience","textChars":38,"textLines":1,"bbox":[120,330,529,63]}
+{"kind":"textbox","id":"sh/tkfmdwje","slide":8,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,397,26,32]}
+{"kind":"textbox","id":"sh/elo3610z","slide":8,"text":"Revenue grows with sessions and inventory","textPreview":"Revenue grows with sessions and inventory","textChars":41,"textLines":1,"bbox":[120,397,529,63]}
+{"kind":"shape","id":"sh/fmx4f61k","slide":8,"bbox":[84,387,565,0]}
+{"kind":"textbox","id":"sh/f2tc72x8","slide":8,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,464,26,32]}
+{"kind":"textbox","id":"sh/e1kvexwn","slide":8,"text":"Experience cost: distraction, privacy, performance","textPreview":"Experience cost: distraction, privacy, performance","textChars":50,"textLines":1,"bbox":[120,464,529,63]}
+{"kind":"shape","id":"sh/14bu9cfe","slide":8,"bbox":[84,454,565,0]}
+{"kind":"textbox","id":"sh/re9c32xc","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"image","id":"im/vmd47650","slide":8,"name":"","geometry":"rect","alt":"ads example.png","bbox":[738,96,450,520]}
+{"kind":"notes","id":"nt/voesqo","slide":8,"text":"Ads are operationally simple but product-expensive: incentives bend toward more attention, not always better outcomes."}
+{"kind":"slide","id":"sl/arwtfq","slide":9,"title":"REVENUECAT","textShapes":11}
+{"kind":"textbox","id":"sh/5cbidcnu","slide":9,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/i90j2xo3","slide":9,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/3a90b2po","slide":9,"text":"CONSUMABLES · PAY AS YOU GO","textPreview":"CONSUMABLES · PAY AS YOU GO","textChars":27,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/h8ri9s7i","slide":9,"text":"If value gets used up, sell it in units.","textPreview":"If value gets used up, sell it in units.","textChars":40,"textLines":1,"bbox":[674,150,520,155]}
+{"kind":"textbox","id":"sh/u50zyxo7","slide":9,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[674,360,26,32]}
+{"kind":"textbox","id":"sh/v69072ps","slide":9,"text":"Coins, credits, boosts, tokens, extra storage","textPreview":"Coins, credits, boosts, tokens, extra storage","textChars":45,"textLines":1,"bbox":[710,360,484,58]}
+{"kind":"textbox","id":"sh/83yhwn61","slide":9,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[674,422,26,32]}
+{"kind":"textbox","id":"sh/t4ri5s7m","slide":9,"text":"Easy entry; revenue depends on repeat use","textPreview":"Easy entry; revenue depends on repeat use","textChars":41,"textLines":1,"bbox":[710,422,484,58]}
+{"kind":"shape","id":"sh/d4fit4j2","slide":9,"bbox":[674,412,520,0]}
+{"kind":"textbox","id":"sh/c36h0z2h","slide":9,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[674,484,26,32]}
+{"kind":"textbox","id":"sh/r2d0re1w","slide":9,"text":"Make the unit legible before setting the price","textPreview":"Make the unit legible before setting the price","textChars":46,"textLines":1,"bbox":[710,484,484,58]}
+{"kind":"shape","id":"sh/q14zy9kb","slide":9,"bbox":[674,474,520,0]}
+{"kind":"textbox","id":"sh/p0vip4j6","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"image","id":"im/dcfm1g7m","slide":9,"name":"","geometry":"rect","alt":"consumable example.png","bbox":[62,116,520,500]}
+{"kind":"notes","id":"nt/arwtfq","slide":9,"text":"Examples include AI credits, cloud render minutes, storage, or game boosts. Make one unit understandable."}
+{"kind":"slide","id":"sl/p6e2w3","slide":10,"title":"REVENUECAT","textShapes":11}
+{"kind":"textbox","id":"sh/f6x83els","slide":10,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/g769cjmd","slide":10,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/h8fq5o3y","slide":10,"text":"SUBSCRIPTIONS · RECURRING REVENUE","textPreview":"SUBSCRIPTIONS · RECURRING REVENUE","textChars":33,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/2toret4j","slide":10,"text":"A subscription is a promise you must keep renewing.","textPreview":"A subscription is a promise you must keep renewing.","textChars":51,"textLines":1,"bbox":[84,135,600,160]}
+{"kind":"textbox","id":"sh/3uxs7yl4","slide":10,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,345,26,32]}
+{"kind":"textbox","id":"sh/4vq903mp","slide":10,"text":"Predictable revenue and stronger commitment","textPreview":"Predictable revenue and stronger commitment","textChars":43,"textLines":1,"bbox":[120,345,564,63]}
+{"kind":"textbox","id":"sh/pwza983u","slide":10,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,412,26,32]}
+{"kind":"textbox","id":"sh/ix4r294f","slide":10,"text":"Trials, intro offers, and regional pricing","textPreview":"Trials, intro offers, and regional pricing","textChars":42,"textLines":1,"bbox":[120,412,564,63]}
+{"kind":"shape","id":"sh/jyd8vu5k","slide":10,"bbox":[84,402,600,0]}
+{"kind":"textbox","id":"sh/n25wby98","slide":10,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,479,26,32]}
+{"kind":"textbox","id":"sh/m1wfitsn","slide":10,"text":"Churn is feedback: ongoing value was not obvious enough","textPreview":"Churn is feedback: ongoing value was not obvious enough","textChars":55,"textLines":1,"bbox":[120,479,564,63]}
+{"kind":"shape","id":"sh/947edory","slide":10,"bbox":[84,469,600,0]}
+{"kind":"textbox","id":"sh/zy5w7e9w","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"image","id":"im/3qx8jq5o","slide":10,"name":"","geometry":"rect","alt":"subscription example.png","bbox":[740,92,430,530]}
+{"kind":"notes","id":"nt/p6e2w3","slide":10,"text":"Recurring payment is fair only when value recurs. Trials and annual plans are tools, not retention substitutes."}
+{"kind":"slide","id":"sl/3qm3hi","slide":11,"title":"REVENUECAT","textShapes":11}
+{"kind":"textbox","id":"sh/byp47qxo","slide":11,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/wzylgvy9","slide":11,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/x07m90fu","slide":11,"text":"VIRTUAL CURRENCY · FLEXIBLE, BUT NOT VAGUE","textPreview":"VIRTUAL CURRENCY · FLEXIBLE, BUT NOT VAGUE","textChars":42,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/j2p4bax0","slide":11,"text":"Currency works when users understand the exchange.","textPreview":"Currency works when users understand the exchange.","textChars":50,"textLines":1,"bbox":[620,132,570,160]}
+{"kind":"textbox","id":"sh/k3y5kvyl","slide":11,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[620,350,26,32]}
+{"kind":"textbox","id":"sh/l4rmd0f6","slide":11,"text":"Useful for games, creator tools, and variable AI costs","textPreview":"Useful for games, creator tools, and variable AI costs","textChars":54,"textLines":1,"bbox":[656,350,514,63]}
+{"kind":"textbox","id":"sh/650nm5wb","slide":11,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[620,417,26,32]}
+{"kind":"textbox","id":"sh/7694faxw","slide":11,"text":"Bundles make comparison harder — use that responsibly","textPreview":"Bundles make comparison harder — use that responsibly","textChars":53,"textLines":1,"bbox":[656,417,514,63]}
+{"kind":"shape","id":"sh/j2pkvalw","slide":11,"bbox":[620,407,550,0]}
+{"kind":"textbox","id":"sh/y1gjm54b","slide":11,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[620,484,26,32]}
+{"kind":"textbox","id":"sh/l472xk32","slide":11,"text":"Track liability, refunds, and unused balances","textPreview":"Track liability, refunds, and unused balances","textChars":45,"textLines":1,"bbox":[656,484,514,63]}
+{"kind":"shape","id":"sh/k3y1ofmh","slide":11,"bbox":[620,474,550,0]}
+{"kind":"textbox","id":"sh/bep0rqlk","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"image","id":"im/nqlgzipc","slide":11,"name":"","geometry":"rect","alt":"virtual currency example.png","bbox":[90,105,430,520]}
+{"kind":"notes","id":"nt/3qm3hi","slide":11,"text":"Virtual currency can match variable cost, including AI inference. It becomes hostile when the exchange rate is intentionally unreadable."}
+{"kind":"slide","id":"sl/8errnr","slide":12,"title":"REVENUECAT","textShapes":18}
+{"kind":"textbox","id":"sh/3ipwnmdc","slide":12,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/4jydw7eh","slide":12,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/pkrepcv2","slide":12,"text":"THE PURCHASE BUTTON IS ONLY ONE TRANSITION","textPreview":"THE PURCHASE BUTTON IS ONLY ONE TRANSITION","textChars":42,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/udgvqxwf","slide":12,"text":"Your real product is the purchase lifecycle.","textPreview":"Your real product is the purchase lifecycle.","textChars":44,"textLines":1,"bbox":[84,118,980,105]}
+{"kind":"shape","id":"sh/fepcj2d0","slide":12,"bbox":[84,310,162,0]}
+{"kind":"textbox","id":"sh/gfyds7el","slide":12,"text":"AVAILABLE","textPreview":"AVAILABLE","textChars":9,"textLines":1,"bbox":[84,340,162,34]}
+{"kind":"textbox","id":"sh/hg7elcv6","slide":12,"text":"Localized products and eligibility","textPreview":"Localized products and eligibility","textChars":34,"textLines":1,"bbox":[84,396,162,92]}
+{"kind":"shape","id":"sh/e90v21wz","slide":12,"bbox":[272,310,162,0]}
+{"kind":"textbox","id":"sh/za9wv6d4","slide":12,"text":"PENDING","textPreview":"PENDING","textChars":7,"textLines":1,"bbox":[272,340,162,34]}
+{"kind":"textbox","id":"sh/3q9onq90","slide":12,"text":"Confirmation may leave the app","textPreview":"Confirmation may leave the app","textChars":30,"textLines":1,"bbox":[272,396,162,92]}
+{"kind":"shape","id":"sh/ip07elsf","slide":12,"bbox":[460,310,162,0]}
+{"kind":"textbox","id":"sh/5sb6pgr6","slide":12,"text":"PURCHASED","textPreview":"PURCHASED","textChars":9,"textLines":1,"bbox":[460,340,162,34]}
+{"kind":"textbox","id":"sh/4r2pgval","slide":12,"text":"Verified and acknowledged","textPreview":"Verified and acknowledged","textChars":25,"textLines":1,"bbox":[460,396,162,92]}
+{"kind":"shape","id":"sh/rutorq9w","slide":12,"bbox":[648,310,162,0]}
+{"kind":"textbox","id":"sh/qtk7ilsr","slide":12,"text":"ENTITLED","textPreview":"ENTITLED","textChars":8,"textLines":1,"bbox":[648,340,162,34]}
+{"kind":"textbox","id":"sh/dgb6t0r2","slide":12,"text":"CustomerInfo unlocks access","textPreview":"CustomerInfo unlocks access","textChars":27,"textLines":1,"bbox":[648,396,162,92]}
+{"kind":"shape","id":"sh/sv2pkvah","slide":12,"bbox":[836,310,162,0]}
+{"kind":"textbox","id":"sh/fidova98","slide":12,"text":"RECOVERING","textPreview":"RECOVERING","textChars":10,"textLines":1,"bbox":[836,340,162,34]}
+{"kind":"textbox","id":"sh/ehk7m58n","slide":12,"text":"Retry, restore, offline cache","textPreview":"Retry, restore, offline cache","textChars":29,"textLines":1,"bbox":[836,396,162,92]}
+{"kind":"shape","id":"sh/adore9cv","slide":12,"bbox":[1024,310,162,0]}
+{"kind":"textbox","id":"sh/bexsnetg","slide":12,"text":"REVOKED","textPreview":"REVOKED","textChars":7,"textLines":1,"bbox":[1024,340,162,34]}
+{"kind":"textbox","id":"sh/cf69gzu1","slide":12,"text":"Expiry, refund, mismatch","textPreview":"Expiry, refund, mismatch","textChars":24,"textLines":1,"bbox":[1024,396,162,92]}
+{"kind":"textbox","id":"sh/xgfap4bm","slide":12,"text":"If any state is undefined, support becomes your state machine.","textPreview":"If any state is undefined, support becomes your state machine.","textChars":62,"textLines":1,"bbox":[84,681,960,16]}
+{"kind":"textbox","id":"sh/2p4rapcz","slide":12,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"notes","id":"nt/8errnr","slide":12,"text":"The button is one transition in a longer state machine. Walk through each state and ask who owns it."}
+{"kind":"slide","id":"sl/35icg1","slide":13,"title":"REVENUECAT","textShapes":14}
+{"kind":"textbox","id":"sh/6p0natw7","slide":13,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/tsb658vi","slide":13,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/8r25c3ex","slide":13,"text":"WHY REVENUECAT","textPreview":"WHY REVENUECAT","textChars":14,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/futo7ydo","slide":13,"text":"One source of truth across stores and surfaces.","textPreview":"One source of truth across stores and surfaces.","textChars":47,"textLines":1,"bbox":[84,126,570,140]}
+{"kind":"textbox","id":"sh/utknedw3","slide":13,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,320,26,32]}
+{"kind":"textbox","id":"sh/hgb698vu","slide":13,"text":"Normalizes purchase state and store quirks","textPreview":"Normalizes purchase state and store quirks","textChars":42,"textLines":1,"bbox":[120,320,534,55]}
+{"kind":"textbox","id":"sh/gf25g3e9","slide":13,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,379,26,32]}
+{"kind":"textbox","id":"sh/byp4vexk","slide":13,"text":"Connects Android, iOS, and web to one customer","textPreview":"Connects Android, iOS, and web to one customer","textChars":46,"textLines":1,"bbox":[120,379,534,55]}
+{"kind":"shape","id":"sh/axgn29wz","slide":13,"bbox":[84,369,570,0]}
+{"kind":"textbox","id":"sh/kfutc3et","slide":13,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,438,26,32]}
+{"kind":"textbox","id":"sh/lg3a58ve","slide":13,"text":"Paywalls, experiments, targeting, analytics","textPreview":"Paywalls, experiments, targeting, analytics","textChars":43,"textLines":1,"bbox":[120,438,534,55]}
+{"kind":"shape","id":"sh/ytsbatwn","slide":13,"bbox":[84,428,570,0]}
+{"kind":"textbox","id":"sh/zels3yd8","slide":13,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,497,26,32]}
+{"kind":"textbox","id":"sh/8jutg3ep","slide":13,"text":"Free to $2.5k monthly tracked revenue; then 1%","textPreview":"Free to $2.5k monthly tracked revenue; then 1%","textChars":46,"textLines":1,"bbox":[120,497,534,55]}
+{"kind":"shape","id":"sh/9k3u98va","slide":13,"bbox":[84,487,570,0]}
+{"kind":"textbox","id":"sh/7ilc7idk","slide":13,"text":"RevenueCat product documentation and pricing · checked July 2026","textPreview":"RevenueCat product documentation and pricing · checked July 2026","textChars":64,"textLines":1,"bbox":[84,681,960,16]}
+{"kind":"textbox","id":"sh/onat4jel","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"image","id":"im/t4f6xcb6","slide":13,"name":"","geometry":"rect","alt":"revenuecat dashboard.png","bbox":[700,112,520,430]}
+{"kind":"notes","id":"nt/35icg1","slide":13,"text":"RevenueCat removes the store state machine from the app team’s critical path. Pricing was rechecked for this deck."}
+{"kind":"slide","id":"sl/uxl5jk","slide":14,"title":"REVENUECAT","textShapes":13}
+{"kind":"textbox","id":"sh/psn2lszi","slide":14,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/25wjqd0r","slide":14,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/n65kjihc","slide":14,"text":"ARCHITECTURE","textPreview":"ARCHITECTURE","textChars":12,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/03e1onil","slide":14,"text":"Translate transactions into access.","textPreview":"Translate transactions into access.","textChars":35,"textLines":1,"bbox":[84,118,900,100]}
+{"kind":"shape","id":"sh/14n2h8z6","slide":14,"bbox":[84,320,300,190]}
+{"kind":"textbox","id":"sh/e1cjmd0v","slide":14,"text":"GOOGLE PLAY\nOR WEB","textPreview":"GOOGLE PLAY | OR WEB","textChars":18,"textLines":2,"bbox":[112,355,244,62]}
+{"kind":"textbox","id":"sh/f25kfihg","slide":14,"text":"Owns the payment and transaction","textPreview":"Owns the payment and transaction","textChars":32,"textLines":1,"bbox":[114,432,240,50]}
+{"kind":"textbox","id":"sh/szu1k3ip","slide":14,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[414,382,40,50]}
+{"kind":"shape","id":"sh/d03id8za","slide":14,"bbox":[478,320,300,190]}
+{"kind":"textbox","id":"sh/5cju983m","slide":14,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[506,355,244,62]}
+{"kind":"textbox","id":"sh/4batg321","slide":14,"text":"Validates and normalizes CustomerInfo","textPreview":"Validates and normalizes CustomerInfo","textChars":37,"textLines":1,"bbox":[508,432,240,50]}
+{"kind":"textbox","id":"sh/jq1s7ylg","slide":14,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[808,382,40,50]}
+{"kind":"shape","id":"sh/ip8betkb","slide":14,"bbox":[872,320,300,190]}
+{"kind":"textbox","id":"sh/hoza583q","slide":14,"text":"YOUR APP","textPreview":"YOUR APP","textChars":8,"textLines":1,"bbox":[900,355,244,62]}
+{"kind":"textbox","id":"sh/wnqtc325","slide":14,"text":"Checks an entitlement and unlocks","textPreview":"Checks an entitlement and unlocks","textChars":33,"textLines":1,"bbox":[902,432,240,50]}
+{"kind":"textbox","id":"sh/vmhs3ylk","slide":14,"text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"notes","id":"nt/uxl5jk","slide":14,"text":"The app should never reason from a raw receipt or SKU. It should ask for customer state, then make one access decision."}
+{"kind":"slide","id":"sl/auanaf","slide":15,"title":"REVENUECAT","textShapes":16}
+{"kind":"textbox","id":"sh/sbixcjy9","slide":15,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/ra9wjexo","slide":15,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/69gfa9g3","slide":15,"text":"TWO DEPENDENCIES, THREE MOVES","textPreview":"TWO DEPENDENCIES, THREE MOVES","textChars":29,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/10repofq","slide":15,"text":"Configure. Present. Unlock.","textPreview":"Configure. Present. Unlock.","textChars":27,"textLines":1,"bbox":[84,132,560,140]}
+{"kind":"shape","id":"sh/gzixgjy5","slide":15,"bbox":[84,338,158,0]}
+{"kind":"textbox","id":"sh/fy9wnexk","slide":15,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[84,360,35,22]}
+{"kind":"textbox","id":"sh/ed0fe9gz","slide":15,"text":"CONFIGURE","textPreview":"CONFIGURE","textChars":9,"textLines":1,"bbox":[84,398,158,30]}
+{"kind":"textbox","id":"sh/h47ed4fm","slide":15,"text":"Application start","textPreview":"Application start","textChars":17,"textLines":1,"bbox":[84,444,158,45]}
+{"kind":"shape","id":"sh/w3yx4zy1","slide":15,"bbox":[272,338,158,0]}
+{"kind":"textbox","id":"sh/ilojytc7","slide":15,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[272,360,35,22]}
+{"kind":"textbox","id":"sh/jmx07yds","slide":15,"text":"PRESENT","textPreview":"PRESENT","textChars":7,"textLines":1,"bbox":[272,398,158,30]}
+{"kind":"textbox","id":"sh/4nq103ud","slide":15,"text":"Current offering","textPreview":"Current offering","textChars":16,"textLines":1,"bbox":[272,444,158,45]}
+{"kind":"shape","id":"sh/58zi98vi","slide":15,"bbox":[460,338,158,0]}
+{"kind":"textbox","id":"sh/698j2dc3","slide":15,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[460,360,35,22]}
+{"kind":"textbox","id":"sh/rah0bido","slide":15,"text":"UNLOCK","textPreview":"UNLOCK","textChars":6,"textLines":1,"bbox":[460,398,158,30]}
+{"kind":"textbox","id":"sh/sbq14nu9","slide":15,"text":"Entitlement state","textPreview":"Entitlement state","textChars":17,"textLines":1,"bbox":[460,444,158,45]}
+{"kind":"shape","id":"sh/tczidsvu","slide":15,"bbox":[674,132,510,390]}
+{"kind":"textbox","id":"sh/ed8j6xcf","slide":15,"text":"// build.gradle.kts\nimplementation(\n  \"com.revenuecat.purchases:\" +\n    \"purchases:10.8.0\"\n)\n\n// Includes Paywalls for Compose\nimplementation(\n  \"com.revenuecat.purchases:\" +\n    \"purchases-ui:10.8.0\"\n)","textPreview":"// build.gradle.kts | implementation( |   \"com.revenuecat.purchases:\" + |     \"purchases:10.8.0\" | ) |  | // Includes Paywalls for Compos...","textChars":202,"textLines":11,"bbox":[700,156,458,342]}
+{"kind":"textbox","id":"sh/fe10fid0","slide":15,"text":"RevenueCat Android codelab · checked July 2026 · verify the latest version before shipping","textPreview":"RevenueCat Android codelab · checked July 2026 · verify the latest version before shipping","textChars":90,"textLines":1,"bbox":[84,681,960,16]}
+{"kind":"textbox","id":"sh/bi1032ts","slide":15,"text":"15","textPreview":"15","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"notes","id":"nt/auanaf","slide":15,"text":"The UI module includes the core SDK, so most Compose apps only need purchases-ui. Verify versions before shipping."}
+{"kind":"slide","id":"sl/jzxxll","slide":16,"title":"REVENUECAT","textShapes":8}
+{"kind":"textbox","id":"sh/m1k7mt4r","slide":16,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/9ov6x8ni","slide":16,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/onmpo3mx","slide":16,"text":"01 · CONFIGURE","textPreview":"01 · CONFIGURE","textChars":14,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/zytory50","slide":16,"text":"Initialize once, as early as possible.","textPreview":"Initialize once, as early as possible.","textChars":38,"textLines":1,"bbox":[84,140,470,140]}
+{"kind":"textbox","id":"sh/exk7itov","slide":16,"text":"Use the public Google SDK key. Never ship a secret API key in the app.","textPreview":"Use the public Google SDK key. Never ship a secret API key in the app.","textChars":70,"textLines":1,"bbox":[84,330,450,100]}
+{"kind":"shape","id":"sh/10b6t8n6","slide":16,"bbox":[610,116,570,470]}
+{"kind":"textbox","id":"sh/0z2pk3ml","slide":16,"text":"class MainApplication : Application() {\n  override fun onCreate() {\n    super.onCreate()\n    Purchases.logLevel = LogLevel.DEBUG\n    Purchases.configure(\n      PurchasesConfiguration.Builder(\n        this, \"goog_public_sdk_key\"\n      ).build()\n    )\n  }\n}","textPreview":"class MainApplication : Application() { |   override fun onCreate() { |     super.onCreate() |     Purchases.logLevel = LogLevel.DEBUG | ...","textChars":255,"textLines":11,"bbox":[636,140,518,422]}
+{"kind":"textbox","id":"sh/jud83i5k","slide":16,"text":"RevenueCat Android SDK documentation","textPreview":"RevenueCat Android SDK documentation","textChars":36,"textLines":1,"bbox":[84,681,960,16]}
+{"kind":"textbox","id":"sh/it47ux4z","slide":16,"text":"16","textPreview":"16","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"notes","id":"nt/jzxxll","slide":16,"text":"Configure in Application.onCreate with the public SDK key. DEBUG logging is for development."}
+{"kind":"slide","id":"sl/z0979k","slide":17,"title":"REVENUECAT","textShapes":13}
+{"kind":"textbox","id":"sh/crip0byt","slide":17,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/rq98r6h8","slide":17,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/qp07y1gn","slide":17,"text":"IDENTITY","textPreview":"IDENTITY","textChars":8,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/1gbqxgfq","slide":17,"text":"Your identity choice becomes subscription architecture.","textPreview":"Your identity choice becomes subscription architecture.","textChars":55,"textLines":1,"bbox":[84,118,560,150]}
+{"kind":"textbox","id":"sh/0f2p4vy5","slide":17,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,325,26,32]}
+{"kind":"textbox","id":"sh/ze98vqhk","slide":17,"text":"Anonymous IDs fit no-login, single-device flows","textPreview":"Anonymous IDs fit no-login, single-device flows","textChars":47,"textLines":1,"bbox":[120,325,509,64]}
+{"kind":"textbox","id":"sh/ed072lgz","slide":17,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,393,26,32]}
+{"kind":"textbox","id":"sh/9kbq10fm","slide":17,"text":"Custom IDs enable cross-device and cross-platform access","textPreview":"Custom IDs enable cross-device and cross-platform access","textChars":56,"textLines":1,"bbox":[120,393,509,64]}
+{"kind":"shape","id":"sh/oj298vy1","slide":17,"bbox":[84,383,545,0]}
+{"kind":"textbox","id":"sh/yloripgz","slide":17,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,461,26,32]}
+{"kind":"textbox","id":"sh/jmxsbah4","slide":17,"text":"Use a stable, non-guessable ID — never an email","textPreview":"Use a stable, non-guessable ID — never an email","textChars":47,"textLines":1,"bbox":[120,461,509,64]}
+{"kind":"shape","id":"sh/k769kfyp","slide":17,"bbox":[84,451,545,0]}
+{"kind":"shape","id":"sh/l8fadkza","slide":17,"bbox":[682,160,500,360]}
+{"kind":"textbox","id":"sh/69ormpgv","slide":17,"text":"// Start anonymous\nPurchases.configure(config)\n\n// Identify after sign-in\nPurchases.sharedInstance.logIn(appUserId) {\n  customerInfo, created, error ->\n  // refresh access\n}","textPreview":"// Start anonymous | Purchases.configure(config) |  | // Identify after sign-in | Purchases.sharedInstance.logIn(appUserId) { |   custome...","textChars":173,"textLines":8,"bbox":[708,184,448,312]}
+{"kind":"textbox","id":"sh/7axsfuhg","slide":17,"text":"RevenueCat · Identifying Customers","textPreview":"RevenueCat · Identifying Customers","textChars":34,"textLines":1,"bbox":[84,681,960,16]}
+{"kind":"textbox","id":"sh/8bqtozy1","slide":17,"text":"17","textPreview":"17","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"notes","id":"nt/z0979k","slide":17,"text":"Identity is where cross-device bugs begin. Anonymous is valid; custom IDs should be stable, private, and owned by authentication."}
+{"kind":"slide","id":"sl/7p386s","slide":18,"title":"REVENUECAT","textShapes":15}
+{"kind":"textbox","id":"sh/7i5wvy1s","slide":18,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/8jyx43id","slide":18,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/9k7ex8jy","slide":18,"text":"VOCABULARY","textPreview":"VOCABULARY","textChars":10,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/ulgf6d0j","slide":18,"text":"Keep store configuration out of your UI language.","textPreview":"Keep store configuration out of your UI language.","textChars":49,"textLines":1,"bbox":[84,118,980,100]}
+{"kind":"shape","id":"sh/vmpwzi1o","slide":18,"bbox":[84,300,194,0]}
+{"kind":"textbox","id":"sh/wnyx83i9","slide":18,"text":"PRODUCT","textPreview":"PRODUCT","textChars":7,"textLines":1,"bbox":[84,334,194,35]}
+{"kind":"textbox","id":"sh/ho7e18ju","slide":18,"text":"A store SKU: monthly, annual, lifetime, credits.","textPreview":"A store SKU: monthly, annual, lifetime, credits.","textChars":48,"textLines":1,"bbox":[84,392,194,100]}
+{"kind":"shape","id":"sh/ipgfad0f","slide":18,"bbox":[310,300,194,0]}
+{"kind":"textbox","id":"sh/jqpw3ih0","slide":18,"text":"PACKAGE","textPreview":"PACKAGE","textChars":7,"textLines":1,"bbox":[310,334,194,35]}
+{"kind":"textbox","id":"sh/z69crutw","slide":18,"text":"Equivalent products across Android, iOS, and web.","textPreview":"Equivalent products across Android, iOS, and web.","textChars":49,"textLines":1,"bbox":[310,392,194,100]}
+{"kind":"shape","id":"sh/y50vipcr","slide":18,"bbox":[536,300,194,0]}
+{"kind":"textbox","id":"sh/l8bet4b2","slide":18,"text":"OFFERING","textPreview":"OFFERING","textChars":8,"textLines":1,"bbox":[536,334,194,35]}
+{"kind":"textbox","id":"sh/072dkzuh","slide":18,"text":"The set of packages you choose to sell now.","textPreview":"The set of packages you choose to sell now.","textChars":43,"textLines":1,"bbox":[536,392,194,100]}
+{"kind":"shape","id":"sh/b29cnat0","slide":18,"bbox":[762,300,194,0]}
+{"kind":"textbox","id":"sh/q10ve5cf","slide":18,"text":"PAYWALL","textPreview":"PAYWALL","textChars":7,"textLines":1,"bbox":[762,334,194,35]}
+{"kind":"textbox","id":"sh/d4rupkb6","slide":18,"text":"The interface that presents an offering.","textPreview":"The interface that presents an offering.","textChars":40,"textLines":1,"bbox":[762,392,194,100]}
+{"kind":"shape","id":"sh/c3idgful","slide":18,"bbox":[988,300,194,0]}
+{"kind":"textbox","id":"sh/vydwzet4","slide":18,"text":"ENTITLEMENT","textPreview":"ENTITLEMENT","textChars":11,"textLines":1,"bbox":[988,334,194,35]}
+{"kind":"textbox","id":"sh/axkvq9cj","slide":18,"text":"The durable access level a purchase unlocks.","textPreview":"The durable access level a purchase unlocks.","textChars":44,"textLines":1,"bbox":[988,392,194,100]}
+{"kind":"textbox","id":"sh/6tofidwr","slide":18,"text":"18","textPreview":"18","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"notes","id":"nt/7p386s","slide":18,"text":"Product is the store SKU. Package normalizes platforms. Offering is what you sell. Paywall is how. Entitlement is what the customer gets."}
+{"kind":"slide","id":"sl/delo9s","slide":19,"title":"REVENUECAT","textShapes":13}
+{"kind":"textbox","id":"sh/0jupgfyt","slide":19,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/fil8nah8","slide":19,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/ehc7e50n","slide":19,"text":"OFFERINGS · CHANGE THE OFFER, NOT THE APP","textPreview":"OFFERINGS · CHANGE THE OFFER, NOT THE APP","textChars":41,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/dg3ql0z2","slide":19,"text":"Fetch the decision your UI should render.","textPreview":"Fetch the decision your UI should render.","textChars":41,"textLines":1,"bbox":[84,130,535,145]}
+{"kind":"textbox","id":"sh/svapcvix","slide":19,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,330,26,32]}
+{"kind":"textbox","id":"sh/ru18jqhc","slide":19,"text":"Dashboard chooses the current offering","textPreview":"Dashboard chooses the current offering","textChars":38,"textLines":1,"bbox":[120,330,494,62]}
+{"kind":"textbox","id":"sh/qts7al0r","slide":19,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,396,26,32]}
+{"kind":"textbox","id":"sh/5sjqh0z6","slide":19,"text":"Packages carry localized store products","textPreview":"Packages carry localized store products","textChars":39,"textLines":1,"bbox":[120,396,494,62]}
+{"kind":"shape","id":"sh/4rap8vil","slide":19,"bbox":[84,386,530,0]}
+{"kind":"textbox","id":"sh/qp4zal0z","slide":19,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,462,26,32]}
+{"kind":"textbox","id":"sh/bqd0jq1k","slide":19,"text":"Handle “no offering” as a real product state","textPreview":"Handle “no offering” as a real product state","textChars":44,"textLines":1,"bbox":[120,462,494,62]}
+{"kind":"shape","id":"sh/crm1cvi5","slide":19,"bbox":[84,452,530,0]}
+{"kind":"shape","id":"sh/xsvilgjq","slide":19,"bbox":[650,126,540,445]}
+{"kind":"textbox","id":"sh/21kz6103","slide":19,"text":"val offering = try {\n  Purchases.sharedInstance\n    .awaitOfferings()\n    .current\n} catch (e: PurchasesException) {\n  logger.warn(e) { \"Offerings unavailable\" }\n  null\n}\n\nval annual = offering?.annual?.storeProduct","textPreview":"val offering = try { |   Purchases.sharedInstance |     .awaitOfferings() |     .current | } catch (e: PurchasesException) { |   logger.w...","textChars":215,"textLines":10,"bbox":[676,150,488,397]}
+{"kind":"textbox","id":"sh/32t0f61o","slide":19,"text":"RevenueCat Android codelab · Offerings","textPreview":"RevenueCat Android codelab · Offerings","textChars":38,"textLines":1,"bbox":[84,681,960,16]}
+{"kind":"textbox","id":"sh/o3mh8bi9","slide":19,"text":"19","textPreview":"19","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"notes","id":"nt/delo9s","slide":19,"text":"Fetch the current offering with the coroutine API. Treat null, timeout, and misconfigured catalog states deliberately."}
+{"kind":"slide","id":"sl/yrlsgm","slide":20,"title":"REVENUECAT","textShapes":11}
+{"kind":"textbox","id":"sh/w7e9s3qh","slide":20,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/b658ji9w","slide":20,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/a5wrqd8b","slide":20,"text":"PAYWALLS · NATIVE UI, REMOTE DECISIONS","textPreview":"PAYWALLS · NATIVE UI, REMOTE DECISIONS","textChars":38,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/kve9wnqd","slide":20,"text":"Ship the surface once. Keep learning after release.","textPreview":"Ship the surface once. Keep learning after release.","textChars":51,"textLines":1,"bbox":[680,128,520,150]}
+{"kind":"textbox","id":"sh/ja58ni9s","slide":20,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[680,340,26,32]}
+{"kind":"textbox","id":"sh/y9wrud8n","slide":20,"text":"Pair one paywall with one offering","textPreview":"Pair one paywall with one offering","textChars":34,"textLines":1,"bbox":[716,340,464,61]}
+{"kind":"textbox","id":"sh/t07qts7a","slide":20,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[680,405,26,32]}
+{"kind":"textbox","id":"sh/8zy90nqp","slide":20,"text":"Edit copy, layout, and packages remotely","textPreview":"Edit copy, layout, and packages remotely","textChars":40,"textLines":1,"bbox":[716,405,464,61]}
+{"kind":"shape","id":"sh/m9k7qx4r","slide":20,"bbox":[680,395,500,0]}
+{"kind":"textbox","id":"sh/nat8z2lc","slide":20,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[680,470,26,32]}
+{"kind":"textbox","id":"sh/8b2ps7mx","slide":20,"text":"Measure views, starts, purchases, and restores","textPreview":"Measure views, starts, purchases, and restores","textChars":46,"textLines":1,"bbox":[716,470,464,61]}
+{"kind":"shape","id":"sh/9cbq1c3i","slide":20,"bbox":[680,460,500,0]}
+{"kind":"textbox","id":"sh/axk7uhk3","slide":20,"text":"20","textPreview":"20","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"image","id":"im/gja5cnip","slide":20,"name":"","geometry":"rect","alt":"paywall examples.png","bbox":[70,110,560,500]}
+{"kind":"notes","id":"nt/yrlsgm","slide":20,"text":"The app renders native UI; the team keeps learning and changing decisions in the dashboard."}
+{"kind":"slide","id":"sl/8zc8pa","slide":21,"title":"REVENUECAT","textShapes":8}
+{"kind":"textbox","id":"sh/oni1w76p","slide":21,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/3m903m54","slide":21,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/2l0juhoj","slide":21,"text":"02 · PRESENT","textPreview":"02 · PRESENT","textChars":12,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/1kri1cny","slide":21,"text":"Gate the moment — not the whole app by accident.","textPreview":"Gate the moment — not the whole app by accident.","textChars":48,"textLines":1,"bbox":[84,143,500,145]}
+{"kind":"textbox","id":"sh/gji1s76d","slide":21,"text":"Present based on a required entitlement, then dismiss when purchase succeeds.","textPreview":"Present based on a required entitlement, then dismiss when purchase succeeds.","textChars":77,"textLines":1,"bbox":[84,338,470,95]}
+{"kind":"shape","id":"sh/fi90z25s","slide":21,"bbox":[620,140,560,420]}
+{"kind":"textbox","id":"sh/eh0jqxon","slide":21,"text":"@Composable\nfun LockedFeature(onDismiss: () -> Unit) {\n  PaywallDialog(\n    PaywallDialogOptions.Builder()\n      .setRequiredEntitlementIdentifier(\"pro\")\n      .setDismissRequest(onDismiss)\n      .build()\n  )\n}","textPreview":"@Composable | fun LockedFeature(onDismiss: () -> Unit) { |   PaywallDialog( |     PaywallDialogOptions.Builder() |       .setRequiredEnti...","textChars":210,"textLines":9,"bbox":[646,164,508,372]}
+{"kind":"textbox","id":"sh/lgv2dwn2","slide":21,"text":"RevenueCat · Displaying Paywalls on Android","textPreview":"RevenueCat · Displaying Paywalls on Android","textChars":43,"textLines":1,"bbox":[84,681,960,16]}
+{"kind":"textbox","id":"sh/kf214bmx","slide":21,"text":"21","textPreview":"21","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"notes","id":"nt/8zc8pa","slide":21,"text":"This reflects the current Android Compose API shape. The key product choice is the required entitlement."}
+{"kind":"slide","id":"sl/t2x4gy","slide":22,"title":"REVENUECAT","textShapes":20}
+{"kind":"textbox","id":"sh/ovqdkjyx","slide":22,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/nuhcrexc","slide":22,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/mt8bi9gr","slide":22,"text":"A PAYWALL IS A PROMISE WITH A BUTTON","textPreview":"A PAYWALL IS A PROMISE WITH A BUTTON","textChars":36,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/x0juxofe","slide":22,"text":"Answer five questions before asking for money.","textPreview":"Answer five questions before asking for money.","textChars":46,"textLines":1,"bbox":[84,118,980,105]}
+{"kind":"shape","id":"sh/wzadojet","slide":22,"bbox":[84,286,202,250]}
+{"kind":"textbox","id":"sh/by1cvexo","slide":22,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[102,310,34,20]}
+{"kind":"textbox","id":"sh/axsvm9w3","slide":22,"text":"WHAT CHANGES?","textPreview":"WHAT CHANGES?","textChars":13,"textLines":1,"bbox":[102,360,166,58]}
+{"kind":"textbox","id":"sh/d4ful4fa","slide":22,"text":"Name the outcome, not a list of premium features.","textPreview":"Name the outcome, not a list of premium features.","textChars":49,"textLines":1,"bbox":[102,438,166,78]}
+{"kind":"shape","id":"sh/c36tczyp","slide":22,"bbox":[310,286,202,250]}
+{"kind":"textbox","id":"sh/yxofa10z","slide":22,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[328,310,34,20]}
+{"kind":"textbox","id":"sh/zyxwj6h4","slide":22,"text":"WHY NOW?","textPreview":"WHY NOW?","textChars":8,"textLines":1,"bbox":[328,360,166,58]}
+{"kind":"textbox","id":"sh/kz6xcbip","slide":22,"text":"Show it at a value moment, not on a timer.","textPreview":"Show it at a value moment, not on a timer.","textChars":42,"textLines":1,"bbox":[328,438,166,78]}
+{"kind":"shape","id":"sh/l0felgza","slide":22,"bbox":[536,286,202,250]}
+{"kind":"textbox","id":"sh/m1ofel0v","slide":22,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[554,310,34,20]}
+{"kind":"textbox","id":"sh/72xgn6hg","slide":22,"text":"WHICH PLAN?","textPreview":"WHICH PLAN?","textChars":11,"textLines":1,"bbox":[554,360,166,58]}
+{"kind":"textbox","id":"sh/8n6xgbi1","slide":22,"text":"Make monthly versus annual obvious.","textPreview":"Make monthly versus annual obvious.","textChars":35,"textLines":1,"bbox":[554,438,166,78]}
+{"kind":"shape","id":"sh/9ozypgzm","slide":22,"bbox":[762,286,202,250]}
+{"kind":"textbox","id":"sh/up8fil07","slide":22,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[780,310,34,20]}
+{"kind":"textbox","id":"sh/vqhgrqhc","slide":22,"text":"CAN I TRUST IT?","textPreview":"CAN I TRUST IT?","textChars":15,"textLines":1,"bbox":[780,360,166,58]}
+{"kind":"textbox","id":"sh/ruhwfqxk","slide":22,"text":"Show localized price, terms, and trial details.","textPreview":"Show localized price, terms, and trial details.","textChars":47,"textLines":1,"bbox":[780,438,166,78]}
+{"kind":"shape","id":"sh/6t8v6lwz","slide":22,"bbox":[988,286,202,250]}
+{"kind":"textbox","id":"sh/dwjeh0fq","slide":22,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1006,310,34,20]}
+{"kind":"textbox","id":"sh/svax8ve5","slide":22,"text":"CAN I RECOVER?","textPreview":"CAN I RECOVER?","textChars":14,"textLines":1,"bbox":[1006,360,166,58]}
+{"kind":"textbox","id":"sh/jqhwbqxo","slide":22,"text":"Keep close, restore, account, and support visible.","textPreview":"Keep close, restore, account, and support visible.","textChars":50,"textLines":1,"bbox":[1006,438,166,78]}
+{"kind":"textbox","id":"sh/ip8v2lw3","slide":22,"text":"22","textPreview":"22","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"notes","id":"nt/t2x4gy","slide":22,"text":"Use the five questions as a live critique framework. The outcome comes before the price."}
+{"kind":"slide","id":"sl/1ksgmb","slide":23,"title":"REVENUECAT","textShapes":11}
+{"kind":"textbox","id":"sh/1obmlcvy","slide":23,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/elk3axw7","slide":23,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/fmtkj2xs","slide":23,"text":"EXPERIMENTS · LEARN ONE THING AT A TIME","textPreview":"EXPERIMENTS · LEARN ONE THING AT A TIME","textChars":39,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/ormlg7e9","slide":23,"text":"Test decisions, not entire personalities.","textPreview":"Test decisions, not entire personalities.","textChars":41,"textLines":1,"bbox":[84,135,540,140]}
+{"kind":"textbox","id":"sh/9cvm9cvu","slide":23,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,342,26,32]}
+{"kind":"textbox","id":"sh/mp43exwj","slide":23,"text":"Start with offer, price, trial, or annual emphasis","textPreview":"Start with offer, price, trial, or annual emphasis","textChars":50,"textLines":1,"bbox":[120,342,504,62]}
+{"kind":"textbox","id":"sh/nqd472do","slide":23,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,408,26,32]}
+{"kind":"textbox","id":"sh/4vil4ne5","slide":23,"text":"Keep acquisition source and audience visible","textPreview":"Keep acquisition source and audience visible","textChars":44,"textLines":1,"bbox":[120,408,504,62]}
+{"kind":"shape","id":"sh/5gr2dsfq","slide":23,"bbox":[84,398,540,0]}
+{"kind":"textbox","id":"sh/hgrap4va","slide":23,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,474,26,32]}
+{"kind":"textbox","id":"sh/gfi9wzep","slide":23,"text":"Optimize downstream retention, not only conversion","textPreview":"Optimize downstream retention, not only conversion","textChars":50,"textLines":1,"bbox":[120,474,504,62]}
+{"kind":"shape","id":"sh/ve9snud4","slide":23,"bbox":[84,464,540,0]}
+{"kind":"textbox","id":"sh/54batovm","slide":23,"text":"23","textPreview":"23","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"image","id":"im/xo3adoz2","slide":23,"name":"","geometry":"rect","alt":"paywall editor.png","bbox":[678,128,520,430]}
+{"kind":"notes","id":"nt/1ksgmb","slide":23,"text":"Changing everything at once can improve conversion while teaching nothing. Tie the hypothesis to one decision."}
+{"kind":"slide","id":"sl/7c0guq","slide":24,"title":"REVENUECAT","textShapes":6}
+{"kind":"textbox","id":"sh/507qdkfq","slide":24,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/ixw725gz","slide":24,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/jyp8baxk","slide":24,"text":"ENTITLEMENTS","textPreview":"ENTITLEMENTS","textChars":12,"textLines":1,"bbox":[84,92,940,22]}
+{"kind":"textbox","id":"sh/wvep0vy9","slide":24,"text":"Products change. Access should stay stable.","textPreview":"Products change. Access should stay stable.","textChars":43,"textLines":1,"bbox":[150,210,980,220]}
+{"kind":"textbox","id":"sh/xwnq90zu","slide":24,"text":"Entitlements decouple what the customer bought from what your app unlocks.","textPreview":"Entitlements decouple what the customer bought from what your app unlocks.","textChars":74,"textLines":1,"bbox":[260,474,760,72]}
+{"kind":"textbox","id":"sh/a9w7y5g3","slide":24,"text":"24","textPreview":"24","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"notes","id":"nt/7c0guq","slide":24,"text":"Entitlements are the stability layer across replaced SKUs, web products, and promotional grants."}
+{"kind":"slide","id":"sl/zzbbj9","slide":25,"title":"REVENUECAT","textShapes":7}
+{"kind":"textbox","id":"sh/to7m58fi","slide":25,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/6lgnutwr","slide":25,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/rmp43yxc","slide":25,"text":"03 · UNLOCK","textPreview":"03 · UNLOCK","textChars":11,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/gbi503e9","slide":25,"text":"Ask one product question: “Does this customer have pro?”","textPreview":"Ask one product question: “Does this customer have pro?”","textChars":56,"textLines":1,"bbox":[84,110,980,108]}
+{"kind":"shape","id":"sh/e90nydw3","slide":25,"bbox":[620,258,560,340]}
+{"kind":"textbox","id":"sh/fa947yxo","slide":25,"text":"Purchases.sharedInstance.getCustomerInfoWith(\n  onError = { error ->\n    // keep the last known access state\n  },\n  onSuccess = { customerInfo ->\n    val hasPro = customerInfo\n      .entitlements[\"pro\"]\n      ?.isActive == true\n  }\n)","textPreview":"Purchases.sharedInstance.getCustomerInfoWith( |   onError = { error -> |     // keep the last known access state |   }, |   onSuccess = {...","textChars":233,"textLines":10,"bbox":[646,282,508,292]}
+{"kind":"textbox","id":"sh/wfelojep","slide":25,"text":"RevenueCat · Getting Subscription Status","textPreview":"RevenueCat · Getting Subscription Status","textChars":40,"textLines":1,"bbox":[84,681,960,16]}
+{"kind":"textbox","id":"sh/hgnmxofa","slide":25,"text":"25","textPreview":"25","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"image","id":"im/8vm90nil","slide":25,"name":"","geometry":"rect","alt":"entitlements model.png","bbox":[84,292,480,275]}
+{"kind":"notes","id":"nt/zzbbj9","slide":25,"text":"Preserve the last known access state during transient errors rather than punishing a paying customer."}
+{"kind":"slide","id":"sl/zch7w9","slide":26,"title":"REVENUECAT","textShapes":13}
+{"kind":"textbox","id":"sh/4v214bm9","slide":26,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/jut0b65o","slide":26,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/it0j2143","slide":26,"text":"A RECOVERY JOURNEY, NOT A CHECKBOX","textPreview":"A RECOVERY JOURNEY, NOT A CHECKBOX","textChars":34,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/t0b2hgnq","slide":26,"text":"Restore purchases is a product feature.","textPreview":"Restore purchases is a product feature.","textChars":39,"textLines":1,"bbox":[84,132,535,145]}
+{"kind":"textbox","id":"sh/sz218vm5","slide":26,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,330,26,32]}
+{"kind":"textbox","id":"sh/rytkfq5k","slide":26,"text":"Trigger it from an explicit customer action","textPreview":"Trigger it from an explicit customer action","textChars":43,"textLines":1,"bbox":[120,330,494,62]}
+{"kind":"textbox","id":"sh/6xkj6l4z","slide":26,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,396,26,32]}
+{"kind":"textbox","id":"sh/94ri5wnm","slide":26,"text":"Refresh the same entitlement gate on success","textPreview":"Refresh the same entitlement gate on success","textChars":44,"textLines":1,"bbox":[120,396,494,62]}
+{"kind":"shape","id":"sh/83i1wrm1","slide":26,"bbox":[84,386,530,0]}
+{"kind":"textbox","id":"sh/ilk3m1kz","slide":26,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,462,26,32]}
+{"kind":"textbox","id":"sh/3mt4v6lk","slide":26,"text":"Show the App User ID in support diagnostics","textPreview":"Show the App User ID in support diagnostics","textChars":43,"textLines":1,"bbox":[120,462,494,62]}
+{"kind":"shape","id":"sh/4n2lor25","slide":26,"bbox":[84,452,530,0]}
+{"kind":"shape","id":"sh/5obmxwjq","slide":26,"bbox":[650,126,540,455]}
+{"kind":"textbox","id":"sh/q9k3q1kv","slide":26,"text":"Purchases.sharedInstance.restorePurchasesWith(\n  onError = { error ->\n    showRecoveryError(error)\n  },\n  onSuccess = { customerInfo ->\n    val restored = customerInfo\n      .entitlements[\"pro\"]\n      ?.isActive == true\n    updateAccess(restored)\n  }\n)","textPreview":"Purchases.sharedInstance.restorePurchasesWith( |   onError = { error -> |     showRecoveryError(error) |   }, |   onSuccess = { customerI...","textChars":252,"textLines":11,"bbox":[676,150,488,407]}
+{"kind":"textbox","id":"sh/rat4z61g","slide":26,"text":"RevenueCat · Restoring Purchases","textPreview":"RevenueCat · Restoring Purchases","textChars":32,"textLines":1,"bbox":[84,681,960,16]}
+{"kind":"textbox","id":"sh/sbmlsb21","slide":26,"text":"26","textPreview":"26","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"notes","id":"nt/zch7w9","slide":26,"text":"Restore only from an explicit user action. Feed CustomerInfo through the same entitlement gate used after purchase."}
+{"kind":"slide","id":"sl/0eeuvq","slide":27,"title":"REVENUECAT","textShapes":12}
+{"kind":"textbox","id":"sh/6h0rel4j","slide":27,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/t4ba903a","slide":27,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/8329gvmp","slide":27,"text":"WEB BILLING · A NEW ROUTE INTO THE SAME ENTITLEMENT","textPreview":"WEB BILLING · A NEW ROUTE INTO THE SAME ENTITLEMENT","textChars":51,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/je9836l8","slide":27,"text":"Web expands acquisition — not just payment options.","textPreview":"Web expands acquisition — not just payment options.","textChars":51,"textLines":1,"bbox":[84,124,590,145]}
+{"kind":"textbox","id":"sh/yd0ra14n","slide":27,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,340,26,32]}
+{"kind":"textbox","id":"sh/lgrq5g3y","slide":27,"text":"Campaigns, email, creators, bundles, and win-back","textPreview":"Campaigns, email, creators, bundles, and win-back","textChars":49,"textLines":1,"bbox":[120,340,524,61]}
+{"kind":"textbox","id":"sh/kfi9cbmt","slide":27,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,405,26,32]}
+{"kind":"textbox","id":"sh/bap8z6lw","slide":27,"text":"Web links, paywalls, SDK, or funnels","textPreview":"Web links, paywalls, SDK, or funnels","textChars":36,"textLines":1,"bbox":[120,405,524,61]}
+{"kind":"shape","id":"sh/a9gr614b","slide":27,"bbox":[84,395,560,0]}
+{"kind":"textbox","id":"sh/wnixknex","slide":27,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,470,26,32]}
+{"kind":"textbox","id":"sh/xorytsvi","slide":27,"text":"One CustomerInfo unlocks the same Android experience","textPreview":"One CustomerInfo unlocks the same Android experience","textChars":52,"textLines":1,"bbox":[120,470,524,61]}
+{"kind":"shape","id":"sh/algfixwr","slide":27,"bbox":[84,460,560,0]}
+{"kind":"textbox","id":"sh/9k7epsfm","slide":27,"text":"RevenueCat Web documentation","textPreview":"RevenueCat Web documentation","textChars":28,"textLines":1,"bbox":[84,681,960,16]}
+{"kind":"textbox","id":"sh/mxgfedwv","slide":27,"text":"27","textPreview":"27","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"image","id":"im/s7qpkbih","slide":27,"name":"","geometry":"rect","alt":"web paywall editor.png","bbox":[704,106,455,330]}
+{"kind":"image","id":"im/fahovqhs","slide":27,"name":"","geometry":"rect","alt":"web paywall.png","bbox":[760,438,350,190]}
+{"kind":"notes","id":"nt/0eeuvq","slide":27,"text":"Treat web as an acquisition channel: email, creators, ads, bundles, and win-back can all enter the same entitlement system."}
+{"kind":"slide","id":"sl/e6atyx","slide":28,"title":"REVENUECAT","textShapes":14}
+{"kind":"textbox","id":"sh/zqtsju58","slide":28,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/kr29szmt","slide":28,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/lsbal4ne","slide":28,"text":"WEB → APP","textPreview":"WEB → APP","textChars":9,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/mtkru94j","slide":28,"text":"The best checkout still loses if access is hard to redeem.","textPreview":"The best checkout still loses if access is hard to redeem.","textChars":58,"textLines":1,"bbox":[84,132,560,155]}
+{"kind":"shape","id":"sh/7udsne54","slide":28,"bbox":[84,360,155,0]}
+{"kind":"textbox","id":"sh/8vm9wjmp","slide":28,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[84,382,40,20]}
+{"kind":"textbox","id":"sh/9wvapona","slide":28,"text":"PURCHASE","textPreview":"PURCHASE","textChars":8,"textLines":1,"bbox":[84,420,155,30]}
+{"kind":"textbox","id":"sh/uh4ry94v","slide":28,"text":"Customer pays on the web","textPreview":"Customer pays on the web","textChars":24,"textLines":1,"bbox":[84,468,155,70]}
+{"kind":"shape","id":"sh/vidsre5g","slide":28,"bbox":[268,360,155,0]}
+{"kind":"textbox","id":"sh/vy94b6l0","slide":28,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[268,382,40,20]}
+{"kind":"textbox","id":"sh/uxg3il4f","slide":28,"text":"LINK","textPreview":"LINK","textChars":4,"textLines":1,"bbox":[268,420,155,30]}
+{"kind":"textbox","id":"sh/h0rmdg36","slide":28,"text":"Landing page and email deep-link","textPreview":"Landing page and email deep-link","textChars":32,"textLines":1,"bbox":[268,468,155,70]}
+{"kind":"shape","id":"sh/gzi5kbml","slide":28,"bbox":[452,360,155,0]}
+{"kind":"textbox","id":"sh/7ap476l4","slide":28,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[452,382,40,20]}
+{"kind":"textbox","id":"sh/m9g3e14j","slide":28,"text":"UNLOCK","textPreview":"UNLOCK","textChars":6,"textLines":1,"bbox":[452,420,155,30]}
+{"kind":"textbox","id":"sh/9w7m9g3u","slide":28,"text":"App redeems and refreshes access","textPreview":"App redeems and refreshes access","textChars":32,"textLines":1,"bbox":[452,468,155,70]}
+{"kind":"textbox","id":"sh/r6t4jql8","slide":28,"text":"28","textPreview":"28","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"image","id":"im/f6pczalc","slide":28,"name":"","geometry":"rect","alt":"redemption flow.png","bbox":[690,108,510,500]}
+{"kind":"notes","id":"nt/e6atyx","slide":28,"text":"The transaction is not complete for the customer until the app opens and access appears. Mention the email fallback."}
+{"kind":"slide","id":"sl/5pn0d5","slide":29,"title":"REVENUECAT","textShapes":14}
+{"kind":"textbox","id":"sh/a18fed0v","slide":29,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/x4zepsjm","slide":29,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/c3qxgni1","slide":29,"text":"U.S. BILLING IN 2026 · RE-CHECK BEFORE SHIPPING","textPreview":"U.S. BILLING IN 2026 · RE-CHECK BEFORE SHIPPING","textChars":47,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/z61wri1s","slide":29,"text":"More choice does not mean fewer obligations.","textPreview":"More choice does not mean fewer obligations.","textChars":44,"textLines":1,"bbox":[84,118,920,105]}
+{"kind":"shape","id":"sh/y58fid07","slide":29,"bbox":[84,302,244,0]}
+{"kind":"textbox","id":"sh/lsjetsji","slide":29,"text":"ENROLL FIRST","textPreview":"ENROLL FIRST","textChars":12,"textLines":1,"bbox":[84,334,244,32]}
+{"kind":"textbox","id":"sh/kraxknix","slide":29,"text":"Use the relevant U.S. alternative billing or external-link program.","textPreview":"Use the relevant U.S. alternative billing or external-link program.","textChars":67,"textLines":1,"bbox":[84,392,244,120]}
+{"kind":"shape","id":"sh/7u1gv21o","slide":29,"bbox":[368,302,244,0]}
+{"kind":"textbox","id":"sh/mtsfmx03","slide":29,"text":"OFFER CHOICE","textPreview":"OFFER CHOICE","textChars":12,"textLines":1,"bbox":[368,334,244,32]}
+{"kind":"textbox","id":"sh/kz658b6x","slide":29,"text":"Program flows present Play Billing alongside the alternative route.","textPreview":"Program flows present Play Billing alongside the alternative route.","textChars":67,"textLines":1,"bbox":[368,392,244,120]}
+{"kind":"shape","id":"sh/l0fmhgni","slide":29,"bbox":[652,302,244,0]}
+{"kind":"textbox","id":"sh/ydo361or","slide":29,"text":"CURRENT APIs","textPreview":"CURRENT APIs","textChars":12,"textLines":1,"bbox":[652,334,244,32]}
+{"kind":"textbox","id":"sh/jex4f65c","slide":29,"text":"Billing choice requires Play Billing Library 9.1+.","textPreview":"Billing choice requires Play Billing Library 9.1+.","textChars":50,"textLines":1,"bbox":[652,392,244,120]}
+{"kind":"shape","id":"sh/8365cv6t","slide":29,"bbox":[936,302,244,0]}
+{"kind":"textbox","id":"sh/t4fml0ne","slide":29,"text":"REPORT","textPreview":"REPORT","textChars":6,"textLines":1,"bbox":[936,334,244,32]}
+{"kind":"textbox","id":"sh/61onalo3","slide":29,"text":"External transaction tokens connect purchases to Play reporting.","textPreview":"External transaction tokens connect purchases to Play reporting.","textChars":64,"textLines":1,"bbox":[936,392,244,120]}
+{"kind":"textbox","id":"sh/72x4jq5o","slide":29,"text":"Google Play Payments policy · U.S. policy update · Billing Choice program · checked 2026-07-15","textPreview":"Google Play Payments policy · U.S. policy update · Billing Choice program · checked 2026-07-15","textChars":94,"textLines":1,"bbox":[84,681,960,16]}
+{"kind":"textbox","id":"sh/g7q5gv65","slide":29,"text":"29","textPreview":"29","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"notes","id":"nt/5pn0d5","slide":29,"text":"This is volatile. Current U.S. programs allow alternative routes under requirements: enrollment, choice UI, current API, and reporting."}
+{"kind":"slide","id":"sl/422z9e","slide":30,"title":"REVENUECAT","textShapes":12}
+{"kind":"textbox","id":"sh/ylsvyt4b","slide":30,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/loje9on2","slide":30,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/0nad0jmh","slide":30,"text":"DO NOT HARDCODE A COURT CASE","textPreview":"DO NOT HARDCODE A COURT CASE","textChars":28,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/nq1wby5s","slide":30,"text":"Make checkout routing a server decision.","textPreview":"Make checkout routing a server decision.","textChars":40,"textLines":1,"bbox":[84,132,540,145]}
+{"kind":"textbox","id":"sh/mpsv2t47","slide":30,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,330,26,32]}
+{"kind":"textbox","id":"sh/9s3ed8ny","slide":30,"text":"Inputs: region, enrollment, app version, eligibility","textPreview":"Inputs: region, enrollment, app version, eligibility","textChars":52,"textLines":1,"bbox":[120,330,504,64]}
+{"kind":"textbox","id":"sh/8rad43md","slide":30,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,398,26,32]}
+{"kind":"textbox","id":"sh/vulwfi54","slide":30,"text":"Output: Play, user choice, or permitted external route","textPreview":"Output: Play, user choice, or permitted external route","textChars":54,"textLines":1,"bbox":[120,398,504,64]}
+{"kind":"shape","id":"sh/atcv6d4j","slide":30,"bbox":[84,388,540,0]}
+{"kind":"textbox","id":"sh/wby9c3qx","slide":30,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[84,466,26,32]}
+{"kind":"textbox","id":"sh/hcrql87i","slide":30,"text":"Ship a safe default when config is missing","textPreview":"Ship a safe default when config is missing","textChars":42,"textLines":1,"bbox":[120,466,504,64]}
+{"kind":"shape","id":"sh/u9grat87","slide":30,"bbox":[84,456,540,0]}
+{"kind":"shape","id":"sh/vap8jypc","slide":30,"bbox":[650,146,540,390]}
+{"kind":"textbox","id":"sh/4zi9g3q9","slide":30,"text":"when (checkoutConfig.route) {\n  PLAY_BILLING -> showPlayPaywall()\n  USER_CHOICE  -> showBillingChoice()\n  EXTERNAL_WEB -> openApprovedLink()\n  else         -> showPlayPaywall()\n}\n\n// Config comes from your backend.\n// Re-check policy before every release.","textPreview":"when (checkoutConfig.route) { |   PLAY_BILLING -> showPlayPaywall() |   USER_CHOICE  -> showBillingChoice() |   EXTERNAL_WEB -> openAppro...","textChars":255,"textLines":9,"bbox":[676,170,488,342]}
+{"kind":"textbox","id":"sh/50rqp87u","slide":30,"text":"30","textPreview":"30","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"notes","id":"nt/422z9e","slide":30,"text":"Put eligibility and route selection behind one remotely controlled configuration object. Default safely to Play Billing."}
+{"kind":"slide","id":"sl/b2dqr7","slide":31,"title":"REVENUECAT","textShapes":21}
+{"kind":"textbox","id":"sh/e90jq18z","slide":31,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/1wr21gra","slide":31,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/gvilsbqp","slide":31,"text":"BEFORE LAUNCH","textPreview":"BEFORE LAUNCH","textChars":13,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/r6pkv698","slide":31,"text":"A monetization launch is ready when the unhappy paths work.","textPreview":"A monetization launch is ready when the unhappy paths work.","textChars":59,"textLines":1,"bbox":[84,116,1000,105]}
+{"kind":"shape","id":"sh/65gjm18n","slide":31,"bbox":[84,300,520,0]}
+{"kind":"textbox","id":"sh/t872xwre","slide":31,"text":"✓","textPreview":"✓","textChars":1,"textLines":1,"bbox":[84,317,28,30]}
+{"kind":"textbox","id":"sh/s7y1obqt","slide":31,"text":"Model matches the value rhythm","textPreview":"Model matches the value rhythm","textChars":30,"textLines":1,"bbox":[126,316,470,38]}
+{"kind":"shape","id":"sh/b2tk7q9c","slide":31,"bbox":[650,300,520,0]}
+{"kind":"textbox","id":"sh/a1k3yl87","slide":31,"text":"✓","textPreview":"✓","textChars":1,"textLines":1,"bbox":[650,317,28,30]}
+{"kind":"textbox","id":"sh/k7id472d","slide":31,"text":"Products map to stable entitlements","textPreview":"Products map to stable entitlements","textChars":35,"textLines":1,"bbox":[692,316,470,38]}
+{"kind":"shape","id":"sh/l8redcjy","slide":31,"bbox":[84,372,520,0]}
+{"kind":"textbox","id":"sh/yl0v2xk7","slide":31,"text":"✓","textPreview":"✓","textChars":1,"textLines":1,"bbox":[84,389,28,30]}
+{"kind":"textbox","id":"sh/j69wb21s","slide":31,"text":"Identity flows are deliberate","textPreview":"Identity flows are deliberate","textChars":29,"textLines":1,"bbox":[126,388,470,38]}
+{"kind":"shape","id":"sh/wjid0721","slide":31,"bbox":[650,372,520,0]}
+{"kind":"textbox","id":"sh/xkre9sjm","slide":31,"text":"✓","textPreview":"✓","textChars":1,"textLines":1,"bbox":[650,389,28,30]}
+{"kind":"textbox","id":"sh/ah0vyxkb","slide":31,"text":"Paywall has restore and a clear promise","textPreview":"Paywall has restore and a clear promise","textChars":39,"textLines":1,"bbox":[692,388,470,38]}
+{"kind":"shape","id":"sh/bi9w721w","slide":31,"bbox":[84,444,520,0]}
+{"kind":"textbox","id":"sh/ofydwn25","slide":31,"text":"✓","textPreview":"✓","textChars":1,"textLines":1,"bbox":[84,461,28,30]}
+{"kind":"textbox","id":"sh/9g7u5sjq","slide":31,"text":"Refunds, retry, and offline state are tested","textPreview":"Refunds, retry, and offline state are tested","textChars":44,"textLines":1,"bbox":[126,460,470,38]}
+{"kind":"shape","id":"sh/pczutobe","slide":31,"bbox":[650,444,520,0]}
+{"kind":"textbox","id":"sh/4bqt0jut","slide":31,"text":"✓","textPreview":"✓","textChars":1,"textLines":1,"bbox":[650,461,28,30]}
+{"kind":"textbox","id":"sh/3ahsreto","slide":31,"text":"Conversion and retention are measured","textPreview":"Conversion and retention are measured","textChars":37,"textLines":1,"bbox":[692,460,470,38]}
+{"kind":"shape","id":"sh/298by9c3","slide":31,"bbox":[84,516,520,0]}
+{"kind":"textbox","id":"sh/h8zap4vi","slide":31,"text":"✓","textPreview":"✓","textChars":1,"textLines":1,"bbox":[84,533,28,30]}
+{"kind":"textbox","id":"sh/g7qtwzux","slide":31,"text":"Support can find a customer","textPreview":"Support can find a customer","textChars":27,"textLines":1,"bbox":[126,532,470,38]}
+{"kind":"shape","id":"sh/f6hsnudc","slide":31,"bbox":[650,516,520,0]}
+{"kind":"textbox","id":"sh/u5obu9cr","slide":31,"text":"✓","textPreview":"✓","textChars":1,"textLines":1,"bbox":[650,533,28,30]}
+{"kind":"textbox","id":"sh/l4ju18bm","slide":31,"text":"Policy checked per region before release","textPreview":"Policy checked per region before release","textChars":40,"textLines":1,"bbox":[692,532,470,38]}
+{"kind":"textbox","id":"sh/03at83u1","slide":31,"text":"31","textPreview":"31","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"notes","id":"nt/b2dqr7","slide":31,"text":"The happy path is the demo. The unhappy paths are the product. Invite the audience to photograph the checklist."}
+{"kind":"slide","id":"sl/nopa1e","slide":32,"title":"REVENUECAT","textShapes":6}
+{"kind":"textbox","id":"sh/8f65gji1","slide":32,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/7exonehg","slide":32,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/6donet0v","slide":32,"text":"THE TAKEAWAY","textPreview":"THE TAKEAWAY","textChars":12,"textLines":1,"bbox":[84,92,940,22]}
+{"kind":"textbox","id":"sh/h4z6t8zi","slide":32,"text":"Monetize in the same rhythm that you create value.","textPreview":"Monetize in the same rhythm that you create value.","textChars":50,"textLines":1,"bbox":[150,210,980,220]}
+{"kind":"textbox","id":"sh/g3q5k3ix","slide":32,"text":"Then make purchase state boring, access stable, and the offer easy to change.","textPreview":"Then make purchase state boring, access stable, and the offer easy to change.","textChars":77,"textLines":1,"bbox":[260,474,760,72]}
+{"kind":"textbox","id":"sh/v2horyhc","slide":32,"text":"32","textPreview":"32","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"notes","id":"nt/nopa1e","slide":32,"text":"Return the system to one sentence: value rhythm first, infrastructure second, optimization third."}
+{"kind":"slide","id":"sl/18cyyk","slide":33,"title":"REVENUECAT","textShapes":8}
+{"kind":"textbox","id":"sh/5o3ud036","slide":33,"text":"REVENUECAT","textPreview":"REVENUECAT","textChars":10,"textLines":1,"bbox":[42,24,160,20]}
+{"kind":"textbox","id":"sh/ilsb254v","slide":33,"text":"DROIDCON USA · 2026","textPreview":"DROIDCON USA · 2026","textChars":19,"textLines":1,"bbox":[1012,24,220,20]}
+{"kind":"textbox","id":"sh/jm1sbqlg","slide":33,"text":"QUESTIONS?","textPreview":"QUESTIONS?","textChars":10,"textLines":1,"bbox":[84,82,940,22]}
+{"kind":"textbox","id":"sh/srut8fmx","slide":33,"text":"Go build something\nworth paying for.","textPreview":"Go build something | worth paying for.","textChars":36,"textLines":2,"bbox":[84,124,620,168]}
+{"kind":"textbox","id":"sh/ts3uhk3i","slide":33,"text":"Perttu Lähteenlahti · @plahteenlahti","textPreview":"Perttu Lähteenlahti · @plahteenlahti","textChars":36,"textLines":1,"bbox":[84,318,520,44]}
+{"kind":"textbox","id":"sh/7qlcfalc","slide":33,"text":"FULL GUIDE + CODE","textPreview":"FULL GUIDE + CODE","textChars":17,"textLines":1,"bbox":[260,426,300,28]}
+{"kind":"textbox","id":"sh/gfetcfmt","slide":33,"text":"perttu.dev/articles/how-to-make-money-with-your-android-app","textPreview":"perttu.dev/articles/how-to-make-money-with-your-android-app","textChars":59,"textLines":1,"bbox":[260,470,410,70]}
+{"kind":"textbox","id":"sh/5ob69w3a","slide":33,"text":"33","textPreview":"33","textChars":2,"textLines":1,"bbox":[1184,684,48,18]}
+{"kind":"image","id":"im/r2h0v2x8","slide":33,"name":"","geometry":"rect","alt":"qr android monetization.png","bbox":[84,410,150,150]}
+{"kind":"image","id":"im/8r6hc3e9","slide":33,"name":"","geometry":"roundRect","alt":"portrait.jpg","bbox":[820,98,330,510]}
+{"kind":"notes","id":"nt/18cyyk","slide":33,"text":"The QR opens the full article and implementation resources. Close on the maker and take questions."}
