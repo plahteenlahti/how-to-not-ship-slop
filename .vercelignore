@@ -1,0 +1,9 @@
+.git/
+.vercel/
+**/.DS_Store
+**/source/
+**/*.pptx
+**/*.inspect.ndjson
+**/assets/pdf-extracted/
+**/*.mov
+**/*.zip
