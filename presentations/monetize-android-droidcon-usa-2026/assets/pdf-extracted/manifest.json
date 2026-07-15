@@ -1,0 +1,422 @@
+{
+  "source_pdf": "presentations/monetize-android-droidcon-usa-2026/source/original-deck.pdf",
+  "page_count": 43,
+  "unique_image_count": 31,
+  "images": [
+    {
+      "file": "transparent/image-01-p01-2048x1241.png",
+      "source_name": "Image2.jp2",
+      "pages": [
+        1,
+        43
+      ],
+      "width": 2048,
+      "height": 1241,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "sha256": "c8da7765d1b091d663a18cd39d29aa66b5826817fbe636d54b1da26f6f9ef3f2"
+    },
+    {
+      "file": "transparent/image-02-p01-1706x360.png",
+      "source_name": "Image3.jp2",
+      "pages": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        16,
+        17,
+        19,
+        20,
+        21,
+        23,
+        25,
+        27,
+        28,
+        29,
+        30,
+        31,
+        33,
+        34,
+        36,
+        37,
+        39,
+        40,
+        42,
+        43
+      ],
+      "width": 1706,
+      "height": 360,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "sha256": "e84adb0f5d59d4cdec5bcf75faf3db7ce35a00212d6ee1ed175519d53495ec63"
+    },
+    {
+      "file": "opaque-originals/image-03-p03-1392x1392.png",
+      "source_name": "Image8.jpg",
+      "pages": [
+        3
+      ],
+      "width": 1392,
+      "height": 1392,
+      "mode": "RGB",
+      "has_transparency": false,
+      "sha256": "9c3008cecae7ddb8ceb309d6124f1b995ff843a27bd31d820e136f743843b0ce"
+    },
+    {
+      "file": "opaque-originals/image-04-p03-640x672.png",
+      "source_name": "Image9.jpg",
+      "pages": [
+        3
+      ],
+      "width": 640,
+      "height": 672,
+      "mode": "RGB",
+      "has_transparency": false,
+      "sha256": "8a3678ddbe3f85f55657e39750b49a1465e81c02801f444d0888fdbf3f31787e"
+    },
+    {
+      "file": "transparent/image-05-p04-1706x360.png",
+      "source_name": "Image10.jp2",
+      "pages": [
+        4,
+        8,
+        15,
+        18,
+        22,
+        35,
+        38,
+        41
+      ],
+      "width": 1706,
+      "height": 360,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "sha256": "3d7cf493c68f8ef3cacb780ad8a4f641ecd3862202e773a95711432d02883e84"
+    },
+    {
+      "file": "opaque-originals/image-06-p05-1158x354.png",
+      "source_name": "Image11.jpg",
+      "pages": [
+        5
+      ],
+      "width": 1158,
+      "height": 354,
+      "mode": "RGB",
+      "has_transparency": false,
+      "sha256": "22230086e02ca6efc2edabaa2a1c07859edea344c13fbd9f79d8684f1a1ebc00"
+    },
+    {
+      "file": "opaque-originals/image-07-p05-460x116.png",
+      "source_name": "Image12.jpg",
+      "pages": [
+        5
+      ],
+      "width": 460,
+      "height": 116,
+      "mode": "RGB",
+      "has_transparency": false,
+      "sha256": "9246b8649b270b1d895de32f82828ca9a85f5802943cbac9ec8b9d2378ec5d82"
+    },
+    {
+      "file": "transparent/image-08-p06-638x525.png",
+      "source_name": "Image13.jp2",
+      "pages": [
+        6,
+        23
+      ],
+      "width": 638,
+      "height": 525,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "sha256": "b657c471e9a13e1e067455607c35cb7267e26ba4307fd7581d577fc5712ce46a"
+    },
+    {
+      "file": "opaque-originals/image-09-p11-2048x1152.png",
+      "source_name": "Image16.jpg",
+      "pages": [
+        11
+      ],
+      "width": 2048,
+      "height": 1152,
+      "mode": "RGB",
+      "has_transparency": false,
+      "sha256": "26d38698a3cff8f4abdfaa20f80cb38797c70c3ff6e42baa5c60167f2a9eafa2"
+    },
+    {
+      "file": "transparent/image-10-p12-2048x1152.png",
+      "source_name": "Image17.jp2",
+      "pages": [
+        12
+      ],
+      "width": 2048,
+      "height": 1152,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "sha256": "67874e532f37710675226ef8e60181f2ed129bfaa3597b87c2f1829ec217f036"
+    },
+    {
+      "file": "transparent/image-11-p13-2048x1709.png",
+      "source_name": "Image18.jp2",
+      "pages": [
+        13
+      ],
+      "width": 2048,
+      "height": 1709,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "sha256": "c87b3c30dc7e5e0ba4c6e64e612b11d8898fecd6cdc796c98b5b2b2a80c4bb63"
+    },
+    {
+      "file": "transparent/image-12-p14-477x1000.png",
+      "source_name": "Image19.jp2",
+      "pages": [
+        14
+      ],
+      "width": 477,
+      "height": 1000,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "sha256": "b067e1fa280213918130e0e9d7f39e0fef6db327045ea2bac6fa6e8ef3699f86"
+    },
+    {
+      "file": "transparent/image-13-p14-947x2048.png",
+      "source_name": "Image20.jp2",
+      "pages": [
+        14
+      ],
+      "width": 947,
+      "height": 2048,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "sha256": "a7995bc16ae3da823448f44a754a64f12dea1a045003c6192fa2019df073c46c"
+    },
+    {
+      "file": "transparent/image-14-p14-478x948.png",
+      "source_name": "Image21.jp2",
+      "pages": [
+        14
+      ],
+      "width": 478,
+      "height": 948,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "sha256": "8d464d53bff6733f87cab400bbd372f230a93fc18bb2822006dfa6e74e7ad4e9"
+    },
+    {
+      "file": "opaque-originals/image-15-p16-1848x1266.png",
+      "source_name": "Image22.jpg",
+      "pages": [
+        16
+      ],
+      "width": 1848,
+      "height": 1266,
+      "mode": "RGB",
+      "has_transparency": false,
+      "sha256": "26800e80380a15bfc9a45a273d3737e9f0a09e3e459691ecc4e77097414ace81"
+    },
+    {
+      "file": "transparent/image-16-p17-2048x1057.png",
+      "source_name": "Image25.jp2",
+      "pages": [
+        17
+      ],
+      "width": 2048,
+      "height": 1057,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "sha256": "f47eb29db4f9f49bb7b08fcf315442d7298cb4428a4d78bfe3c8f50826cbbe80"
+    },
+    {
+      "file": "transparent/image-17-p20-2048x582.png",
+      "source_name": "Image26.jp2",
+      "pages": [
+        20
+      ],
+      "width": 2048,
+      "height": 582,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "sha256": "9e57dfc87443e5c758caf5fa213dd8634d98e28fd41f32be9b97450c63d2a15e"
+    },
+    {
+      "file": "transparent/image-18-p21-2048x551.png",
+      "source_name": "Image27.jp2",
+      "pages": [
+        21
+      ],
+      "width": 2048,
+      "height": 551,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "sha256": "818eb47cdde1a0f7cd6f07653ba83045c87ada8c91ab4e32ab96e7fb7edb0d91"
+    },
+    {
+      "file": "transparent/image-19-p23-136x128.png",
+      "source_name": "Image29.jp2",
+      "pages": [
+        23
+      ],
+      "width": 136,
+      "height": 128,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "sha256": "756195d59fc74f830c3eb72ff84784f5779788b38a6fc61f2a17355194e1a6ea"
+    },
+    {
+      "file": "transparent/image-20-p24-1706x360.png",
+      "source_name": "Image30.jp2",
+      "pages": [
+        24,
+        26,
+        32
+      ],
+      "width": 1706,
+      "height": 360,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "sha256": "e6f6b4709f4bd38c255101bf225bd41b132c98adeb159fb2316a29223cfb59d8"
+    },
+    {
+      "file": "opaque-originals/image-21-p25-1448x699.png",
+      "source_name": "Image31.jpg",
+      "pages": [
+        25
+      ],
+      "width": 1448,
+      "height": 699,
+      "mode": "RGB",
+      "has_transparency": false,
+      "sha256": "a0d92a0bc8329f67483e0d8468f3dc024003c150e49358d36de022250eb96453"
+    },
+    {
+      "file": "transparent/image-22-p27-2048x861.png",
+      "source_name": "Image32.jp2",
+      "pages": [
+        27,
+        31
+      ],
+      "width": 2048,
+      "height": 861,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "sha256": "34e943cc2403f977b6b33f17f6054ae3f71a28472fbc7c2f9fec61a5c12d0e2c"
+    },
+    {
+      "file": "transparent/image-23-p28-2048x1040.png",
+      "source_name": "Image33.jp2",
+      "pages": [
+        28
+      ],
+      "width": 2048,
+      "height": 1040,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "sha256": "5408c1fd74c905e197adae9590037bc01e50e9f1c42de4445af23822d1ef2c4a"
+    },
+    {
+      "file": "transparent/image-24-p30-2048x826.png",
+      "source_name": "Image34.jp2",
+      "pages": [
+        30
+      ],
+      "width": 2048,
+      "height": 826,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "sha256": "ced9282d7325fed3ddfcc3ab3531dbcab8bf18adfa4d58709c9c4356d241dbea"
+    },
+    {
+      "file": "opaque-originals/image-25-p33-1346x741.png",
+      "source_name": "Image35.jpg",
+      "pages": [
+        33
+      ],
+      "width": 1346,
+      "height": 741,
+      "mode": "RGB",
+      "has_transparency": false,
+      "sha256": "7c78665a9c6ea7be41e678f38a4bc7437bbb0a722c7668ec0b4320d6156f2cb9"
+    },
+    {
+      "file": "transparent/image-26-p34-2048x612.png",
+      "source_name": "Image36.jp2",
+      "pages": [
+        34
+      ],
+      "width": 2048,
+      "height": 612,
+      "mode": "RGBA",
+      "has_transparency": true,
+      "sha256": "721dd03fc0194ea496540764418c527a9019edc3be604e4341e96a6bdb1a8005"
+    },
+    {
+      "file": "opaque-originals/image-27-p36-1262x1076.png",
+      "source_name": "Image37.jpg",
+      "pages": [
+        36
+      ],
+      "width": 1262,
+      "height": 1076,
+      "mode": "RGB",
+      "has_transparency": false,
+      "sha256": "1a7588f373a0eb78e06c4ca0c5305583f977b0306941839e257dc7e8d4894820"
+    },
+    {
+      "file": "opaque-originals/image-28-p36-1146x712.png",
+      "source_name": "Image38.jpg",
+      "pages": [
+        36
+      ],
+      "width": 1146,
+      "height": 712,
+      "mode": "RGB",
+      "has_transparency": false,
+      "sha256": "5f1b5856ec52067e22973a5c3f3afc43a0782ab263b00e87aa6a42574a7cae4e"
+    },
+    {
+      "file": "opaque-originals/image-29-p37-2048x1152.png",
+      "source_name": "Image41.jpg",
+      "pages": [
+        37
+      ],
+      "width": 2048,
+      "height": 1152,
+      "mode": "RGB",
+      "has_transparency": false,
+      "sha256": "8228f6bfb618ead10cbad5e77497c54bd2e1714564f080ff9399381e7e6c8c88"
+    },
+    {
+      "file": "opaque-originals/image-30-p39-1174x1200.png",
+      "source_name": "Image42.jpg",
+      "pages": [
+        39
+      ],
+      "width": 1174,
+      "height": 1200,
+      "mode": "RGB",
+      "has_transparency": false,
+      "sha256": "73d58837943e850b14ef923a05c245f2052369ab94840187b8df4fe4d4472914"
+    },
+    {
+      "file": "opaque-originals/image-31-p40-1600x800.png",
+      "source_name": "Image43.jpg",
+      "pages": [
+        40
+      ],
+      "width": 1600,
+      "height": 800,
+      "mode": "RGB",
+      "has_transparency": false,
+      "sha256": "a63df4c5661673d17b21510ba2dedb522d2db7f5e8c4eeac8523b13b816157bb"
+    }
+  ]
+}
