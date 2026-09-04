@@ -5,5 +5,5 @@
 **/*.pptx
 **/*.inspect.ndjson
 **/assets/pdf-extracted/
-**/*.mov
+presentations/how-not-to-ship-slop/siivous.mov
 **/*.zip
