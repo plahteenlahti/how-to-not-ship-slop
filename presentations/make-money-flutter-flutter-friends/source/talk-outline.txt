@@ -1,0 +1,154 @@
+Make money with your Flutter app [Talk]
+
+
+
+- Why monetize your app
+  - Show of hands how many people have built their own apps, and how many have monetized it
+  - Wouldn’t it be cool to build something that people like using and getting paid little bit for it every month? Wouldn’t that make you motivated 
+- Introduction
+  - Perttu, basic stuff
+- The fundamentals of app market place 
+  - So you built an app, it’s approved by apple and google and now you want to monetize it, how should you go about it
+    - Slap a price on it = works, but you only get paid once, and you miss on a lot of users who would find your app useful but can’t justify buying it without knowing how it works
+    - Make it available for free, you can use it for free (to some level) but allow people to pay to unlock features
+      - This is called the soft paywall
+    - Make it available for free but don’t let them use any of it until they pay something for it
+      - This is called a hard paywall
+      - To offer free access, you need to have for example a trial
+    - We have data on this what works the best in our yearly report. Turns out, these two perform very similarly in long term, but hard paywall makes more money upfront, but eventually people churn turning the numbers pretty much equal
+  - Now you figured how you want you monetize your app, it’s a freemium, but what different methods for monetizing do you have?
+    - First non-consumable in-app purchases. Very similar to slapping a price on it, you buy it and own it for life. 
+    - Second we have subscriptions, so for example weekly, monthly, and yearly subscriptions. Allows user to use the app during that period, if they continue paying they can continue using. Everyone knows these. 
+      - We are leaning towards this, since getting paid monthly makes it easy for us to see us working on the app every month, putting a direct number on the value of our work
+    - Third we have consumable in-app purchases, a mechanic that allows you to buy the same thing as many times as you want. Good for game mechanics, and stuff like in-app currencies. We could probably throw this on top of our app as an extra monetization method
+    - Ads! Make your customer the product. We might throw this in our example app
+  - So you chose to go with subscriptions and you want to be data oriented and choose the best subscription lengths that people will want to convert with
+    - You need yearly, because you would like if your customers paid a lot of money and then stayed on for long. There’s also a benefit that Apple and google both reward you for longer subscription, if customers stay subscribed, you get to keep more (drops from 30 to 15%)
+    - But then, should you have weekly or monthly subscription? You’ve seen a lot of weekly subs, so maybe that is the way?
+      - Well data says that yes for first week, but churn is higher on these, causing you lose money
+      - So you choose monthly instead
+  - Now's the time choose if you want to have trial in your subscription
+    - For a hard paywall this would be necessary
+    - But soft paywall, it’s a good way to give people a chance to try out your apps premium features
+    - But what should your trial length be?
+      - 3 days?
+      - Two weeks?
+    - Well we can once again answer this with data. Turns out that trend is to offer shorter subscription periods (probably because people forget to cancel them, making you more money). BUT, longer trials actually make more money long term (probably because customers feel like they managed to use the app to its full extent)
+- Now you have your monetization figured out, the next step is to wire this all into your app. How to go about that?
+  - Your app is on two platforms, ios and android
+  - Both platforms have their own SDKs, iOS has StoreKit and Android has Google play billing
+  - Using these separately in your Flutter apps would require quite a bit of tinkering, so maybe you want a cross-platform solution
+  - For that you have the official plugin in_app_purchase 
+    - I have not personally used it so I can’t really comment on how well it works
+    - But I can comment on things you need to build yourself if you end up using them
+    - The most difficult part being your own backend, that handles verifying the purchases so that people don’t just go around doing enabling your precious features from the client side
+    - You also probably want some analytics, like what is your conversion rate, churn, cost of acquisition if you’re getting users with ads, lifetime value etc
+    - Now you can codex yourself a platform to do those, but you really that maintaining that is worth you time?
+    - Because if you’re building an app that you love, then maybe you should focus on that instead
+  - And here’s where the previously mentioned RevenueCat affiliation comes in, we do all of that backend stuff for you, plus quite a lot of other things
+    - We do the analytics, but also A/B testing, targeting, experiments, so you can easily see which prices, products, subscription lengths at other things enable you to monetize
+    - We also support making your content purchasable from other places. Let’s say for example that you want to allow customer to subscribe from web, avoiding the Apple commission and using for example Stripe, we support that and make it easy to integrate
+    - Then we also have great paywall tools, meaning a visual builder, but also an agentic one, that you can use to prompt your paywall into existence. Best is that you don’t have to make new app releases to get to your updated paywall in front of customers, our SDK makes it easy to update the dashboard, and have it live when customer next time opens their app
+  - For all of that you pay nothing, until you actually start making money. After you make 2.5k a month, we bill you 1%. That’s a pretty cheap prize for making a decent amount of money.
+  - If you have any questions about any of our pricing, come talk to me at the booth after this
+- You decided to use RevenueCat, how do you go around it
+  - Simple, install the SDK
+  - On code side this is very easy, single call to initialize the SDK and another to show the paywall with your products
+  - But wait you need to configure the products? How do you go around doing that? 
+  - Our docs explain that pretty well, well enough to AI to love them, so let’s do it the modern way and use our coding agents to set up this stuff
+- Let’s install RevenueCat AI toolkit
+  - It’s a plugin that contains two things
+    - MCP server that can do things like setup your products in RevenueCat, but also in App Store Connect and Google Play
+    - And a collection of skills for common workflows
+  - Install is a bit different depending on your agent but in short it is codex plugin marketplace add RevenueCat/ai-toolkit
+  - 
+
+- With this toolkit we can prompt our app into a monetized one, with an example prompt like this
+  - I want you to add monetization to my app, use best practices. Ask me question in case you don’t understand. The basic model should be both platforms, monthly and yearly, with monthly for 4.99 and yearly for 49.99. The monthly should have a 2 week trial. Setup products in both stores and in RevenueCat. Subscribing should grant the pro entitlement and access to all content
+  - With that set your agent will get to work, probably asking you few question and telling you jump into App store connect or Play console to do few setups itself can’t do
+- We should now have the monetization infra setup, next we want to make users pay right? So how to do that
+  - Easiest choice is to do a good onboarding, where we ask user to sign in for example (if that’s needed), tell them about some of the benefits our app gives them (not the features), and then present them a paywall
+  - Since our app is a freemium we will make the paywall skippable
+  - Lets build the onboarding, and ask our agent to use PaywallView
+
+
+```
+import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
+
+// Note: Avoid placing PaywallView inside a modal or bottom sheet (e.g., using showModalBottomSheet).
+// Instead, include it directly in your widget.
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    body: SafeArea(
+      child: Center(
+        child: PaywallView(
+          offering: offering, // Optional Offering object obtained through getOfferings
+          onRestoreCompleted: (CustomerInfo customerInfo) {
+            // Optional listener. Called when a restore has been completed.
+            // This may be called even if no entitlements have been granted.
+          } 
+          onDismiss: () {
+            // Dismiss the paywall, i.e. remove the view, navigate to another screen, etc.
+            // Will be called when the close button is pressed (if enabled) or when a purchase succeeds.
+          },
+        ),
+      ),
+    ),
+  );
+```
+
+
+
+- We could present it as a modal as well, but let’s save that for inside our app and use this instead so that it can be one of the screens of our app in the onboarding. 
+  - Then let’s jump into RevenueCat paywall builder, ask our agent to build it
+  - TK add video of astra building a paywall here based on the prompt
+  - To make the paywall look like it belongs in our app we can use [design.md](http://design.md) file
+  - And now if we slot that in using the onboarding offering group we got ourselves a nice paywall
+- What does a good paywall look like?
+  - There’s multiple ways to build a good paywall but here’s some good suggestions, these are mostly also in our paywall builder as skills so you could get something like this already from the start
+    - First show benefits, not features. Push notifications is a feature, getting reminders to complete your lesson is a benefit
+    - Show social proof, if customers love your app, slots few of those reviews in the paywall
+    - Third is keep it simple and highlight your trial. Have only 1-2 options in your paywall, monthly and yearly, and clearly tell which one of them has a trial and how long it is
+- Ok so our paywall is ready, looks like this in the app and grants users the full access to our content, but wait how does the access system work?
+  - I mentioned entitlement earlier, that is our way of keeping track of what things users can access in the app. You can manage those through the dashboard, and attach them to subscriptions. 
+  - In the app we can check entitlements using this code
+    - TK show code
+  - If your app is accessing features in the backend, it’s worth doing the check there as well. Now this is the point I’m going to shout out one of the organizer’s great blog post about doing this with Firebase go check it out
+  - And that’s how easy it is to to have access level based on subscription in your app
+- We have a pretty good app here, but we want to do something more. Since our app has gems that unlock stuff like streak freezes, how do we enable those?
+  - Well lets make a new in-app product called Cat Coin, and use a RevenueCat feature called In-App Currencies to do this.
+  - Once again our agent can handle most of this, by telling it to create few different products, an in-app currency, and attaching those to each other
+  - We can even make it so that these currencies can be granted every month, maybe like 2 of them
+  - Then we just create a new paywall that shows those currencies instead
+  - We need to run the logic for these on our own backend, since deducting currencies is not possible on client side due to security reasons
+- We also want to add ads to our app and have subscription unlock those
+  - Easy to do, let’s use admob 
+  - We also support showing ad mob revenue in revenuecat dashboard
+  - But what is even cooler is that we can also do something like give user a trial or in-app currency when they watch an add 
+    - This is called rewarded ad 
+    - User watches and ad, and tadaa after completing it our backend calls RevenueCat and then grants them an extra gem
+    - You can ask your agent to do this, or see the example app
+- Now we’ve monetized our app in multiple ways already, our conversions are pretty good, but sometimes users churn, what can we do about that?
+  - Churn management is a whole topic of it’s own but I’ll leave you with two really good things
+  - First is customer center, a revenuecat feature that allows you to show customers another product when they unsubscribe in the app. Easy hack
+  - But most users actually unsubscribe from the settings on iOS 
+    - For that we can use Retention Messaging API
+    - You need to apply for it for now, but Apple is accepting new features every week
+    - Once you done that, you can actually enable it in RevenueCat
+    - And after that RevenueCat can show retention messages like these when user goes to unsubscribe
+    - Data on this is that it is basically free money
+- Recapping
+  - You have now extensive knowledge all the different ways to monetize your app 
+  - Your choices how to do that, depending how much you want to build stuff yourself
+    - Use official plugin
+    - Or if you would rather focus on your app, use RevenueCat
+  - How to prompt your way with the ai-toolkit
+  - What monetization mechanics there and how to use them
+    - IAP, subscriptions, in-app currencies, 
+
+
+
+
+
+This talk dives into the practical realities of monetizing Flutter apps through subscriptions and in-app purchases, covering both the technical implementation and the design decisions that determine whether users actually convert. We'll walk through how IAP works under the hood on iOS and Android, the quirks of integrating it cleanly in a cross-platform Flutter codebase, and the third-party tools that can save you weeks of headache around receipt validation, entitlements, and analytics. Beyond the code, we'll look at what makes a paywall feel inviting rather than pushy, how pricing and trial structures influence user behavior, and the small UX details that separate apps people happily pay for from ones they immediately uninstall. By the end, you'll have a clear mental model of the entire monetization stack in Flutter and a practical sense of where to invest your time to actually start earning revenue from your app.

@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Make money with your Flutter app — Flutter &amp; Friends">
+  <link rel="icon" href="assets/flutter-friends-logo.png">
+  <title>Make money with your Flutter app — Flutter &amp; Friends</title>
+  <style>
+    @font-face{font-family:Outfit;src:url('assets/fonts/Outfit-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+    @font-face{font-family:Outfit;src:url('assets/fonts/Outfit-SemiBold.ttf') format('truetype');font-weight:600;font-display:swap}
+    @font-face{font-family:Outfit;src:url('assets/fonts/Outfit-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
+    @font-face{font-family:'JetBrains Mono';src:url('assets/fonts/JetBrainsMono-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+    @font-face{font-family:'JetBrains Mono';src:url('assets/fonts/JetBrainsMono-ExtraBold.ttf') format('truetype');font-weight:800;font-display:swap}
+
+    :root{
+      --ink:#171b25;--paper:#f7f6f0;--surface:#fffefa;--muted:#68707d;--line:#d8d9dc;
+      --flutter:#3f8def;--deep:#246dcc;--lavender:#9c87f5;--blush:#ffd0cd;--mist:#e7f2fb;
+      --code:#171b25;--white:#fffefa;
+    }
+    *{box-sizing:border-box}
+    html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#111722;font-family:Outfit,ui-sans-serif,system-ui,sans-serif;color:var(--ink)}
+    button{font:inherit}
+    .deck{width:100vw;height:100vh;position:relative}
+    .slide{position:absolute;inset:0;display:none;overflow:hidden;background:var(--paper);padding:6.2vh 6.6vw 5.4vh}
+    .slide.active{display:block}
+    .slide::before{content:'Perttu Lähteenlahti · Senior Developer Advocate, RevenueCat';position:absolute;left:6.6vw;bottom:1.8vh;font:800 1.02vh/1 'JetBrains Mono',monospace;letter-spacing:.06em;color:#858c97}
+    .slide::after{content:attr(data-number);position:absolute;right:3.2vw;bottom:2.5vh;font:800 1.2vh/1 'JetBrains Mono',monospace;color:#8b919b}
+    .chrome{position:absolute;left:3vw;top:2.2vh;font:800 1.25vh/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--flutter)}
+    .event{position:absolute;right:3.2vw;top:.3vh;width:7vw;height:auto;overflow:visible}
+    .event img{display:block;width:100%;height:auto}
+    .speaker-note{display:none}
+    h1,h2,h3,p{margin-top:0}
+    .display{font-size:clamp(3rem,7.5vh,7rem);font-weight:700;line-height:.92;letter-spacing:-.052em;margin:0;max-width:12.5ch}
+    .title{font-size:clamp(2.2rem,5.45vh,5.2rem);font-weight:700;line-height:.99;letter-spacing:-.042em;margin:0;max-width:18ch}
+    .subtitle{font-size:clamp(1.25rem,2.55vh,2.35rem);line-height:1.3;color:var(--muted);max-width:38ch}
+    .kicker{font:800 1.75vh/1.2 'JetBrains Mono',monospace;letter-spacing:.11em;text-transform:uppercase;color:var(--flutter);margin-bottom:2.8vh}
+    .accent{color:var(--flutter)}.lavender{color:var(--lavender)}
+    .dark{background:var(--ink);color:var(--white)}
+    .deep{background:var(--deep);color:var(--white)}
+    .lavender-bg{background:#ece8ff;color:var(--ink)}
+    .blush-bg{background:#ffe5e2;color:var(--ink)}
+    .dark .subtitle,.deep .subtitle{color:#cbd6e4}.dark::before,.deep::before{color:#b7c2d0}
+    .stack{display:flex;flex-direction:column;justify-content:center;height:100%}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:5.6vw;align-items:center;height:100%}
+    .split.wide{grid-template-columns:.82fr 1.18fr}.split.reverse{grid-template-columns:1.18fr .82fr}
+    .center{place-items:center;text-align:center}.slide.active.center{display:grid}.center .display,.center .title,.center .subtitle{margin-left:auto;margin-right:auto}
+    .brand-stage{display:grid;grid-template-columns:1.08fr .92fr;gap:4vw;align-items:center;height:100%}
+    .brand-logo{width:36vw;height:auto;overflow:visible;background:transparent}
+    .brand-logo img{display:block;width:100%;height:auto}
+    .portrait{width:34vw;height:66vh;object-fit:cover;object-position:50% 30%;background:transparent}
+    .shot{width:100%;max-height:65vh;object-fit:contain;background:transparent}
+    .bullets{list-style:none;padding:0;margin:3.5vh 0 0;max-width:58vw}
+    .bullets li{font-size:2.55vh;line-height:1.24;padding:1.15vh 0}
+    .bullets li::before{content:'→';color:var(--flutter);font-weight:800;margin-right:1.15vw}
+    .dark .bullets li::before,.deep .bullets li::before{color:var(--blush)}
+    .option-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2.2vh 2vw;margin-top:4.5vh}
+    .option{min-height:18vh;padding:2.4vh 1.8vw;background:rgba(63,141,239,.075);border-left:.45vh solid var(--flutter)}
+    .option b{font:800 1.35vh/1 'JetBrains Mono',monospace;color:var(--flutter)}
+    .option strong{display:block;font-size:2.45vh;line-height:1.08;margin:1.4vh 0 1vh}
+    .option p{font-size:1.95vh;line-height:1.36;color:var(--muted);margin:0}
+    .dark .option{background:rgba(255,255,255,.065);border-color:var(--lavender)}.dark .option b{color:var(--lavender)}.dark .option p{color:#cbd6e4}
+    .path{display:grid;grid-template-columns:repeat(5,1fr);gap:1.35vw;margin-top:5vh}
+    .step{min-height:22vh;padding:2.5vh 1.25vw;background:rgba(63,141,239,.075)}
+    .step b{display:block;font:800 1.6vh/1 'JetBrains Mono',monospace;color:var(--flutter)}
+    .step strong{display:block;font-size:2.55vh;line-height:1.08;margin:2vh 0 1.15vh}
+    .step span{font-size:2vh;line-height:1.27;color:var(--muted)}
+    .deep .step{background:rgba(255,255,255,.1)}.deep .step b{color:var(--blush)}.deep .step span{color:#d9e5f4}
+    .code-grid{display:grid;grid-template-columns:1fr 1fr;gap:2vw;margin-top:3vh}
+    .quote{font-size:clamp(2.4rem,5.7vh,5.4rem);line-height:1.02;letter-spacing:-.045em;max-width:18ch}
+    .quote em{font-style:normal;color:var(--flutter)}
+    .prompt{background:var(--surface);border-left:.65vh solid var(--lavender);padding:3.2vh 2.5vw;font-size:3vh;line-height:1.25;box-shadow:0 18px 44px rgba(38,54,82,.1)}
+    .code{background:var(--code);color:#f6f4ee;border-radius:.9vh;padding:2.5vh 2vw;font:400 1.45vh/1.5 'JetBrains Mono',monospace;white-space:pre-wrap;box-shadow:0 18px 44px rgba(16,24,39,.24);max-height:75vh;overflow:hidden}
+    .code .kw{color:#b9a7ff}.code .fn{color:#78c7ff}.code .str{color:#ffd0cd}.code .cm{color:#8793a3}
+    .code-source{display:block;margin-top:1.2vh;font:800 1.05vh/1.3 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+    .code-source a{color:inherit}
+    .flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:1.2vw;margin-top:6vh}
+    .node{min-height:24vh;padding:2.6vh 2vw;display:flex;flex-direction:column;justify-content:center;background:rgba(63,141,239,.075)}
+    .node b{font-size:2.45vh}.node span{font-size:2vh;line-height:1.35;color:var(--muted);margin-top:1.2vh}.arrow{font-size:3.5vh;color:var(--flutter)}
+    .proof{display:grid;grid-template-columns:.84fr 1.16fr;gap:4.5vw;align-items:center;height:100%}
+    .proof-copy .title{max-width:15ch}.proof-copy p{font-size:2.35vh;line-height:1.35;color:var(--muted);max-width:36ch;margin:2.8vh 0 0}
+    .proof-lines{display:grid;gap:2vh}.proof-line{padding:2.25vh 1.7vw;background:rgba(63,141,239,.075);border-left:.45vh solid var(--flutter)}
+    .proof-line strong{display:block;font-size:2.6vh;line-height:1.1}.proof-line span{display:block;margin-top:.9vh;font-size:2vh;line-height:1.3;color:var(--muted)}
+    .paywall-rules{display:grid;grid-template-columns:repeat(3,1fr);gap:2vw;margin-top:5vh}
+    .paywall-rule{padding-top:2vh;border-top:.55vh solid var(--flutter)}
+    .paywall-rule b{font:800 1.45vh/1 'JetBrains Mono',monospace;color:var(--flutter)}
+    .paywall-rule strong{display:block;font-size:2.8vh;line-height:1.08;margin:1.5vh 0 1vh}
+    .paywall-rule p{font-size:2.05vh;line-height:1.3;color:var(--muted);margin:0}
+    .tk{padding:2.8vh 2.2vw;border:2px dashed var(--lavender);background:rgba(156,135,245,.08);font:800 2.1vh/1.35 'JetBrains Mono',monospace;color:#6554b2}
+    .rive-frame{height:72vh;background:transparent;overflow:visible}
+    .rive-frame canvas{display:block;width:100%;height:100%}
+    .ai-paywall-slide .split{grid-template-columns:.58fr 1.42fr;gap:2.5vw}
+    .ai-paywall-slide .rive-frame{height:84vh}
+    .ai-paywall-slide .title{font-size:4.7vh}
+    .logo-ghost{position:absolute;right:-3vw;bottom:-15vh;width:40vw;height:34vw;overflow:hidden;opacity:.085;filter:grayscale(1)}.logo-ghost img{width:100%;height:auto}
+    .closing-logo{width:30vw;height:22vw;overflow:hidden}.closing-logo img{width:100%;height:auto}
+    .source{position:absolute;left:6.6vw;bottom:4.4vh;font:400 1.08vh/1.2 'JetBrains Mono',monospace;color:#818895}
+    .source a{color:inherit}
+    .controls{position:fixed;z-index:20;right:1.1vw;bottom:1.4vh;display:flex;gap:.45vw}
+    .controls button,.home,.edit-toggle{border:1px solid rgba(92,101,115,.35);background:rgba(255,255,255,.84);backdrop-filter:blur(8px);color:#46505f;border-radius:999px;height:34px;cursor:pointer;font-weight:800}
+    .controls button,.home{width:34px}.home{position:fixed;z-index:20;left:1.1vw;bottom:1.4vh;display:grid;place-items:center;text-decoration:none;font-size:13px}
+    .edit-toggle{position:fixed;z-index:20;left:4vw;bottom:1.4vh;padding:0 13px;font:800 10px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase}
+    .edit-toggle.active{background:var(--flutter);color:#fff;border-color:var(--flutter)}
+    .keyboard-hint{position:fixed;z-index:17;left:50%;bottom:1.8vh;transform:translateX(-50%);font:800 1.02vh/1 'JetBrains Mono',monospace;color:#858c97;letter-spacing:.08em;text-transform:uppercase}
+    .progress{position:fixed;z-index:21;left:0;bottom:0;height:4px;background:var(--flutter);transition:width .25s ease}
+    .notes{display:none;position:fixed;z-index:30;left:4vw;right:4vw;bottom:5vh;max-height:34vh;overflow:auto;background:rgba(17,23,34,.97);color:#fff;border:1px solid #364050;border-radius:1.2vh;padding:2.2vh 2vw;font-size:1.8vh;line-height:1.5;box-shadow:0 30px 70px rgba(0,0,0,.35)}
+    .notes.visible{display:block}.notes b{color:#78c7ff}
+    body.editing [contenteditable="true"]{outline:1px dashed rgba(63,141,239,.65);outline-offset:.2em;cursor:text}
+    body.editing [contenteditable="true"]:focus{outline:2px solid var(--flutter);background:rgba(255,255,255,.12)}
+    @keyframes rise{from{opacity:0;transform:translateY(1.2vh)}to{opacity:1;transform:translateY(0)}}
+    .slide.active .kicker,.slide.active .title,.slide.active .display,.slide.active .subtitle,.slide.active .shot,.slide.active .portrait,.slide.active .brand-logo,.slide.active .code,.slide.active .option-grid,.slide.active .path,.slide.active .flow,.slide.active .proof-lines,.slide.active .paywall-rules,.slide.active .prompt,.slide.active .tk,.slide.active .rive-frame{animation:rise .48s cubic-bezier(.2,.8,.2,1) both}
+    .slide.active .title,.slide.active .display{animation-delay:.05s}.slide.active .subtitle,.slide.active .option-grid,.slide.active .path,.slide.active .flow,.slide.active .proof-lines,.slide.active .paywall-rules,.slide.active .prompt,.slide.active .tk{animation-delay:.11s}.slide.active .shot,.slide.active .portrait,.slide.active .brand-logo,.slide.active .code{animation-delay:.16s}
+    @media(max-aspect-ratio:4/3){.slide{padding-left:5vw;padding-right:5vw}.split,.split.wide,.split.reverse,.brand-stage,.proof{gap:3vw}.option-grid{gap:1.4vh 1.4vw}.keyboard-hint{display:none}}
+    @media(prefers-reduced-motion:reduce){.slide.active *{animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- SLIDE 01 — TITLE -->
+  <section class="slide active" data-number="01">
+    <div class="chrome">RevenueCat</div>
+    <div class="brand-stage">
+      <div><div class="kicker">Flutter &amp; Friends</div><h1 class="display">Make money with your <span class="accent">Flutter app</span></h1><p class="subtitle" style="margin-top:3vh">Perttu Lähteenlahti · Senior Developer Advocate, RevenueCat</p></div>
+      <div class="brand-logo"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    </div>
+    <aside class="speaker-note">Make money with your Flutter app [Talk]</aside>
+  </section>
+
+  <!-- SLIDE 02 — WHY MONETIZE -->
+  <section class="slide dark" data-number="02">
+    <div class="chrome">Why monetize your app</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="stack"><div class="kicker">Show of hands…</div><h1 class="display" style="max-width:15ch">How many people have built their own apps, and how many have <span class="lavender">monetized it</span></h1></div>
+    <aside class="speaker-note">Show of hands how many people have built their own apps, and how many have monetized it</aside>
+  </section>
+
+  <!-- SLIDE 03 — MOTIVATION -->
+  <section class="slide deep" data-number="03">
+    <div class="chrome" style="color:#fff">Why monetize your app</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="stack"><h1 class="display" style="max-width:16ch">Wouldn’t it be cool to build something that people like using and getting paid little bit for it <span style="color:var(--blush)">every month?</span></h1><p class="subtitle" style="margin-top:3.5vh">Wouldn’t that make you motivated</p></div>
+    <aside class="speaker-note">Wouldn’t it be cool to build something that people like using and getting paid little bit for it every month? Wouldn’t that make you motivated</aside>
+  </section>
+
+  <!-- SLIDE 04 — INTRODUCTION -->
+  <section class="slide" data-number="04">
+    <div class="chrome">Introduction</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="split"><div><div class="kicker">Perttu Lähteenlahti · builder + advocate</div><h2 class="title">I build apps, and I help other developers make money from theirs.</h2><ul class="bullets"><li>Carpentry → cognitive science → design → coding → developer advocacy</li><li>Started four companies · won 40+ hackathons</li><li>Senior Developer Advocate at RevenueCat</li></ul></div><img class="portrait" src="assets/portrait.jpg" alt="Portrait of Perttu Lähteenlahti"></div>
+    <aside class="speaker-note">I build apps, and I help other developers make money from theirs.<br><br>Carpentry → cognitive science → design → coding → developer advocacy<br><br>Started four companies · won 40+ hackathons<br><br>Senior Developer Advocate at RevenueCat</aside>
+  </section>
+
+  <!-- SLIDE 05 — THE FUNDAMENTALS -->
+  <section class="slide lavender-bg" data-number="05">
+    <div class="chrome">The fundamentals of app market place</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="stack"><div class="kicker">The fundamentals of app market place</div><h1 class="display" style="max-width:16ch">So you built an app, it’s approved by apple and google and now you want to monetize it, <span class="accent">how should you go about it</span></h1></div>
+    <aside class="speaker-note">So you built an app, it’s approved by apple and google and now you want to monetize it, how should you go about it</aside>
+  </section>
+
+  <!-- SLIDE 06 — THREE STARTING POINTS -->
+  <section class="slide" data-number="06">
+    <div class="chrome">The fundamentals of app market place</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <h2 class="title">How should you go about it</h2>
+    <div class="option-grid">
+      <div class="option"><b>01</b><strong>Slap a price on it</strong><p>Works, but you only get paid once, and you miss on a lot of users who would find your app useful but can’t justify buying it without knowing how it works</p></div>
+      <div class="option"><b>02</b><strong>Make it available for free</strong><p>You can use it for free (to some level) but allow people to pay to unlock features</p></div>
+      <div class="option"><b>03</b><strong>Make it available for free</strong><p>But don’t let them use any of it until they pay something for it</p></div>
+    </div>
+    <aside class="speaker-note">Slap a price on it = works, but you only get paid once, and you miss on a lot of users who would find your app useful but can’t justify buying it without knowing how it works<br><br>Make it available for free, you can use it for free (to some level) but allow people to pay to unlock features<br><br>Make it available for free but don’t let them use any of it until they pay something for it</aside>
+  </section>
+
+  <!-- SLIDE 07 — SOFT OR HARD -->
+  <section class="slide dark" data-number="07">
+    <div class="chrome">The fundamentals of app market place</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="split"><div><div class="kicker">This is called the soft paywall</div><h2 class="title">You can use it for free <span class="lavender">(to some level)</span></h2></div><div><div class="kicker">This is called a hard paywall</div><h2 class="title">Don’t let them use any of it until they <span class="lavender">pay something for it</span></h2><p class="subtitle" style="margin-top:2.5vh">To offer free access, you need to have for example a trial</p></div></div>
+    <aside class="speaker-note">This is called the soft paywall<br><br>This is called a hard paywall<br>To offer free access, you need to have for example a trial</aside>
+  </section>
+
+  <!-- SLIDE 08 — THE DATA -->
+  <section class="slide blush-bg" data-number="08">
+    <div class="chrome">The fundamentals of app market place</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="stack"><div class="kicker">We have data on this what works the best in our yearly report</div><h1 class="display" style="max-width:17ch">These two perform very similarly in long term</h1><p class="subtitle" style="margin-top:3vh">Hard paywall makes more money upfront, but eventually people churn turning the numbers pretty much equal</p></div>
+    <aside class="speaker-note">We have data on this what works the best in our yearly report. Turns out, these two perform very similarly in long term, but hard paywall makes more money upfront, but eventually people churn turning the numbers pretty much equal</aside>
+  </section>
+
+  <!-- SLIDE 09 — METHODS -->
+  <section class="slide" data-number="09">
+    <div class="chrome">What different methods for monetizing do you have?</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <h2 class="title">What different methods for monetizing do you have?</h2>
+    <div class="option-grid">
+      <div class="option"><b>01</b><strong>Non-consumable in-app purchases</strong><p>You buy it and own it for life</p></div>
+      <div class="option"><b>02</b><strong>Subscriptions</strong><p>Weekly, monthly, and yearly subscriptions</p></div>
+      <div class="option"><b>03</b><strong>Consumable in-app purchases</strong><p>Buy the same thing as many times as you want</p></div>
+      <div class="option"><b>04</b><strong>Ads!</strong><p>Make your customer the product</p></div>
+    </div>
+    <aside class="speaker-note">First non-consumable in-app purchases. Very similar to slapping a price on it, you buy it and own it for life.<br><br>Second we have subscriptions, so for example weekly, monthly, and yearly subscriptions. Allows user to use the app during that period, if they continue paying they can continue using. Everyone knows these.<br><br>Third we have consumable in-app purchases, a mechanic that allows you to buy the same thing as many times as you want. Good for game mechanics, and stuff like in-app currencies. We could probably throw this on top of our app as an extra monetization method<br><br>Ads! Make your customer the product. We might throw this in our example app</aside>
+  </section>
+
+  <!-- SLIDE 10 — SUBSCRIPTIONS -->
+  <section class="slide deep" data-number="10">
+    <div class="chrome" style="color:#fff">Subscriptions</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="stack"><div class="kicker" style="color:var(--blush)">We are leaning towards this</div><h1 class="display" style="max-width:16ch">Getting paid monthly makes it easy for us to see us working on the app <span style="color:var(--blush)">every month</span></h1><p class="subtitle" style="margin-top:3vh">Putting a direct number on the value of our work</p></div>
+    <aside class="speaker-note">We are leaning towards this, since getting paid monthly makes it easy for us to see us working on the app every month, putting a direct number on the value of our work</aside>
+  </section>
+
+  <!-- SLIDE 11 — YEARLY -->
+  <section class="slide" data-number="11">
+    <div class="chrome">Subscription lengths</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="proof"><div class="proof-copy"><div class="kicker">You need yearly</div><h2 class="title">You would like if your customers paid a lot of money and then stayed on for long</h2></div><div class="proof-lines"><div class="proof-line"><strong>Apple and google both reward you for longer subscription</strong><span>If customers stay subscribed, you get to keep more</span></div><div class="proof-line"><strong>30 to 15%</strong><span>Drops from 30 to 15%</span></div></div></div>
+    <aside class="speaker-note">You need yearly, because you would like if your customers paid a lot of money and then stayed on for long. There’s also a benefit that Apple and google both reward you for longer subscription, if customers stay subscribed, you get to keep more (drops from 30 to 15%)</aside>
+  </section>
+
+  <!-- SLIDE 12 — WEEKLY OR MONTHLY -->
+  <section class="slide dark" data-number="12">
+    <div class="chrome">Subscription lengths</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="split"><div><div class="kicker">But then</div><h2 class="title">Should you have weekly or monthly subscription?</h2><p class="subtitle" style="margin-top:2.5vh">You’ve seen a lot of weekly subs, so maybe that is the way?</p></div><div class="prompt" style="color:var(--ink)">Well data says that yes for first week, but churn is higher on these, causing you lose money<br><br><strong>So you choose monthly instead</strong></div></div>
+    <aside class="speaker-note">But then, should you have weekly or monthly subscription? You’ve seen a lot of weekly subs, so maybe that is the way?<br><br>Well data says that yes for first week, but churn is higher on these, causing you lose money<br><br>So you choose monthly instead</aside>
+  </section>
+
+  <!-- SLIDE 13 — TRIAL -->
+  <section class="slide lavender-bg" data-number="13">
+    <div class="chrome">Trial</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="stack"><div class="kicker">Now's the time choose if you want to have trial in your subscription</div><h1 class="display" style="max-width:16ch">For a hard paywall this would be <span class="accent">necessary</span></h1><p class="subtitle" style="margin-top:3vh">But soft paywall, it’s a good way to give people a chance to try out your apps premium features</p></div>
+    <aside class="speaker-note">Now's the time choose if you want to have trial in your subscription<br><br>For a hard paywall this would be necessary<br><br>But soft paywall, it’s a good way to give people a chance to try out your apps premium features</aside>
+  </section>
+
+  <!-- SLIDE 14 — TRIAL LENGTH -->
+  <section class="slide" data-number="14">
+    <div class="chrome">Trial length</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="split"><div><div class="kicker">But what should your trial length be?</div><h1 class="display">3 days?</h1><h1 class="display accent" style="margin-top:2.5vh">Two weeks?</h1></div><div><p class="quote">Longer trials actually make <em>more money long term</em></p><p class="subtitle">Probably because customers feel like they managed to use the app to its full extent</p></div></div>
+    <aside class="speaker-note">But what should your trial length be?<br>3 days?<br>Two weeks?<br><br>Well we can once again answer this with data. Turns out that trend is to offer shorter subscription periods (probably because people forget to cancel them, making you more money). BUT, longer trials actually make more money long term (probably because customers feel like they managed to use the app to its full extent)</aside>
+  </section>
+
+  <!-- SLIDE 15 — WIRE IT IN -->
+  <section class="slide deep" data-number="15">
+    <div class="chrome" style="color:#fff">Now you have your monetization figured out</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="stack"><h1 class="display" style="max-width:16ch">The next step is to wire this all into your app. <span style="color:var(--blush)">How to go about that?</span></h1></div>
+    <aside class="speaker-note">Now you have your monetization figured out, the next step is to wire this all into your app. How to go about that?</aside>
+  </section>
+
+  <!-- SLIDE 16 — TWO PLATFORMS -->
+  <section class="slide" data-number="16">
+    <div class="chrome">Your app is on two platforms</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="flow"><div class="node"><b>iOS</b><span>StoreKit</span></div><div class="arrow">+</div><div class="node"><b>Flutter</b><span>Your app</span></div><div class="arrow">+</div><div class="node"><b>Android</b><span>Google play billing</span></div></div>
+    <h2 class="title" style="margin-top:5vh;max-width:26ch">Using these separately in your Flutter apps would require quite a bit of tinkering</h2>
+    <aside class="speaker-note">Your app is on two platforms, ios and android<br><br>Both platforms have their own SDKs, iOS has StoreKit and Android has Google play billing<br><br>Using these separately in your Flutter apps would require quite a bit of tinkering, so maybe you want a cross-platform solution</aside>
+  </section>
+
+  <!-- SLIDE 17 — OFFICIAL PLUGIN -->
+  <section class="slide dark" data-number="17">
+    <div class="chrome">in_app_purchase</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="split"><div><div class="kicker">The official plugin</div><h1 class="display accent">in_app_purchase</h1><p class="subtitle" style="margin-top:3vh">I have not personally used it so I can’t really comment on how well it works</p></div><div><h2 class="title">The most difficult part being your own backend</h2><p class="subtitle" style="margin-top:2.5vh">That handles verifying the purchases so that people don’t just go around doing enabling your precious features from the client side</p></div></div>
+    <aside class="speaker-note">For that you have the official plugin in_app_purchase<br><br>I have not personally used it so I can’t really comment on how well it works<br><br>But I can comment on things you need to build yourself if you end up using them<br><br>The most difficult part being your own backend, that handles verifying the purchases so that people don’t just go around doing enabling your precious features from the client side</aside>
+  </section>
+
+  <!-- SLIDE 18 — BUILD IT YOURSELF -->
+  <section class="slide blush-bg" data-number="18">
+    <div class="chrome">Things you need to build yourself</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="proof"><div class="proof-copy"><h2 class="title">You also probably want some analytics</h2><p>Conversion rate, churn, cost of acquisition if you’re getting users with ads, lifetime value etc</p></div><div class="proof-lines"><div class="proof-line"><strong>Now you can codex yourself a platform to do those</strong><span>But you really that maintaining that is worth you time?</span></div><div class="proof-line"><strong>Because if you’re building an app that you love</strong><span>Then maybe you should focus on that instead</span></div></div></div>
+    <aside class="speaker-note">You also probably want some analytics, like what is your conversion rate, churn, cost of acquisition if you’re getting users with ads, lifetime value etc<br><br>Now you can codex yourself a platform to do those, but you really that maintaining that is worth you time?<br><br>Because if you’re building an app that you love, then maybe you should focus on that instead</aside>
+  </section>
+
+  <!-- SLIDE 19 — REVENUECAT -->
+  <section class="slide" data-number="19">
+    <div class="chrome">RevenueCat</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="split wide"><div><div class="kicker">Previously mentioned RevenueCat affiliation</div><h2 class="title">We do all of that backend stuff for you</h2><p class="subtitle" style="margin-top:2.5vh">Plus quite a lot of other things</p></div><img class="shot" src="assets/revenuecat-dashboard.png" alt="RevenueCat dashboard"></div>
+    <aside class="speaker-note">And here’s where the previously mentioned RevenueCat affiliation comes in, we do all of that backend stuff for you, plus quite a lot of other things<br><br>We do the analytics, but also A/B testing, targeting, experiments, so you can easily see which prices, products, subscription lengths at other things enable you to monetize</aside>
+  </section>
+
+  <!-- SLIDE 20 — WEB -->
+  <section class="slide dark" data-number="20">
+    <div class="chrome">Other places</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="split wide"><div><div class="kicker">Making your content purchasable from other places</div><h2 class="title">Allow customer to subscribe from web</h2><ul class="bullets"><li>Avoiding the Apple commission</li><li>Using for example Stripe</li><li>We support that and make it easy to integrate</li></ul></div><div><img class="shot" src="assets/web-paywall-editor.png" alt="Web paywall editor"><img class="shot" style="max-height:24vh;margin-top:1vh" src="assets/web-paywall.png" alt="Web paywall"></div></div>
+    <aside class="speaker-note">We also support making your content purchasable from other places. Let’s say for example that you want to allow customer to subscribe from web, avoiding the Apple commission and using for example Stripe, we support that and make it easy to integrate</aside>
+  </section>
+
+  <!-- SLIDE 21 — PAYWALL TOOLS -->
+  <section class="slide" data-number="21">
+    <div class="chrome">Paywall tools</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="split reverse"><div><img class="shot" src="assets/paywall-editor.png" alt="RevenueCat paywall builder"></div><div><div class="kicker">Great paywall tools</div><h2 class="title">A visual builder, but also an agentic one</h2><p class="subtitle" style="margin-top:2.5vh">You can use to prompt your paywall into existence</p><p class="subtitle">You don’t have to make new app releases to get to your updated paywall in front of customers</p></div></div>
+    <aside class="speaker-note">Then we also have great paywall tools, meaning a visual builder, but also an agentic one, that you can use to prompt your paywall into existence. Best is that you don’t have to make new app releases to get to your updated paywall in front of customers, our SDK makes it easy to update the dashboard, and have it live when customer next time opens their app</aside>
+  </section>
+
+  <!-- SLIDE 22 — PRICING -->
+  <section class="slide deep" data-number="22">
+    <div class="chrome" style="color:#fff">RevenueCat</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="stack"><div class="kicker" style="color:var(--blush)">For all of that you pay nothing, until you actually start making money</div><h1 class="display" style="max-width:15ch">After you make <span style="color:var(--blush)">2.5k a month</span>, we bill you 1%</h1><p class="subtitle" style="margin-top:3vh">That’s a pretty cheap prize for making a decent amount of money.</p></div>
+    <aside class="speaker-note">For all of that you pay nothing, until you actually start making money. After you make 2.5k a month, we bill you 1%. That’s a pretty cheap prize for making a decent amount of money.<br><br>If you have any questions about any of our pricing, come talk to me at the booth after this</aside>
+  </section>
+
+  <!-- SLIDE 23 — USE REVENUECAT -->
+  <section class="slide lavender-bg" data-number="23">
+    <div class="chrome">You decided to use RevenueCat</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="split wide"><div><div class="kicker">Simple, install the SDK</div><h2 class="title">Single call to initialize the SDK</h2><pre class="code" style="margin-top:3vh;font-size:1.75vh">flutter pub add purchases_flutter</pre></div><div><pre class="code"><span class="kw">import</span> <span class="str">'dart:io'</span> show Platform;
+<span class="kw">import</span> <span class="str">'package:purchases_flutter/purchases_flutter.dart'</span>;
+
+Future&lt;void&gt; <span class="fn">initPlatformState</span>() async {
+  await Purchases.setLogLevel(LogLevel.debug);
+
+  late PurchasesConfiguration configuration;
+  if (Platform.isAndroid) {
+    configuration = PurchasesConfiguration(
+      <span class="str">'&lt;revenuecat_project_google_api_key&gt;'</span>,
+    );
+  } else if (Platform.isIOS) {
+    configuration = PurchasesConfiguration(
+      <span class="str">'&lt;revenuecat_project_apple_api_key&gt;'</span>,
+    );
+  } else {
+    return;
+  }
+
+  await Purchases.<span class="fn">configure</span>(configuration);
+}</pre><span class="code-source"><a href="https://www.revenuecat.com/docs/getting-started/quickstart#2-initialize-and-configure-the-revenuecat-sdk" target="_blank" rel="noreferrer">RevenueCat SDK Quickstart ↗</a></span></div></div>
+    <aside class="speaker-note">You decided to use RevenueCat, how do you go around it<br><br>Simple, install the SDK<br><br>On code side this is very easy, single call to initialize the SDK and another to show the paywall with your products<br><br>But wait you need to configure the products? How do you go around doing that?</aside>
+  </section>
+
+  <!-- SLIDE 24 — MODERN WAY -->
+  <section class="slide dark" data-number="24">
+    <div class="chrome">Our docs</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="stack"><h1 class="display" style="max-width:16ch">Our docs explain that pretty well, well enough to <span class="lavender">AI to love them</span></h1><p class="subtitle" style="margin-top:3vh">So let’s do it the modern way and use our coding agents to set up this stuff</p></div>
+    <aside class="speaker-note">Our docs explain that pretty well, well enough to AI to love them, so let’s do it the modern way and use our coding agents to set up this stuff</aside>
+  </section>
+
+  <!-- SLIDE 25 — AI TOOLKIT -->
+  <section class="slide" data-number="25">
+    <div class="chrome">RevenueCat AI toolkit</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="split"><div><h2 class="title">Let’s install RevenueCat AI toolkit</h2><div class="option-grid" style="grid-template-columns:1fr"><div class="option"><b>01 · MCP server</b><strong>Setup your products in RevenueCat</strong><p>But also in App Store Connect and Google Play</p></div><div class="option"><b>02 · skills</b><strong>A collection of skills</strong><p>For common workflows</p></div></div></div><div><pre class="code" style="font-size:1.8vh"><span class="cm"># Add the RevenueCat marketplace</span>
+codex plugin marketplace add RevenueCat/ai-toolkit
+
+<span class="cm"># Install the RevenueCat plugin</span>
+codex plugin add revenuecat@RevenueCat
+
+<span class="cm"># Authenticate with RevenueCat</span>
+codex mcp login RevenueCat</pre><span class="code-source"><a href="https://www.revenuecat.com/docs/tools/ai-toolkit#openai-codex" target="_blank" rel="noreferrer">RevenueCat AI Toolkit ↗</a></span></div></div>
+    <aside class="speaker-note">Let’s install RevenueCat AI toolkit<br><br>It’s a plugin that contains two things<br>MCP server that can do things like setup your products in RevenueCat, but also in App Store Connect and Google Play<br>And a collection of skills for common workflows<br><br>Install is a bit different depending on your agent but in short it is codex plugin marketplace add RevenueCat/ai-toolkit</aside>
+  </section>
+
+  <!-- SLIDE 26 — EXAMPLE PROMPT -->
+  <section class="slide blush-bg" data-number="26">
+    <div class="chrome">With this toolkit</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="stack"><div class="kicker">With an example prompt like this</div><pre class="code" style="font-size:2.15vh;line-height:1.55"><span class="fn">›</span> I want you to add monetization to my app, use best practices.
+  Ask me question in case you don’t understand. The basic model
+  should be both platforms, monthly and yearly, with monthly for
+  4.99 and yearly for 49.99. The monthly should have a 2 week trial.
+  Setup products in both stores and in RevenueCat. Subscribing
+  should grant the pro entitlement and access to all content</pre><span class="code-source"><a href="https://www.revenuecat.com/docs/tools/ai-toolkit#example-prompts" target="_blank" rel="noreferrer">RevenueCat AI Toolkit · example prompts ↗</a></span></div>
+    <aside class="speaker-note">With this toolkit we can prompt our app into a monetized one, with an example prompt like this<br><br>I want you to add monetization to my app, use best practices. Ask me question in case you don’t understand. The basic model should be both platforms, monthly and yearly, with monthly for 4.99 and yearly for 49.99. The monthly should have a 2 week trial. Setup products in both stores and in RevenueCat. Subscribing should grant the pro entitlement and access to all content<br><br>With that set your agent will get to work, probably asking you few question and telling you jump into App store connect or Play console to do few setups itself can’t do</aside>
+  </section>
+
+  <!-- SLIDE 27 — ONBOARDING -->
+  <section class="slide deep" data-number="27">
+    <div class="chrome" style="color:#fff">We should now have the monetization infra setup</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="stack"><div class="kicker" style="color:var(--blush)">Next we want to make users pay right?</div><h1 class="display" style="max-width:16ch">Easiest choice is to do a <span style="color:var(--blush)">good onboarding</span></h1><ul class="bullets"><li>Ask user to sign in for example (if that’s needed)</li><li>Tell them about some of the benefits our app gives them (not the features)</li><li>Then present them a paywall</li><li>Since our app is a freemium we will make the paywall skippable</li></ul></div>
+    <aside class="speaker-note">We should now have the monetization infra setup, next we want to make users pay right? So how to do that<br><br>Easiest choice is to do a good onboarding, where we ask user to sign in for example (if that’s needed), tell them about some of the benefits our app gives them (not the features), and then present them a paywall<br><br>Since our app is a freemium we will make the paywall skippable<br><br>Lets build the onboarding, and ask our agent to use PaywallView</aside>
+  </section>
+
+  <!-- SLIDE 28 — PAYWALLVIEW CODE -->
+  <section class="slide" data-number="28">
+    <div class="chrome">PaywallView</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="split wide"><div><div class="kicker">Lets build the onboarding</div><h2 class="title">Ask our agent to use PaywallView</h2><p class="subtitle" style="margin-top:3vh">We could present it as a modal as well</p><pre class="code" style="margin-top:2vh;font-size:1.6vh">final paywallResult = await RevenueCatUI
+    .<span class="fn">presentPaywallIfNeeded</span>(<span class="str">"pro"</span>);</pre><span class="code-source"><a href="https://www.revenuecat.com/docs/tools/paywalls/displaying-paywalls#flutter" target="_blank" rel="noreferrer">RevenueCat Paywalls · Flutter ↗</a></span></div><pre class="code"><span class="kw">import</span> <span class="str">'package:purchases_ui_flutter/purchases_ui_flutter.dart'</span>;
+
+<span class="cm">// Note: Avoid placing PaywallView inside a modal or bottom sheet
+// (e.g., using showModalBottomSheet).
+// Instead, include it directly in your widget.</span>
+<span class="kw">@override</span>
+Widget <span class="fn">build</span>(BuildContext context) {
+  <span class="kw">return</span> Scaffold(
+    body: SafeArea(
+      child: Center(
+        child: PaywallView(
+          offering: offering,
+          onRestoreCompleted: (CustomerInfo customerInfo) {},
+          onDismiss: () {},
+        ),
+      ),
+    ),
+  );
+}</pre></div>
+    <aside class="speaker-note">Lets build the onboarding, and ask our agent to use PaywallView</aside>
+  </section>
+
+  <!-- SLIDE 29 — BUILD THE PAYWALL -->
+  <section class="slide lavender-bg ai-paywall-slide" data-number="29">
+    <div class="chrome">RevenueCat paywall builder</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="split wide"><div><h2 class="title">Let’s jump into RevenueCat paywall builder, ask our agent to build it</h2><div class="proof-lines" style="margin-top:4vh"><div class="proof-line"><strong>To make the paywall look like it belongs in our app</strong><span>We can use design.md file</span></div><div class="proof-line"><strong>Slot that in using the onboarding offering group</strong><span>We got ourselves a nice paywall</span></div></div></div><div class="rive-frame"><canvas id="ai-summary-rive" aria-label="RevenueCat AI summary animation"></canvas></div></div>
+    <aside class="speaker-note">We could present it as a modal as well, but let’s save that for inside our app and use this instead so that it can be one of the screens of our app in the onboarding.<br><br>Then let’s jump into RevenueCat paywall builder, ask our agent to build it<br><br>To make the paywall look like it belongs in our app we can use design.md file<br><br>And now if we slot that in using the onboarding offering group we got ourselves a nice paywall</aside>
+  </section>
+
+  <!-- SLIDE 30 — GOOD PAYWALL -->
+  <section class="slide" data-number="30">
+    <div class="chrome">What does a good paywall look like?</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <h2 class="title">What does a good paywall look like?</h2>
+    <div class="paywall-rules">
+      <div class="paywall-rule"><b>01</b><strong>Show benefits, not features</strong><p>Push notifications is a feature, getting reminders to complete your lesson is a benefit</p></div>
+      <div class="paywall-rule"><b>02</b><strong>Show social proof</strong><p>If customers love your app, slots few of those reviews in the paywall</p></div>
+      <div class="paywall-rule"><b>03</b><strong>Keep it simple and highlight your trial</strong><p>Have only 1-2 options in your paywall, monthly and yearly, and clearly tell which one of them has a trial and how long it is</p></div>
+    </div>
+    <aside class="speaker-note">There’s multiple ways to build a good paywall but here’s some good suggestions, these are mostly also in our paywall builder as skills so you could get something like this already from the start<br><br>First show benefits, not features. Push notifications is a feature, getting reminders to complete your lesson is a benefit<br><br>Show social proof, if customers love your app, slots few of those reviews in the paywall<br><br>Third is keep it simple and highlight your trial. Have only 1-2 options in your paywall, monthly and yearly, and clearly tell which one of them has a trial and how long it is</aside>
+  </section>
+
+  <!-- SLIDE 31 — ENTITLEMENTS -->
+  <section class="slide dark" data-number="31">
+    <div class="chrome">Access system</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="split wide"><div><div class="kicker">How does the access system work?</div><h2 class="title">Entitlement</h2><p class="subtitle" style="margin-top:2.5vh">Our way of keeping track of what things users can access in the app</p><ul class="bullets"><li>You can manage those through the dashboard</li><li>Attach them to subscriptions</li><li>In the app we can check entitlements using this code</li></ul></div><div><pre class="code" style="font-size:1.75vh"><span class="kw">import</span> <span class="str">'package:flutter/services.dart'</span>;
+<span class="kw">import</span> <span class="str">'package:purchases_flutter/purchases_flutter.dart'</span>;
+
+Future&lt;bool&gt; <span class="fn">hasProEntitlement</span>() async {
+  try {
+    final customerInfo =
+        await Purchases.<span class="fn">getCustomerInfo</span>();
+
+    return customerInfo
+            .entitlements
+            .all[<span class="str">'pro'</span>]
+            ?.isActive ??
+        false;
+  } on PlatformException {
+    return false;
+  }
+}</pre><span class="code-source"><a href="https://www.revenuecat.com/docs/getting-started/quickstart#3-check-subscription-status" target="_blank" rel="noreferrer">RevenueCat SDK Quickstart ↗</a></span></div></div>
+    <aside class="speaker-note">Ok so our paywall is ready, looks like this in the app and grants users the full access to our content, but wait how does the access system work?<br><br>I mentioned entitlement earlier, that is our way of keeping track of what things users can access in the app. You can manage those through the dashboard, and attach them to subscriptions.<br><br>In the app we can check entitlements using this code<br><br>If your app is accessing features in the backend, it’s worth doing the check there as well. Now this is the point I’m going to shout out one of the organizer’s great blog post about doing this with Firebase go check it out<br><br>And that’s how easy it is to to have access level based on subscription in your app</aside>
+  </section>
+
+  <!-- SLIDE 32 — IN-APP CURRENCIES -->
+  <section class="slide" data-number="32">
+    <div class="chrome">In-App Currencies</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="split wide"><div><div class="kicker">Since our app has gems</div><h2 class="title">Let’s make a new in-app product called Cat Coin</h2><ul class="bullets"><li>Create few different products</li><li>An in-app currency</li><li>Attaching those to each other</li><li>These currencies can be granted every month, maybe like 2 of them</li><li>Create a new paywall that shows those currencies instead</li></ul></div><img class="shot" src="assets/revenuecat-virtual-currency.png" alt="RevenueCat in-app currencies"></div>
+    <aside class="speaker-note">We have a pretty good app here, but we want to do something more. Since our app has gems that unlock stuff like streak freezes, how do we enable those?<br><br>Well lets make a new in-app product called Cat Coin, and use a RevenueCat feature called In-App Currencies to do this.<br><br>Once again our agent can handle most of this, by telling it to create few different products, an in-app currency, and attaching those to each other<br><br>We can even make it so that these currencies can be granted every month, maybe like 2 of them<br><br>Then we just create a new paywall that shows those currencies instead<br><br>We need to run the logic for these on our own backend, since deducting currencies is not possible on client side due to security reasons</aside>
+  </section>
+
+  <!-- SLIDE 33 — ADS -->
+  <section class="slide deep" data-number="33">
+    <div class="chrome" style="color:#fff">Ads</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="split"><div><div class="kicker" style="color:var(--blush)">We also want to add ads to our app and have subscription unlock those</div><h2 class="title">Easy to do, let’s use admob</h2><ul class="bullets"><li>Show ad mob revenue in revenuecat dashboard</li><li>Give user a trial or in-app currency when they watch an add</li><li>This is called rewarded ad</li><li>Ad rewards grant virtual currency or a timed Entitlement</li></ul><span class="code-source"><a href="https://www.revenuecat.com/blog/engineering/monetizing-without-a-paywall-using-ads" target="_blank" rel="noreferrer" style="color:#d9e5f4">RevenueCat · monetizing without a paywall using ads ↗</a></span></div><img class="shot" src="assets/ads-example-tight.png" alt="Ads example"></div>
+    <aside class="speaker-note">We also want to add ads to our app and have subscription unlock those<br><br>Easy to do, let’s use admob<br><br>We also support showing ad mob revenue in revenuecat dashboard<br><br>But what is even cooler is that we can also do something like give user a trial or in-app currency when they watch an add<br>This is called rewarded ad<br><br>RevenueCat Ads does two things. It tracks your ad revenue against the same user as your subscription and IAP data, so total revenue and realized LTV finally include ads. And it grants rewards for watching a rewarded ad, either virtual currency or a timed Entitlement, verified server-side through AdMob.</aside>
+  </section>
+
+  <!-- SLIDE 34 — REWARDED ENTITLEMENTS -->
+  <section class="slide deep" data-number="34">
+    <div class="chrome" style="color:#fff">Rewarded Entitlements</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="stack"><div class="kicker" style="color:var(--blush)">Thirty seconds of video, thirty minutes of access.</div><h2 class="title" style="max-width:25ch">An Entitlement is just a level of access. Normally you get one by paying, but now, you can earn one by watching an ad.</h2><div class="path" style="grid-template-columns:repeat(4,1fr)"><div class="step"><b>01</b><strong>User finishes a rewarded ad</strong></div><div class="step"><b>02</b><strong>AdMob fires a server-side verification callback to RevenueCat</strong></div><div class="step"><b>03</b><strong>RevenueCat verifies it and grants the reward</strong></div><div class="step"><b>04</b><strong>Same Entitlement check in your code either way</strong></div></div></div>
+    <div class="source"><a href="https://www.revenuecat.com/blog/engineering/monetizing-without-a-paywall-using-ads" target="_blank" rel="noreferrer" style="color:#d9e5f4">Source: RevenueCat · How (and why) I monetized a game with a rewarded ad and no paywall ↗</a></div>
+    <aside class="speaker-note">A user finishes a rewarded ad, AdMob fires a server-side verification (SSV) callback to RevenueCat, and RevenueCat verifies it and grants the reward. You don't build the verification layer. You don't build the granting layer. You just configure it in the dashboard.<br><br>Two kinds of rewards: virtual currency — coins, credits, gems, tokens, whatever your economy uses. Entitlements — actual RevenueCat Entitlements, granted for a duration.<br><br>An Entitlement is just a level of access. Normally you get one by paying, but now, you can earn one by watching an ad. Same Entitlement check in your code either way.</aside>
+  </section>
+
+  <!-- SLIDE 35 — FLUTTER REWARD VERIFICATION -->
+  <section class="slide" data-number="35">
+    <div class="chrome">Rewarded Entitlements · Flutter</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="kicker">On Flutter, you take the manual path</div><h2 class="title" style="max-width:25ch">Generate a verification token, attach it to your ad's SSV options, then poll for the result.</h2>
+    <div class="code-grid"><pre class="code" style="font-size:1.45vh"><span class="cm">// After the rewarded ad loads</span>
+final impressionId =
+    ad.responseInfo?.responseId ?? <span class="str">''</span>;
+
+final token = await Purchases
+    .<span class="fn">generateRewardVerificationToken</span>(
+      impressionId,
+    );
+
+await ad.setServerSideOptions(
+  ServerSideVerificationOptions(
+    userId: token.appUserID,
+    customData: token.customData,
+  ),
+);</pre><pre class="code" style="font-size:1.45vh"><span class="cm">// When the user earns the reward</span>
+final result = await Purchases
+    .<span class="fn">pollRewardVerification</span>(
+      token.clientTransactionId,
+    );
+
+if (!result.failed &amp;&amp;
+    result.reward is VerifiedEntitlementReward) {
+  final customerInfo =
+      await Purchases.<span class="fn">getCustomerInfo</span>();
+
+  final hasPro = customerInfo.entitlements
+      .all[<span class="str">'pro'</span>]?.isActive ?? false;
+}</pre></div>
+    <span class="code-source"><a href="https://www.revenuecat.com/docs/ad-monetization/rewards#manual-integration" target="_blank" rel="noreferrer">RevenueCat · Granting ad rewards · purchases_flutter 10.10.0+ ↗</a></span>
+    <aside class="speaker-note">On Flutter, React Native, Unity, or Kotlin Multiplatform, you take the manual path: generate a verification token, attach it to your ad's SSV options, then poll for the result.<br><br>After the ad loads, generate a token with generateRewardVerificationToken and attach it to the ad's server-side verification options.<br><br>When the ad's earned-reward callback fires, call pollRewardVerification with the token's client transaction ID.<br><br>RevenueCat already granted the entitlement server-side and refreshed customer info before delivering this result — check entitlement status as usual.<br><br>Reward verification is experimental — the APIs may change.</aside>
+  </section>
+
+  <!-- SLIDE 36 — CHURN -->
+  <section class="slide blush-bg" data-number="36">
+    <div class="chrome">Sometimes users churn</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="stack"><div class="kicker">What can we do about that?</div><h1 class="display" style="max-width:17ch">Churn management is a whole topic of it’s own</h1><p class="subtitle" style="margin-top:3vh">But I’ll leave you with two really good things</p><div class="proof-lines" style="margin-top:4vh;max-width:70vw"><div class="proof-line"><strong>First is customer center</strong><span>A revenuecat feature that allows you to show customers another product when they unsubscribe in the app. Easy hack</span></div></div></div>
+    <aside class="speaker-note">Now we’ve monetized our app in multiple ways already, our conversions are pretty good, but sometimes users churn, what can we do about that?<br><br>Churn management is a whole topic of it’s own but I’ll leave you with two really good things<br><br>First is customer center, a revenuecat feature that allows you to show customers another product when they unsubscribe in the app. Easy hack</aside>
+  </section>
+
+  <!-- SLIDE 37 — RETENTION MESSAGING -->
+  <section class="slide dark" data-number="37">
+    <div class="chrome">Retention Messaging API</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="stack"><div class="kicker">But most users actually unsubscribe from the settings on iOS</div><h1 class="display lavender" style="max-width:16ch">Retention Messaging API</h1><ul class="bullets"><li>You need to apply for it for now</li><li>Apple is accepting new features every week</li><li>Once you done that, you can actually enable it in RevenueCat</li><li>RevenueCat can show retention messages like these when user goes to unsubscribe</li></ul><p class="subtitle" style="margin-top:2vh">Data on this is that it is basically free money</p></div>
+    <aside class="speaker-note">But most users actually unsubscribe from the settings on iOS<br><br>For that we can use Retention Messaging API<br><br>You need to apply for it for now, but Apple is accepting new features every week<br><br>Once you done that, you can actually enable it in RevenueCat<br><br>And after that RevenueCat can show retention messages like these when user goes to unsubscribe<br><br>Data on this is that it is basically free money</aside>
+  </section>
+
+  <!-- SLIDE 38 — RECAP -->
+  <section class="slide" data-number="38">
+    <div class="chrome">Recapping</div><div class="event"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div>
+    <div class="logo-ghost"><img src="assets/flutter-friends-logo.png" alt=""></div>
+    <div class="stack"><div class="kicker">Recapping</div><h2 class="title">You have now extensive knowledge all the different ways to monetize your app</h2><ul class="bullets"><li>Your choices how to do that, depending how much you want to build stuff yourself</li><li>Use official plugin</li><li>Or if you would rather focus on your app, use RevenueCat</li><li>How to prompt your way with the ai-toolkit</li><li>IAP, subscriptions, in-app currencies, rewarded entitlements</li></ul></div>
+    <aside class="speaker-note">You have now extensive knowledge all the different ways to monetize your app<br><br>Your choices how to do that, depending how much you want to build stuff yourself<br>Use official plugin<br>Or if you would rather focus on your app, use RevenueCat<br><br>How to prompt your way with the ai-toolkit<br><br>What monetization mechanics there and how to use them<br>IAP, subscriptions, in-app currencies</aside>
+  </section>
+
+  <!-- SLIDE 39 — QUESTIONS -->
+  <section class="slide deep" data-number="39">
+    <div class="chrome" style="color:#fff">Questions?</div>
+    <div class="brand-stage"><div><div class="kicker" style="color:var(--blush)">Questions?</div><h1 class="display" style="max-width:15ch">If you have any questions about any of our pricing, come talk to me at the booth after this</h1></div><div class="closing-logo"><img src="assets/flutter-friends-logo.png" alt="Flutter &amp; Friends"></div></div>
+    <aside class="speaker-note">If you have any questions about any of our pricing, come talk to me at the booth after this</aside>
+  </section>
+
+</div>
+
+<a class="home" href="../../" title="Presentation library">⌂</a>
+<button class="edit-toggle" id="edit" type="button" aria-pressed="false" title="Edit slide text in this browser">E · edit</button>
+<div class="keyboard-hint">← → move · F fullscreen · N notes · E edit</div>
+<div class="controls"><button id="prev" type="button" aria-label="Previous slide">←</button><button id="next" type="button" aria-label="Next slide">→</button></div>
+<div class="progress" id="progress"></div>
+<div class="notes" id="notes"></div>
+
+<script src="assets/rive/rive.js"></script>
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const noteBox=document.getElementById('notes');
+  const editButton=document.getElementById('edit');
+  let i=Math.max(0,Math.min(slides.length-1,(parseInt(location.hash.slice(1),10)||1)-1));
+  let editing=false;
+  let aiSummaryAnimation;
+
+  if(window.rive){
+    rive.RuntimeLoader.setWasmUrl('assets/rive/rive.wasm');
+    aiSummaryAnimation=new rive.Rive({
+      src:'assets/ai-summary.riv',
+      canvas:document.getElementById('ai-summary-rive'),
+      autoplay:true,
+      layout:new rive.Layout({fit:rive.Fit.Contain,alignment:rive.Alignment.Center}),
+      onLoad:()=>aiSummaryAnimation.resizeDrawingSurfaceToCanvas()
+    });
+  }
+
+  const editableSelector='h1,h2,h3,p,li,.kicker,.chrome,.prompt,.tk,.step strong,.step span,.node b,.node span,.option b,.option strong,.proof-line strong,.proof-line span,.paywall-rule b,.paywall-rule strong';
+  const editableElements=()=>[...document.querySelectorAll(`.slide ${editableSelector}`)].filter(el=>!el.closest('.speaker-note'));
+
+  function keyFor(el){
+    const slideIndex=slides.indexOf(el.closest('.slide'));
+    const elements=[...el.closest('.slide').querySelectorAll(editableSelector)].filter(item=>!item.closest('.speaker-note'));
+    return `flutter-friends-deck:${slideIndex}:${elements.indexOf(el)}`;
+  }
+
+  editableElements().forEach(el=>{
+    const saved=localStorage.getItem(keyFor(el));
+    if(saved!==null) el.innerHTML=saved;
+    el.addEventListener('input',()=>localStorage.setItem(keyFor(el),el.innerHTML));
+  });
+
+  function setEditing(next){
+    editing=next;
+    document.body.classList.toggle('editing',editing);
+    editButton.classList.toggle('active',editing);
+    editButton.setAttribute('aria-pressed',String(editing));
+    editableElements().forEach(el=>el.setAttribute('contenteditable',String(editing)));
+    if(editing) editableElements().find(el=>el.closest('.active'))?.focus();
+  }
+
+  function show(n){
+    i=(n+slides.length)%slides.length;
+    slides.forEach((slide,index)=>slide.classList.toggle('active',index===i));
+    document.getElementById('progress').style.width=`${(i+1)/slides.length*100}%`;
+    location.hash=String(i+1);
+    noteBox.innerHTML=slides[i].querySelector('.speaker-note')?.innerHTML||'';
+    document.title=`${i+1}/${slides.length} · Make money with your Flutter app`;
+    if(i===28) aiSummaryAnimation?.resizeDrawingSurfaceToCanvas();
+  }
+
+  function next(){show(i+1)}
+  function prev(){show(i-1)}
+  document.getElementById('next').onclick=next;
+  document.getElementById('prev').onclick=prev;
+  editButton.onclick=()=>setEditing(!editing);
+  document.addEventListener('keydown',event=>{
+    if(event.target.isContentEditable){
+      if(event.key==='Escape') setEditing(false);
+      return;
+    }
+    if(['ArrowRight','PageDown',' '].includes(event.key)){event.preventDefault();next()}
+    else if(['ArrowLeft','PageUp'].includes(event.key)){event.preventDefault();prev()}
+    else if(event.key==='Home')show(0);
+    else if(event.key==='End')show(slides.length-1);
+    else if(event.key.toLowerCase()==='f'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+    else if(event.key.toLowerCase()==='n')noteBox.classList.toggle('visible');
+    else if(event.key.toLowerCase()==='e')setEditing(!editing);
+  });
+  let startX=0;
+  document.addEventListener('touchstart',event=>startX=event.changedTouches[0].clientX,{passive:true});
+  document.addEventListener('touchend',event=>{const dx=event.changedTouches[0].clientX-startX;if(Math.abs(dx)>60)(dx<0?next:prev)()},{passive:true});
+  window.addEventListener('hashchange',()=>{const n=parseInt(location.hash.slice(1),10);if(n&&n-1!==i)show(n-1)});
+  window.addEventListener('resize',()=>aiSummaryAnimation?.resizeDrawingSurfaceToCanvas());
+  show(i);
+</script>
+</body>
+</html>

@@ -28,6 +28,7 @@ its own subdomain. Every project connects to this same Git repository.
 | Vercel project | Root Directory | Example domain |
 | --- | --- | --- |
 | Presentation library | `.` | `talks.example.com` |
+| Flutter monetization | `presentations/make-money-flutter-flutter-friends` | `flutter-monetization.talks.example.com` |
 | Android monetization | `presentations/monetize-android-droidcon-usa-2026` | `android-monetization.talks.example.com` |
 | How not to ship slop | `presentations/how-not-to-ship-slop` | `ship-slop.talks.example.com` |
 
@@ -76,5 +77,6 @@ Then open `http://localhost:8080`.
 
 ## Talks
 
+- [Make money with your Flutter app — Flutter & Friends](./presentations/make-money-flutter-flutter-friends/)
 - [Monetize your Android app the right way — Droidcon USA 2026](./presentations/monetize-android-droidcon-usa-2026/)
 - [AI doesn't ship slop. You do.](./presentations/how-not-to-ship-slop/)
