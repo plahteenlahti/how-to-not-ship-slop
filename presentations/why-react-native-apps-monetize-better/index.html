@@ -23,7 +23,7 @@
     .deck{width:100vw;height:100vh;position:relative}
     .slide{position:absolute;inset:0;display:none;overflow:hidden;background:var(--ink);background-image:radial-gradient(circle at 88% 10%,rgba(242,90,90,.13),transparent 28%),radial-gradient(circle at 6% 96%,rgba(90,108,214,.12),transparent 30%);padding:8.6vh 6.6vw 7vh;isolation:isolate}
     .slide.active{display:block}
-    .slide::before{content:'Perttu Lähteenlahti · RevenueCat · next.app devCon 2026';position:absolute;left:6.6vw;right:12vw;bottom:2.3vh;padding-top:1.15vh;border-top:1px solid var(--line);font:800 1.05vh/1 'JetBrains Mono',monospace;letter-spacing:.055em;color:#77768a;z-index:2}
+    .slide::before{content:'Perttu Lähteenlahti · next.app devCon 2026';position:absolute;left:6.6vw;right:12vw;bottom:2.3vh;padding-top:1.15vh;border-top:1px solid var(--line);font:800 1.05vh/1 'JetBrains Mono',monospace;letter-spacing:.055em;color:#77768a;z-index:2}
     .slide::after{content:attr(data-number);position:absolute;right:6.6vw;bottom:2.3vh;font:800 1.12vh/1 'JetBrains Mono',monospace;color:#77768a;z-index:3}
     .slide>*{position:relative;z-index:1}
     .chrome{position:absolute;left:6.6vw;top:3.4vh;font:800 1.1vh/1 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--coral)}
@@ -223,17 +223,16 @@
 
   <!-- SLIDE 01 — TITLE -->
   <section class="slide active" data-number="01">
-    <div class="brand">RevenueCat</div>
-    <div class="hero">
+    
+    <div class="stack">
       <div><h1 class="display" style="font-size:clamp(3.4rem,8.4vh,8rem);max-width:12ch">Why React Native apps monetize better</h1><p class="subtitle" style="margin-top:3.4vh">Perttu Lähteenlahti · Senior Developer Advocate @ RevenueCat</p><div class="event-tag"><b>reactCon</b> · next.app devCon · City Cube Berlin · 2026</div></div>
-      <img class="hero-art" src="assets/revenuecat-hero.png" alt="">
     </div>
     <aside class="speaker-note"><b>0:00</b> Why React Native apps monetize better.</aside>
   </section>
 
   <!-- SLIDE 02 — THE CONTROVERSY -->
   <section class="slide" data-number="02">
-    <div class="chrome">Cold open</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Cold open</div>
     <div class="stack">
       <div class="kicker">When I tweeted this, some developers were quick to question it</div>
       <h1 class="display" style="max-width:20ch">“React Native apps are monetizing better than Flutter and native apps.”</h1><p class="subtitle" style="margin-top:2.4vh">— me (based on data)</p>
@@ -244,21 +243,21 @@
 
   <!-- SLIDE 03 — THE DATA DOES NOT LIE -->
   <section class="slide center" data-number="03">
-    <div class="chrome">Cold open</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Cold open</div>
     <h1 class="display" style="max-width:24ch;font-size:clamp(3rem,6.4vh,6rem)">But the data does not lie, React Native apps are bringing in <span class="coral">more money</span> through subscriptions and in-app purchases than apps built with other stacks</h1>
     <aside class="speaker-note"><b>1:00</b> But the data does not lie, React Native apps are bringing in more money through subscriptions and in-app purchases than apps built with other stacks.</aside>
   </section>
 
   <!-- SLIDE 04 — BUT WHY -->
   <section class="slide blue center" data-number="04">
-    <div class="chrome">Cold open</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Cold open</div>
     <h1 class="mega">But why?</h1>
     <aside class="speaker-note"><b>1:20</b> But why?</aside>
   </section>
 
   <!-- SLIDE 05 — STRUCTURE -->
   <section class="slide" data-number="05">
-    <div class="chrome">What we’ll cover</div><div class="brand">RevenueCat</div>
+    <div class="chrome">What we’ll cover</div>
     <div class="stack">
       <h2 class="title">This talk is about looking at the data and figuring out the why.</h2>
       <div class="path three">
@@ -272,7 +271,7 @@
 
   <!-- SLIDE 06 — INTRODUCTION -->
   <section class="slide" data-number="06">
-    <div class="chrome">Introduction</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Introduction</div>
     <div class="split">
       <div><div class="kicker">Perttu Lähteenlahti</div><h2 class="title">I help developers make more money from their apps</h2><ul class="bullets"><li>Senior Developer Advocate at RevenueCat</li><li>Designer and engineer, 12 years of building web and mobile apps</li><li>Building (and monetizing) my own apps</li><li>@plahteenlahti · perttu.dev</li></ul></div>
       <div class="intro-media"><img class="portrait" src="assets/portrait.jpg" alt="Portrait of Perttu Lähteenlahti"><div class="app-cards"><a class="app-card" href="https://apps.apple.com/fi/app/netli-fyi-netlify-client/id6741714545" target="_blank" rel="noreferrer"><img src="assets/netli-fyi-icon.jpg" alt="Netli.fyi app icon"><span><strong>Netli.fyi</strong><span>Manage your Netlify projects</span></span></a><a class="app-card" href="https://apps.apple.com/fi/app/seo-console/id6758575388" target="_blank" rel="noreferrer"><img src="assets/seo-console-icon.jpg" alt="SEO Console app icon"><span><strong>SEO Console</strong><span>Manage your SEO presence</span></span></a></div></div>
@@ -284,14 +283,14 @@
 
   <!-- SLIDE 07 — SECTION -->
   <section class="slide blue center" data-number="07">
-    <div class="chrome">The data says so</div><div class="brand">RevenueCat</div>
+    <div class="chrome">The data says so</div>
     <h1 class="mega" style="max-width:12ch">React Native apps make all the money</h1>
     <aside class="speaker-note"><b>3:00</b> React Native apps make all the money. Let’s look at the proof.</aside>
   </section>
 
   <!-- SLIDE 08 — HOW IS THIS DATA COLLECTED -->
   <section class="slide" data-number="08">
-    <div class="chrome">How is this data collected?</div><div class="brand">RevenueCat</div>
+    <div class="chrome">How is this data collected?</div>
     <div class="split wide">
       <div><div class="kicker">How is this data collected?</div><h2 class="title">RevenueCat’s state of subscription apps report</h2><p class="subtitle" style="margin-top:1.6vh">115,000 subscription apps. $16 billion in revenue.</p>
         <ul class="bullets"><li>Only apps with active subscription revenue and a minimum of installs and revenue</li><li>From indie teams to mid-size organizations and large publishers</li><li>2025 data, so it includes apps built with agents and vibe coding tools</li><li>Anonymized and aggregated</li></ul>
@@ -307,7 +306,7 @@
 
   <!-- SLIDE 09 — HOW TO READ THE CHARTS -->
   <section class="slide" data-number="09">
-    <div class="chrome">Understanding the visualizations</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Understanding the visualizations</div>
     <div class="split">
       <div><div class="kicker">Understanding the visualizations</div><h2 class="title">The box is where most apps are. The whiskers are the spread.</h2><p class="subtitle" style="margin-top:2.6vh">When we say React Native outperforms, we mean these distribution points, not isolated outliers.</p></div>
       <svg class="anatomy" viewBox="0 0 760 560" role="img" aria-label="Box plot anatomy: P90 top whisker, P75 top of box, P50 median, P25 bottom of box, P10 bottom whisker">
@@ -331,14 +330,14 @@
 
   <!-- SLIDE 10 — TURNS OUT -->
   <section class="slide blue center" data-number="10">
-    <div class="chrome">The data says so</div><div class="brand">RevenueCat</div>
+    <div class="chrome">The data says so</div>
     <div><div class="kicker" style="text-align:center;margin-left:auto;margin-right:auto">Second year in a row</div><h1 class="mega" style="max-width:13ch">Turns out, React Native wins in (almost) everything</h1></div>
     <aside class="speaker-note"><b>5:15</b> Turns out, React Native wins in (almost) everything. And it’s the second year in a row: the 2025 report showed similar results.</aside>
   </section>
 
   <!-- SLIDE 11 — SCOREBOARD -->
   <section class="slide" data-number="11">
-    <div class="chrome">The data says so</div><div class="brand">RevenueCat</div>
+    <div class="chrome">The data says so</div>
     <h2 class="title">React Native wins 4 out of 5</h2>
     <table class="score">
       <thead><tr><th>Median</th><th>Native</th><th>Flutter</th><th class="rn">React Native</th><th>Other</th></tr></thead>
@@ -358,7 +357,7 @@
 
   <!-- SLIDE 12 — DOWNLOAD TO PAID -->
   <section class="slide" data-number="12">
-    <div class="chrome">🏆 Download to paid</div><div class="brand">RevenueCat</div>
+    <div class="chrome">🏆 Download to paid</div>
     <div class="chart-layout">
       <div><div class="kicker">🏆 Download to paid</div><h2 class="title" style="font-size:4vh">React Native turns 25% more installs into paying customers</h2><p class="big-number" style="margin-top:3vh">2.5%</p><div class="delta"><div><b>+25%</b> vs. Native (2.0%)</div><div><b>+39%</b> vs. Flutter (1.8%)</div></div></div>
       <div class="chart-card"><h3>Day 35 download-to-paid by framework</h3><div class="legend">Box = P25–P75 · line = median · whiskers = P10–P90</div>
@@ -370,7 +369,7 @@
 
   <!-- SLIDE 13 — LEARNING 1 -->
   <section class="slide paper" data-number="13">
-    <div class="chrome">Key learning 1 / 5</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Key learning 1 / 5</div>
     <div class="stack">
       <div class="learning-tag">Key learning 1 / 5</div>
       <h1 class="display" style="max-width:17ch">Execution matters far more than stack choice</h1>
@@ -382,7 +381,7 @@
 
   <!-- SLIDE 14 — RPI D14 -->
   <section class="slide" data-number="14">
-    <div class="chrome">🏆 Revenue per install</div><div class="brand">RevenueCat</div>
+    <div class="chrome">🏆 Revenue per install</div>
     <div class="chart-layout">
       <div><div class="kicker">🏆 Revenue per install · Day 14</div><h2 class="title" style="font-size:4vh">Every React Native install is worth 55% more in the first two weeks</h2><p class="big-number" style="margin-top:3vh">$0.34</p><div class="delta"><div><b>+55%</b> vs. Native ($0.22)</div><div><b>+79%</b> vs. Flutter ($0.19)</div></div></div>
       <div class="chart-card"><h3>Day 14 revenue per install by framework</h3><div class="legend">Box = P25–P75 · line = median · whiskers = P10–P90</div>
@@ -394,7 +393,7 @@
 
   <!-- SLIDE 15 — LEARNING 2 -->
   <section class="slide paper" data-number="15">
-    <div class="chrome">Key learning 2 / 5</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Key learning 2 / 5</div>
     <div class="stack">
       <div class="learning-tag">Key learning 2 / 5</div>
       <h1 class="display" style="max-width:17ch">Feedback loops</h1>
@@ -411,7 +410,7 @@
 
   <!-- SLIDE 16 — RPI D60 -->
   <section class="slide" data-number="16">
-    <div class="chrome">🏆 Revenue per install</div><div class="brand">RevenueCat</div>
+    <div class="chrome">🏆 Revenue per install</div>
     <div class="chart-layout">
       <div><div class="kicker">🏆 Revenue per install · Day 60</div><h2 class="title" style="font-size:4vh">React Native pulls further ahead by day 60</h2><p class="big-number" style="margin-top:3vh">$0.51</p><div class="delta"><div><b>+65%</b> vs. Native ($0.31) · was +55% at D14</div><div><b>+76%</b> vs. Flutter ($0.29)</div></div></div>
       <div class="chart-card"><h3>Day 60 revenue per install by framework</h3><div class="legend">Box = P25–P75 · line = median · whiskers = P10–P90</div>
@@ -423,7 +422,7 @@
 
   <!-- SLIDE 17 — LEARNING 3 -->
   <section class="slide paper" data-number="17">
-    <div class="chrome">Key learning 3 / 5</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Key learning 3 / 5</div>
     <div class="stack">
       <div class="learning-tag">Key learning 3 / 5</div>
       <h1 class="display" style="max-width:17ch">Monetization is a product problem</h1>
@@ -435,7 +434,7 @@
 
   <!-- SLIDE 18 — RETENTION -->
   <section class="slide" data-number="18">
-    <div class="chrome">🤔 Year 1 retention</div><div class="brand">RevenueCat</div>
+    <div class="chrome">🤔 Year 1 retention</div>
     <div class="chart-layout">
       <div><div class="kicker">🤔 Year 1 retention</div><h2 class="title">Retention: a tie</h2><p class="subtitle" style="margin-top:2.4vh">Every stack keeps about 27–31% of annual subscribers after a year</p><div class="delta"><div>React Native <b>27.1%</b> · Native <b>27.0%</b></div><div>Flutter <b>27.8%</b> · Other <b>30.6%</b></div></div></div>
       <div class="chart-card"><h3>Year 1 retention, annual plans, by framework</h3><div class="legend">Box = P25–P75 · line = median · whiskers = P10–P90</div>
@@ -447,7 +446,7 @@
 
   <!-- SLIDE 19 — FRONT-LOADING VALUE -->
   <section class="slide" data-number="19">
-    <div class="chrome">Where the advantage comes from</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Where the advantage comes from</div>
     <div class="stack">
       <div class="kicker">That tells us exactly where the advantage comes from</div>
       <h1 class="display" style="max-width:19ch">React Native wins by front-loading value, not by keeping users longer</h1>
@@ -462,7 +461,7 @@
 
   <!-- SLIDE 20 — LEARNING 4 -->
   <section class="slide paper" data-number="20">
-    <div class="chrome">Key learning 4 / 5</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Key learning 4 / 5</div>
     <div class="stack">
       <div class="learning-tag">Key learning 4 / 5</div>
       <h1 class="display" style="max-width:17ch">Play long-term games</h1>
@@ -474,7 +473,7 @@
 
   <!-- SLIDE 21 — LTV -->
   <section class="slide" data-number="21">
-    <div class="chrome">🏆 LTV per customer</div><div class="brand">RevenueCat</div>
+    <div class="chrome">🏆 LTV per customer</div>
     <div class="chart-layout">
       <div><div class="kicker">🏆 LTV per customer · Year 1</div><h2 class="title" style="font-size:4vh">A React Native customer is worth $11 more after a year</h2><p class="big-number" style="margin-top:3vh">$31.78</p><div class="delta"><div><b>+52%</b> vs. Native ($20.88)</div><div><b>+50%</b> vs. Flutter ($21.18)</div><div>P90: <b>$95.32</b> vs. $74.68 Flutter · $61.81 Native</div></div></div>
       <div class="chart-card"><h3>Year 1 realized LTV per payer by framework</h3><div class="legend">Box = P25–P75 · line = median · whiskers = P10–P90</div>
@@ -486,7 +485,7 @@
 
   <!-- SLIDE 22 — LEARNING 5 -->
   <section class="slide paper" data-number="22">
-    <div class="chrome">Key learning 5 / 5</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Key learning 5 / 5</div>
     <div class="stack">
       <div class="learning-tag">Key learning 5 / 5</div>
       <h1 class="display" style="max-width:17ch">Valuable customers beat more customers</h1>
@@ -500,14 +499,14 @@
 
   <!-- SLIDE 23 — BUT WHY -->
   <section class="slide blue center" data-number="23">
-    <div class="chrome">Why React Native</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Why React Native</div>
     <div><h1 class="mega">But why React Native?</h1><p class="subtitle" style="margin:3vh auto 0;color:#fff">Something in React Native makes product-oriented teams choose it</p></div>
     <aside class="speaker-note"><b>22:00</b> So if it’s the teams, why do those teams choose React Native?</aside>
   </section>
 
   <!-- SLIDE 24 — PROVEN TECH -->
   <section class="slide" data-number="24">
-    <div class="chrome">Why React Native</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Why React Native</div>
     <div class="split wide">
       <div><h2 class="title">Companies bet on what they can hire for</h2><ul class="bullets"><li>Companies are choosing proven technologies…</li><li>… for which it is easy to hire great developers</li><li>React devs are everywhere</li><li>Proven by giants: #2 on the App Store, #3 on Google Play</li></ul></div>
       <div><img class="shot framed" src="assets/pragmatic-engineer-store-frameworks.png" alt="Top frameworks on the App Store and Google Play, with React Native second on App Store and third on Google Play"><div class="figure-caption">Cross-platform mobile development — The Pragmatic Engineer</div></div>
@@ -517,7 +516,7 @@
 
   <!-- SLIDE 25 — TOOLSET FOR SPEED -->
   <section class="slide" data-number="25">
-    <div class="chrome">Why React Native</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Why React Native</div>
     <div class="stack">
       <h2 class="title">React Native is a toolset for speed</h2>
       <div class="kicker" style="margin-top:3vh;color:var(--text)">Great apps are about delivering value fast, in order to learn fast</div>
@@ -528,7 +527,7 @@
 
   <!-- SLIDE 26 — ONE CODEBASE -->
   <section class="slide" data-number="26">
-    <div class="chrome">Why React Native</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Why React Native</div>
     <div class="stack">
       <h2 class="title">Faster to launch → faster to monetize</h2>
       <p class="subtitle" style="margin-top:2vh">One codebase → Web + iOS + Android</p>
@@ -539,7 +538,7 @@
 
   <!-- SLIDE 27 — CROSS-PLATFORM CONSISTENCY -->
   <section class="slide" data-number="27">
-    <div class="chrome">Cross-platform consistency</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Cross-platform consistency</div>
     <div class="stack">
       <div class="kicker">Monetization parity</div>
       <h2 class="title">One purchase. Every platform.</h2>
@@ -555,7 +554,7 @@
 
   <!-- SLIDE 28 — WHERE NATIVE WINS -->
   <section class="slide paper" data-number="28">
-    <div class="chrome">Where native may outperform</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Where native may outperform</div>
     <div class="stack">
       <div class="kicker">To be fair</div>
       <h2 class="title">Native still wins at the edges</h2>
@@ -569,14 +568,14 @@
 
   <!-- SLIDE 29 — MONEY ON THE TABLE -->
   <section class="slide blue center" data-number="29">
-    <div class="chrome">The punchline</div><div class="brand">RevenueCat</div>
+    <div class="chrome">The punchline</div>
     <h1 class="mega" style="max-width:15ch">You’re leaving money on the table if you aren’t monetizing</h1>
     <aside class="speaker-note"><b>29:30</b> Call out the audience: you’re leaving money on the table if you aren’t monetizing. And if you are, here’s how to check how much.</aside>
   </section>
 
   <!-- SLIDE 30 — WHERE DO YOU STAND -->
   <section class="slide" data-number="30">
-    <div class="chrome">Where do you stand?</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Where do you stand?</div>
     <h2 class="title">Where does your React Native app stand?</h2>
     <table class="score">
       <thead><tr><th>React Native apps</th><th>Median</th><th class="rn">Top quartile</th><th>Top 10%</th></tr></thead>
@@ -595,14 +594,14 @@
 
   <!-- SLIDE 31 — SECTION -->
   <section class="slide blue center" data-number="31">
-    <div class="chrome">Predictions</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Predictions</div>
     <div><div class="kicker" style="text-align:center;margin-left:auto;margin-right:auto">Two years of React Native leading</div><h1 class="mega" style="max-width:14ch">Will we see the same next year?</h1></div>
     <aside class="speaker-note"><b>31:00</b> We now have two years of React Native leading the framework monetization section. The question is whether we’ll see similar results next year. Here are my predictions.</aside>
   </section>
 
   <!-- SLIDE 32 — PREDICTION 1 -->
   <section class="slide" data-number="32">
-    <div class="chrome">Prediction 1 / 2</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Prediction 1 / 2</div>
     <div class="stack">
       <div class="learning-tag dark-tag">Prediction 1 / 2</div>
       <h1 class="display" style="max-width:18ch">Agents erase React Native’s beginner advantage</h1>
@@ -613,7 +612,7 @@
 
   <!-- SLIDE 33 — GOING BACK TO NATIVE -->
   <section class="slide paper" data-number="33">
-    <div class="chrome">Prediction 1 / 2 · It’s already happening</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Prediction 1 / 2 · It’s already happening</div>
     <div class="stack">
       <div class="kicker">It’s already happening</div>
       <h2 class="title" style="max-width:26ch">Shopify and Coinbase are leaving React Native for Swift and Kotlin</h2>
@@ -627,7 +626,7 @@
 
   <!-- SLIDE 34 — PREDICTION 2 -->
   <section class="slide" data-number="34">
-    <div class="chrome">Prediction 2 / 2</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Prediction 2 / 2</div>
     <div class="split">
       <div><div class="learning-tag dark-tag">Prediction 2 / 2</div><h1 class="display" style="max-width:16ch">More apps than ever. Smaller gaps between frameworks.</h1><p class="subtitle" style="margin-top:3vh">We will get more apps than ever before, built in a variety of technologies. Perhaps a slightly hopeful prediction is that differences between frameworks will get smaller.</p></div>
       <div class="chart-card"><h3>New subscription apps launched per month</h3><div class="legend">iOS + Android, each January · 7× in four years</div>
@@ -640,7 +639,7 @@
 
   <!-- SLIDE 35 — RECAP -->
   <section class="slide" data-number="35">
-    <div class="chrome">Recap</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Recap</div>
     <div class="stack">
       <h2 class="title">Five key learnings</h2>
       <div class="recap">
@@ -657,7 +656,7 @@
 
   <!-- SLIDE 36 — DOES IT MATTER -->
   <section class="slide" data-number="36">
-    <div class="chrome">Does all of this really matter?</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Does all of this really matter?</div>
     <div class="stack">
       <h1 class="display" style="max-width:20ch">Does all of this really matter?</h1>
       <ul class="bullets matter-list">
@@ -672,14 +671,14 @@
 
   <!-- SLIDE 37 — MISTAKES -->
   <section class="slide blue center" data-number="37">
-    <div class="chrome">Mistakes</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Mistakes</div>
     <div><h1 class="mega" style="max-width:14ch">And mistakes are a powerful tool</h1><p class="subtitle" style="margin:3.4vh auto 0;color:#fff;font-size:3vh;max-width:40ch">You are a product of trillions of them. Evolution forged all sentient life using only that one tool.</p></div>
     <aside class="speaker-note"><b>37:00</b> And mistakes are a powerful tool. You are a product of trillions of them. Evolution forged all sentient life using only that one tool: mistakes.</aside>
   </section>
 
   <!-- SLIDE 38 — USE WHAT LETS YOU DO THE MOST -->
   <section class="slide" data-number="38">
-    <div class="chrome">So which technology?</div><div class="brand">RevenueCat</div>
+    <div class="chrome">So which technology?</div>
     <div class="stack">
       <h1 class="display" style="max-width:18ch">Use the technology that enables you to do the most</h1>
       <p class="subtitle" style="margin-top:3vh;max-width:56ch">For some teams that’s React Native. For Shopify and Coinbase, it’s now Swift and Kotlin. Pick the one that lets you ship, learn, and make your mistakes the fastest.</p>
@@ -689,14 +688,14 @@
 
   <!-- SLIDE 39 — CONCLUSION -->
   <section class="slide blue center" data-number="39">
-    <div class="chrome">Conclusion</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Conclusion</div>
     <h1 class="mega" style="max-width:19ch;font-size:clamp(3.2rem,7.6vh,7.4rem)">The teams that learn fastest, iterate fastest, and continuously improve their product are the ones most likely to win.</h1>
     <aside class="speaker-note"><b>38:30</b> The lesson is simple: build a tight feedback loop with your customers. Whether you’re using React Native, Flutter, or native, the teams that learn fastest, iterate fastest, and continuously improve their product are the ones most likely to win. The strongest monetization outcomes don’t come from a secret framework feature or a growth hack. They come from building products people truly value.</aside>
   </section>
 
   <!-- SLIDE 40 — THAT'S IT -->
   <section class="slide center" data-number="40">
-    <div class="chrome">Thank you</div><div class="brand">RevenueCat</div>
+    <div class="chrome">Thank you</div>
     <div><h1 class="mega">That’s it</h1><p class="subtitle" style="margin:2.4vh auto 0;font-size:2.6vh">@plahteenlahti · perttu.dev · revenuecat.com</p>
       <a class="report-qr" href="https://www.revenuecat.com/state-of-subscription-apps/" target="_blank" rel="noreferrer" style="text-align:left"><img src="assets/qr-revenuecat-sosa-2026.png" alt="QR code for RevenueCat State of Subscription Apps 2026"><div><strong>State of Subscription Apps 2026</strong><span>All the framework charts, and 330+ pages more ↗</span></div></a></div>
     <aside class="speaker-note"><b>39:15</b> That’s it. Scan the QR code for the full State of Subscription Apps report. Questions?</aside>
