@@ -9,7 +9,7 @@ devCon 2026 (checked 2026-10-07).
   Charlie Cheever and Sebastian Röhl quotes. Box-plot values come from the
   report's chart data.
 - [next.app devCon agenda](https://www.nextappcon.com/agenda)
-- [Cross-platform mobile development — The Pragmatic Engineer](https://newsletter.pragmaticengineer.com/p/cross-platform-mobile-development)
+- [Appfigures](https://appfigures.com): development framework share on the App Store and Google Play
 - [Why are React Native apps making more money? — Perttu Lähteenlahti, RevenueCat blog](https://www.revenuecat.com/blog/engineering/why-react-native-apps-make-more-money):
   the controversy, data collection, five key learnings, and predictions.
 - [Native is now the future of mobile at Shopify — Shopify Engineering](https://shopify.engineering/back-to-native)
