@@ -1,0 +1,826 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Why React Native apps monetize better — next.app devCon 2026, reactCon">
+  <title>Why React Native apps monetize better — next.app devCon 2026</title>
+  <style>
+    @font-face{font-family:Outfit;src:url('assets/fonts/Outfit-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+    @font-face{font-family:Outfit;src:url('assets/fonts/Outfit-SemiBold.ttf') format('truetype');font-weight:600;font-display:swap}
+    @font-face{font-family:Outfit;src:url('assets/fonts/Outfit-Bold.ttf') format('truetype');font-weight:700;font-display:swap}
+    @font-face{font-family:'JetBrains Mono';src:url('assets/fonts/JetBrainsMono-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+    @font-face{font-family:'JetBrains Mono';src:url('assets/fonts/JetBrainsMono-ExtraBold.ttf') format('truetype');font-weight:800;font-display:swap}
+
+    :root{
+      --ink:#0b0b0d;--panel:#16161a;--line:rgba(255,255,255,.14);--text:#f6f4ef;--muted:#a9a8b3;
+      --coral:#f25a5a;--coral-soft:#ff8a84;--blue:#5a6cd6;--blue-deep:#4656c4;--react:#61dafb;--gold:#f6d365;
+      --paper:#f6f4ef;--paper-ink:#141418;--paper-muted:#5d5e69;
+    }
+    *{box-sizing:border-box}
+    html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#000;font-family:Outfit,ui-sans-serif,system-ui,sans-serif;color:var(--text);letter-spacing:.004em}
+    button{font:inherit}
+    .deck{width:100vw;height:100vh;position:relative}
+    .slide{position:absolute;inset:0;display:none;overflow:hidden;background:var(--ink);background-image:radial-gradient(circle at 88% 10%,rgba(242,90,90,.13),transparent 28%),radial-gradient(circle at 6% 96%,rgba(90,108,214,.12),transparent 30%);padding:8.6vh 6.6vw 7vh;isolation:isolate}
+    .slide.active{display:block}
+    .slide::before{content:'Perttu Lähteenlahti · RevenueCat · next.app devCon 2026';position:absolute;left:6.6vw;right:12vw;bottom:2.3vh;padding-top:1.15vh;border-top:1px solid var(--line);font:800 1.05vh/1 'JetBrains Mono',monospace;letter-spacing:.055em;color:#77768a;z-index:2}
+    .slide::after{content:attr(data-number);position:absolute;right:6.6vw;bottom:2.3vh;font:800 1.12vh/1 'JetBrains Mono',monospace;color:#77768a;z-index:3}
+    .slide>*{position:relative;z-index:1}
+    .chrome{position:absolute;left:6.6vw;top:3.4vh;font:800 1.1vh/1 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--coral)}
+    .brand{position:absolute;right:6.6vw;top:3.1vh;font:700 1.75vh/1 Outfit,sans-serif;letter-spacing:-.01em;color:var(--coral)}
+    .speaker-note{display:none}
+    h1,h2,h3,p{margin-top:0}
+
+    .blue{background:var(--blue);background-image:radial-gradient(circle at 84% 14%,rgba(255,255,255,.14),transparent 30%),linear-gradient(135deg,#5162cf 0%,#6576e0 100%)}
+    .blue .chrome,.blue .brand{color:#fff}.blue::before{border-color:rgba(255,255,255,.28);color:#e2e5fb}.blue::after{color:#e2e5fb}
+    .paper{background:var(--paper);background-image:radial-gradient(circle at 88% 10%,rgba(242,90,90,.10),transparent 28%);color:var(--paper-ink)}
+    .paper::before{border-color:rgba(20,20,24,.16);color:#7b7c86}.paper::after{color:#7b7c86}
+
+    .display{font-size:clamp(3rem,7vh,6.6rem);font-weight:700;line-height:.98;letter-spacing:-.022em;margin:0;max-width:18ch}
+    .mega{font-size:clamp(4rem,11vh,10rem);font-weight:700;line-height:.95;letter-spacing:-.03em;margin:0}
+    .title{font-size:clamp(2.2rem,4.7vh,4.7rem);font-weight:700;line-height:1.04;letter-spacing:-.014em;margin:0;max-width:22ch}
+    .subtitle{font-size:clamp(1.3rem,2.45vh,2.3rem);line-height:1.38;color:var(--muted);max-width:44ch}
+    .paper .subtitle{color:var(--paper-muted)}.blue .subtitle{color:#e6e8fb}
+    .kicker{font:700 clamp(1.4rem,2.6vh,2.6rem)/1.15 Outfit,sans-serif;letter-spacing:-.005em;color:var(--coral);margin-bottom:2.2vh;max-width:36ch}
+    .blue .kicker{color:#ffd8d4}
+    .coral{color:var(--coral)}.react{color:var(--react)}.white{color:#fff}
+
+    .stack{display:flex;flex-direction:column;justify-content:center;height:100%}
+    .center{text-align:center}.slide.active.center{display:grid;place-items:center}.center .display,.center .title,.center .subtitle,.center .mega{margin-left:auto;margin-right:auto}
+    .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:5vw;align-items:center;height:100%}
+    .split.wide{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}.split.reverse{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
+
+    .bullets{list-style:none;padding:0;margin:3.4vh 0 0}
+    .bullets li{font-size:2.45vh;line-height:1.32;padding:1vh 0;max-width:46ch}
+    .bullets li::before{content:'●';color:var(--coral);font-size:1.4vh;vertical-align:.35vh;margin-right:1.1vw}
+    .bullets li.sub{padding-left:2.4vw;font-size:2.15vh;color:var(--muted)}
+    .bullets li.sub::before{content:'○';color:var(--muted)}
+    .paper .bullets li.sub{color:var(--paper-muted)}
+
+    /* Title */
+    .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2vw;align-items:center;height:100%}
+    .hero-art{width:100%;max-height:74vh;object-fit:contain}
+    .event-tag{display:inline-flex;gap:.8vw;align-items:center;margin-top:4vh;font:800 1.3vh/1.3 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+    .event-tag b{color:var(--react)}
+
+    /* Intro */
+    .portrait{width:30vw;height:50vh;object-fit:cover;object-position:50% 22%;clip-path:polygon(0 0,100% 0,100% 88%,88% 100%,0 100%)}
+    .intro-media{display:flex;flex-direction:column;align-items:center;gap:1.8vh}
+    .app-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8vw;width:30vw}
+    .app-card{display:grid;grid-template-columns:4vw minmax(0,1fr);gap:.9vw;align-items:center;padding:1.3vh 1vw;background:rgba(255,255,255,.05);border-left:1px solid var(--line);color:var(--text);text-decoration:none}
+    .app-card img{width:4vw;height:4vw;border-radius:1vw;object-fit:cover}
+    .app-card strong{display:block;font-size:1.75vh}.app-card span span{display:block;margin-top:.5vh;font-size:1.25vh;color:var(--muted)}
+
+    /* Stat grid */
+    .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6vw;margin-top:4vh}
+    .stat{padding:2.6vh 1.8vw;background:rgba(255,255,255,.045);border-left:2px solid var(--coral)}
+    .stat strong{display:block;font-size:6.4vh;line-height:1;letter-spacing:-.03em}
+    .stat span{display:block;margin-top:1.2vh;font-size:1.9vh;color:var(--muted)}
+    .chips{display:flex;flex-wrap:wrap;gap:.6vw;margin-top:3.4vh}
+    .chip{padding:1.1vh 1.2vw;border:1px solid var(--line);border-radius:99px;font-size:2vh}
+    .chip.on{border-color:var(--react);color:var(--react)}
+
+    /* Scoreboard */
+    .score{width:100%;border-collapse:collapse;margin-top:4vh;font-size:2.4vh}
+    .score th{font:800 1.25vh/1 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:right;padding:0 1.4vw 1.6vh}
+    .score th:first-child{text-align:left}
+    .score td{padding:2.05vh 1.4vw;border-top:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}
+    .score td:first-child{text-align:left;font-weight:600}
+    .score td.rn,.score th.rn{color:var(--react)}
+    .score td.rn{font-weight:700;background:rgba(97,218,251,.07)}
+    .score .medal{display:inline-block;width:2.4vw}
+    .score tr.lose td{color:var(--muted)}
+
+    /* Charts */
+    .chart-layout{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:3.6vw;align-items:center;height:100%}
+    .chart-card{background:rgba(255,255,255,.035);border:1px solid var(--line);padding:2.6vh 1.6vw 1.6vh}
+    .chart-card h3{margin:0 0 .6vh;font-size:2vh;font-weight:600}
+    .chart-card .legend{font:800 1.05vh/1.3 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+    .boxplot{display:block;width:100%;height:56vh;margin-top:1vh}
+    .big-number{font-size:clamp(4rem,12vh,11rem);font-weight:700;line-height:.9;letter-spacing:-.04em;color:var(--react);margin:0}
+    .big-number small{font-size:.38em;letter-spacing:-.01em;color:var(--muted);font-weight:600}
+    .delta{display:flex;flex-direction:column;gap:.8vh;margin-top:3vh}
+    .delta div{font-size:2.15vh;color:var(--muted)}.delta b{color:var(--text);font-weight:700}
+    .data-source{position:absolute;left:6.6vw;bottom:5.3vh;display:inline-flex;align-items:center;padding:.65vh .85vw;background:rgba(255,255,255,.05);border:1px solid var(--line);font:800 1.02vh/1.2 'JetBrains Mono',monospace;color:#bdbccb;text-decoration:none}
+    .paper .data-source{background:rgba(255,255,255,.6);border-color:rgba(20,20,24,.15);color:var(--paper-muted)}
+
+    /* Over time */
+    .timeline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;margin-top:5vh;background:var(--line)}
+    .tl{padding:3vh 1.8vw;background:var(--ink)}
+    .tl b{font:800 1.3vh/1 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+    .tl strong{display:block;margin:2vh 0 1vh;font-size:7vh;line-height:1;letter-spacing:-.03em;color:var(--react)}
+    .tl span{font-size:1.95vh;color:var(--muted)}
+    .tl.flat strong{color:var(--muted)}
+
+    /* Range */
+    .range{margin-top:5vh}
+    .range-bar{position:relative;height:9vh;border-left:2px solid var(--muted);border-right:2px solid var(--muted)}
+    .range-bar::before{content:'';position:absolute;left:0;right:0;top:50%;border-top:2px solid var(--muted)}
+    .range-box{position:absolute;top:1.5vh;bottom:1.5vh;background:rgba(97,218,251,.22);border:2px solid var(--react)}
+    .range-med{position:absolute;top:.5vh;bottom:.5vh;width:3px;background:#fff}
+    .range-labels{display:flex;justify-content:space-between;margin-top:1.4vh;font:800 1.5vh/1 'JetBrains Mono',monospace;color:var(--muted)}
+
+    /* Steps, loops */
+    .path{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;margin-top:5vh;background:var(--line)}
+    .path.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .step{min-height:24vh;padding:2.8vh 1.6vw;background:var(--ink)}
+    .blue .step{background:rgba(255,255,255,.1)}.blue .path{background:transparent;gap:.6vw}
+    .step b{display:block;font:800 1.5vh/1 'JetBrains Mono',monospace;color:var(--coral)}
+    .blue .step b{color:#ffd8d4}
+    .step strong{display:block;font-size:2.6vh;line-height:1.15;margin:2vh 0 1.2vh}
+    .step span{font-size:1.9vh;line-height:1.38;color:var(--muted)}
+    .blue .step span{color:#e6e8fb}
+    .num{display:grid;place-items:center;width:7.4vh;height:7.4vh;border-radius:50%;font:700 3.4vh/1 Outfit,sans-serif;color:#111}
+    .num.n1{background:var(--coral)}.num.n2{background:var(--gold)}.num.n3{background:#5fd38d}
+    .setup{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3vw;margin-top:6vh}
+    .setup strong{display:block;margin:2.6vh 0 1.2vh;font-size:2.8vh}
+    .setup ul{margin:0;padding-left:1.3vw;font-size:2.1vh;line-height:1.5;color:var(--muted)}
+
+    /* Quotes */
+    .quote{font-size:clamp(2.3rem,4.9vh,4.8rem);line-height:1.1;letter-spacing:-.012em;max-width:26ch;margin:0}
+    .quote em{font-style:normal;color:var(--coral)}
+    .quote-by{display:flex;align-items:center;gap:1vw;margin-top:4vh;font-size:2.1vh;color:var(--muted)}
+    .quote-by strong{color:var(--text)}
+    .quote-mark{font:700 16vh/0.6 Outfit,sans-serif;color:var(--coral);margin-bottom:2vh}
+
+    /* Media */
+    .shot{width:100%;max-height:68vh;object-fit:contain;filter:drop-shadow(0 1.6vh 3vh rgba(0,0,0,.45))}
+    .shot.framed{border:1px solid var(--line);border-radius:1vh}
+    .figure-caption{margin-top:1.4vh;font-style:italic;font-size:1.8vh;color:var(--muted)}
+    .device-demo{position:relative;justify-self:center;height:74vh;aspect-ratio:1350/2760;filter:drop-shadow(0 2.2vh 3.2vh rgba(0,0,0,.5))}
+    .device-demo video{position:absolute;z-index:1;left:3.3%;top:1.3%;width:93.4%;height:97.4%;object-fit:cover;background:#000;border-radius:13%/6.2%}
+    .device-demo .device-frame{position:absolute;z-index:2;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
+    .platform-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6vw;margin-top:3vh}
+    .platform{padding:2.2vh 1.4vw;background:rgba(255,255,255,.045);border-top:2px solid var(--react)}
+    .platform b{font:800 1.3vh/1 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--react)}
+    .platform p{margin:1.4vh 0 0;font-size:2vh;line-height:1.4;color:var(--muted)}
+    .versus{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4vw;margin-top:5vh}
+    .versus h3{font:800 1.4vh/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;margin:0 0 1.5vh}
+    .versus .bullets{margin-top:0}
+
+    /* Code */
+    .code{background:#111114;color:#f2f1ec;border:1px solid var(--line);border-radius:1vh;padding:2.6vh 2vw 2.6vh;font:400 1.75vh/1.6 'JetBrains Mono',monospace;white-space:pre;overflow:hidden;box-shadow:0 2.2vh 5vh rgba(0,0,0,.4)}
+    .code::before{content:'';display:block;width:5.4vh;height:1.2vh;margin-bottom:2.2vh;background:radial-gradient(circle at .6vh 50%,#ff5f57 .55vh,transparent .6vh),radial-gradient(circle at 2.7vh 50%,#febc2e .55vh,transparent .6vh),radial-gradient(circle at 4.8vh 50%,#28c840 .55vh,transparent .6vh)}
+    .code .kw{color:#ff8a84}.code .fn{color:var(--react)}.code .str{color:#f6d365}.code .cm{color:#77768a}
+    .code-source{display:block;margin-top:1.2vh;font:800 1.05vh/1.3 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+    .code-source a{color:inherit}
+
+    /* QR */
+    .report-qr{display:inline-flex;align-items:center;gap:1.2vw;margin-top:4vh;padding:1.4vh 1.2vw 1.4vh 1.4vh;background:#fff;color:#141418;text-decoration:none;border-radius:1vh}
+    .report-qr img{width:13vh;height:13vh;image-rendering:pixelated}
+    .report-qr strong{display:block;font-size:2vh}.report-qr span{display:block;margin-top:.6vh;font-size:1.6vh;color:#5d5e69}
+
+
+    /* Learnings, predictions */
+    .learning-tag{display:inline-block;align-self:flex-start;margin-bottom:3vh;padding:1vh 1.1vw;background:var(--coral);color:#fff;font:800 1.35vh/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase}
+    .learning-tag.dark-tag{background:transparent;border:1px solid var(--coral);color:var(--coral)}
+    .pull{margin:4vh 0 0;padding-left:1.6vw;border-left:.35vw solid var(--coral);font-size:3.1vh;line-height:1.3;font-weight:600;max-width:46ch}
+    .anatomy{width:100%;max-height:66vh}
+    .matter-list li{font-size:2.6vh;max-width:62ch;padding:1.3vh 0}
+    .paper .timeline{background:rgba(20,20,24,.12)}.paper .tl{background:#fff}.paper .tl span,.paper .tl b{color:var(--paper-muted)}.paper .tl strong{color:var(--blue)}
+    .paper .path{background:rgba(20,20,24,.12)}.paper .step{background:#fff}.paper .step span{color:var(--paper-muted)}
+    .barchart{display:block;width:100%;height:46vh;margin-top:1vh}
+    .recap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px;margin-top:4.5vh;background:var(--line)}
+    .recap div{min-height:22vh;padding:2.6vh 1.4vw;background:var(--ink)}
+    .recap b{display:block;font:800 1.5vh/1 'JetBrains Mono',monospace;color:var(--coral)}
+    .recap span{display:block;margin-top:2vh;font-size:2.6vh;line-height:1.18;font-weight:600}
+    .cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4vw;margin-top:4vh}
+    .case{padding:3vh 2vw;background:#fff;border-top:3px solid var(--coral)}
+    .case b{font:800 1.3vh/1 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--coral)}
+    .case-quote{margin:2vh 0 1.6vh;font-size:2.9vh;line-height:1.2;font-weight:700;color:var(--paper-ink)}
+    .case ul{margin:0;padding-left:1.2vw;font-size:1.9vh;line-height:1.5;color:var(--paper-muted)}
+    .case a{display:block;margin-top:1.8vh;font:800 1.05vh/1.3 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--paper-muted)}
+    /* Controls */
+    .controls{position:fixed;z-index:20;right:1.1vw;bottom:1.4vh;display:flex;gap:.45vw;opacity:.35;transition:opacity .2s ease}
+    .controls:hover,.controls:focus-within{opacity:1}
+    .controls button,.home,.edit-toggle{border:1px solid rgba(255,255,255,.22);background:rgba(20,20,24,.8);backdrop-filter:blur(8px);color:#d9d8e0;border-radius:999px;height:34px;cursor:pointer;font-weight:800}
+    .controls button,.home{width:34px}.home{position:fixed;z-index:20;left:1.1vw;bottom:1.4vh;display:grid;place-items:center;text-decoration:none;font-size:13px}
+    .edit-toggle{position:fixed;z-index:20;left:4vw;bottom:1.4vh;padding:0 13px;font:800 10px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase}
+    .edit-toggle.active{background:var(--coral);color:#fff;border-color:var(--coral)}
+    body.controls-hidden .controls,body.controls-hidden .home,body.controls-hidden .edit-toggle{display:none}
+    .progress{position:fixed;z-index:21;left:0;bottom:0;height:4px;background:var(--coral);transition:width .25s ease}
+    .notes{display:none;position:fixed;z-index:30;left:4vw;right:4vw;bottom:5vh;max-height:36vh;overflow:auto;background:rgba(17,17,20,.97);color:#fff;border:1px solid #33333d;border-radius:1.2vh;padding:2.2vh 2vw;font-size:1.8vh;line-height:1.5;box-shadow:0 30px 70px rgba(0,0,0,.5)}
+    .notes.visible{display:block}.notes b{color:var(--react)}
+    .timer{position:fixed;z-index:20;right:6.6vw;top:1.2vh;font:800 1.1vh/1 'JetBrains Mono',monospace;color:#77768a;display:none}
+    body.show-timer .timer{display:block}
+    body.editing [contenteditable="true"]{outline:1px dashed rgba(242,90,90,.6);outline-offset:.2em;cursor:text}
+    body.editing [contenteditable="true"]:focus{outline:2px solid var(--coral)}
+
+    @keyframes rise{from{opacity:0;transform:translateY(1.4vh)}to{opacity:1;transform:translateY(0)}}
+    @keyframes scaleFade{from{opacity:.2;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+    .slide.active :is(.cases,.learning-tag,.pull,.recap,.anatomy,.kicker,.title,.display,.mega,.subtitle,.bullets,.stats,.score,.chart-card,.timeline,.range,.path,.setup,.quote,.platform-row,.versus,.report-qr,.big-number,.delta){animation:rise .48s cubic-bezier(.2,.8,.2,1) both}
+    .slide.active :is(.title,.display,.mega){animation-delay:.04s}
+    .slide.active :is(.subtitle,.bullets,.stats,.score,.timeline,.range,.path,.setup,.platform-row,.versus,.delta){animation-delay:.1s}
+    .slide.active :is(.shot,.code,.hero-art,.portrait,.device-demo){animation:scaleFade .6s cubic-bezier(.2,.8,.2,1) .12s both}
+    @media(max-aspect-ratio:4/3){.slide{padding-left:5vw;padding-right:5vw}.split,.chart-layout,.hero{gap:3vw}}
+    @media(prefers-reduced-motion:reduce){.slide.active *{animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- ============ PART 0 — COLD OPEN (0:00–4:00) ============ -->
+
+  <!-- SLIDE 01 — TITLE -->
+  <section class="slide active" data-number="01">
+    <div class="brand">RevenueCat</div>
+    <div class="hero">
+      <div><h1 class="display" style="font-size:clamp(3.4rem,8.4vh,8rem);max-width:12ch">Why React Native apps monetize better</h1><p class="subtitle" style="margin-top:3.4vh">Perttu Lähteenlahti · Senior Developer Advocate @ RevenueCat</p><div class="event-tag"><b>reactCon</b> · next.app devCon · City Cube Berlin · 2026</div></div>
+      <img class="hero-art" src="assets/revenuecat-hero.png" alt="">
+    </div>
+    <aside class="speaker-note"><b>0:00</b> Why React Native apps monetize better.</aside>
+  </section>
+
+  <!-- SLIDE 02 — THE CONTROVERSY -->
+  <section class="slide" data-number="02">
+    <div class="chrome">Cold open</div><div class="brand">RevenueCat</div>
+    <div class="stack">
+      <div class="kicker">When I tweeted this, some developers were quick to question it</div>
+      <h1 class="display" style="max-width:20ch">“React Native apps are monetizing better than Flutter and native apps.”</h1><p class="subtitle" style="margin-top:2.4vh">— me (based on data)</p>
+      <div class="chips" style="margin-top:4.4vh"><span class="chip">The results?</span><span class="chip">The dataset?</span><span class="chip">Correlation vs. causation?</span><span class="chip">Everything?</span></div>
+    </div>
+    <aside class="speaker-note"><b>0:15</b> Earlier this year we released the newest State of Subscription Apps report. One insight turned out to be rather controversial, even though the previous year’s data showed similar results: React Native apps are monetizing better than Flutter and native apps.<br><br>When I tweeted about it, some developers were quick to question the results, the dataset, correlation vs. causation, and essentially everything that goes against the intuition that technology is the key to building great apps that customers want to pay for.</aside>
+  </section>
+
+  <!-- SLIDE 03 — THE DATA DOES NOT LIE -->
+  <section class="slide center" data-number="03">
+    <div class="chrome">Cold open</div><div class="brand">RevenueCat</div>
+    <h1 class="display" style="max-width:24ch;font-size:clamp(3rem,6.4vh,6rem)">But the data does not lie, React Native apps are bringing in <span class="coral">more money</span> through subscriptions and in-app purchases than apps built with other stacks</h1>
+    <aside class="speaker-note"><b>1:00</b> But the data does not lie, React Native apps are bringing in more money through subscriptions and in-app purchases than apps built with other stacks.</aside>
+  </section>
+
+  <!-- SLIDE 04 — BUT WHY -->
+  <section class="slide blue center" data-number="04">
+    <div class="chrome">Cold open</div><div class="brand">RevenueCat</div>
+    <h1 class="mega">But why?</h1>
+    <aside class="speaker-note"><b>1:20</b> But why?</aside>
+  </section>
+
+  <!-- SLIDE 05 — STRUCTURE -->
+  <section class="slide" data-number="05">
+    <div class="chrome">What we’ll cover</div><div class="brand">RevenueCat</div>
+    <div class="stack">
+      <h2 class="title">This talk is about looking at the data and figuring out the why.</h2>
+      <div class="path three">
+        <div class="step"><b>01</b><strong>The hard data</strong><span>State of Subscription Apps Report</span></div>
+        <div class="step"><b>02</b><strong>Five key learnings</strong><span>What the numbers say about building apps that make money</span></div>
+        <div class="step"><b>03</b><strong>Predictions</strong><span>What agents and more apps are saying</span></div>
+      </div>
+    </div>
+    <aside class="speaker-note"><b>1:45</b> This talk is about looking at the data and figuring out the why. I’ll show you the hard data, five key learnings, and my predictions.</aside>
+  </section>
+
+  <!-- SLIDE 06 — INTRODUCTION -->
+  <section class="slide" data-number="06">
+    <div class="chrome">Introduction</div><div class="brand">RevenueCat</div>
+    <div class="split">
+      <div><div class="kicker">Perttu Lähteenlahti</div><h2 class="title">I help developers make more money from their apps</h2><ul class="bullets"><li>Senior Developer Advocate at RevenueCat</li><li>Designer and engineer, 12 years of building web and mobile apps</li><li>Building (and monetizing) my own apps</li><li>@plahteenlahti · perttu.dev</li></ul></div>
+      <div class="intro-media"><img class="portrait" src="assets/portrait.jpg" alt="Portrait of Perttu Lähteenlahti"><div class="app-cards"><a class="app-card" href="https://apps.apple.com/fi/app/netli-fyi-netlify-client/id6741714545" target="_blank" rel="noreferrer"><img src="assets/netli-fyi-icon.jpg" alt="Netli.fyi app icon"><span><strong>Netli.fyi</strong><span>Manage your Netlify projects</span></span></a><a class="app-card" href="https://apps.apple.com/fi/app/seo-console/id6758575388" target="_blank" rel="noreferrer"><img src="assets/seo-console-icon.jpg" alt="SEO Console app icon"><span><strong>SEO Console</strong><span>Manage your SEO presence</span></span></a></div></div>
+    </div>
+    <aside class="speaker-note"><b>2:15</b> Perttu Lähteenlahti. Senior developer advocate at RevenueCat. Helping developers make more money. I also build and monetize my own apps. @plahteenlahti, perttu.dev.</aside>
+  </section>
+
+  <!-- ============ PART 1 — THE DATA SAYS SO (3:00–8:00) ============ -->
+
+  <!-- SLIDE 07 — SECTION -->
+  <section class="slide blue center" data-number="07">
+    <div class="chrome">The data says so</div><div class="brand">RevenueCat</div>
+    <h1 class="mega" style="max-width:12ch">React Native apps make all the money</h1>
+    <aside class="speaker-note"><b>3:00</b> React Native apps make all the money. Let’s look at the proof.</aside>
+  </section>
+
+  <!-- SLIDE 08 — HOW IS THIS DATA COLLECTED -->
+  <section class="slide" data-number="08">
+    <div class="chrome">How is this data collected?</div><div class="brand">RevenueCat</div>
+    <div class="split wide">
+      <div><div class="kicker">How is this data collected?</div><h2 class="title">RevenueCat’s state of subscription apps report</h2><p class="subtitle" style="margin-top:1.6vh">115,000 subscription apps. $16 billion in revenue.</p>
+        <ul class="bullets"><li>Only apps with active subscription revenue and a minimum of installs and revenue</li><li>From indie teams to mid-size organizations and large publishers</li><li>2025 data, so it includes apps built with agents and vibe coding tools</li><li>Anonymized and aggregated</li></ul>
+        <a class="report-qr" href="https://www.revenuecat.com/state-of-subscription-apps/" target="_blank" rel="noreferrer"><img src="assets/qr-revenuecat-sosa-2026.png" alt="QR code for RevenueCat State of Subscription Apps 2026"><div><strong>State of Subscription Apps 2026</strong><span>Scan the full report ↗</span></div></a></div>
+      <div class="stats" style="grid-template-columns:1fr;margin:0">
+        <div class="stat"><strong>115,000+</strong><span>subscription apps</span></div>
+        <div class="stat"><strong>$16B+</strong><span>in revenue</span></div>
+        <div class="stat"><strong>4</strong><span>stacks: Native · React Native · Flutter · Other</span></div>
+      </div>
+    </div>
+    <aside class="speaker-note"><b>3:20</b> How is this data collected? The State of Subscription Apps report covers 115,000 apps making a combined $16 billion. RevenueCat tracks more apps than that, but only apps with active subscription revenue that meet a minimum threshold of installs and revenue are included, so the findings are statistically meaningful. Apps come from indie teams to mid-size organizations and large publishers.<br><br>The time frame is 2025, so the dataset includes apps built with agents and vibe coding tools. Everything is anonymized and aggregated.</aside>
+  </section>
+
+  <!-- SLIDE 09 — HOW TO READ THE CHARTS -->
+  <section class="slide" data-number="09">
+    <div class="chrome">Understanding the visualizations</div><div class="brand">RevenueCat</div>
+    <div class="split">
+      <div><div class="kicker">Understanding the visualizations</div><h2 class="title">The box is where most apps are. The whiskers are the spread.</h2><p class="subtitle" style="margin-top:2.6vh">When we say React Native outperforms, we mean these distribution points, not isolated outliers.</p></div>
+      <svg class="anatomy" viewBox="0 0 760 560" role="img" aria-label="Box plot anatomy: P90 top whisker, P75 top of box, P50 median, P25 bottom of box, P10 bottom whisker">
+        <line x1="200" x2="200" y1="40" y2="520" stroke="#61dafb" stroke-width="3"/>
+        <line x1="160" x2="240" y1="40" y2="40" stroke="#61dafb" stroke-width="3"/>
+        <line x1="160" x2="240" y1="520" y2="520" stroke="#61dafb" stroke-width="3"/>
+        <rect x="120" y="140" width="160" height="270" rx="4" fill="rgba(97,218,251,.2)" stroke="#61dafb" stroke-width="3"/>
+        <line x1="120" x2="280" y1="300" y2="300" stroke="#fff" stroke-width="6"/>
+        <g font-family="Outfit" font-size="26" fill="#f6f4ef">
+          <text x="320" y="49"><tspan font-weight="700" fill="#61dafb">P90</tspan>  top 10% of apps</text>
+          <text x="320" y="149"><tspan font-weight="700" fill="#61dafb">P75</tspan>  top quartile starts here</text>
+          <text x="320" y="309"><tspan font-weight="700" fill="#fff">P50</tspan>  median</text>
+          <text x="320" y="419"><tspan font-weight="700" fill="#61dafb">P25</tspan>  bottom quartile ends here</text>
+          <text x="320" y="529"><tspan font-weight="700" fill="#61dafb">P10</tspan>  bottom 10% of apps</text>
+        </g>
+        <g stroke="rgba(255,255,255,.25)" stroke-dasharray="4 6"><line x1="244" x2="310" y1="40" y2="40"/><line x1="284" x2="310" y1="140" y2="140"/><line x1="284" x2="310" y1="300" y2="300"/><line x1="284" x2="310" y1="410" y2="410"/><line x1="244" x2="310" y1="520" y2="520"/></g>
+      </svg>
+    </div>
+    <aside class="speaker-note"><b>4:15</b> Before the numbers, how to read the charts. The report uses box-and-whisker charts. The lower whisker is P10, the bottom 10% of apps. The bottom of the box is P25. The line inside the box is the median. The top of the box is P75: apps above it are in the top 25%. The upper whisker is P90, the highest performers.<br><br>The box shows where most apps cluster, and the whiskers show the spread. When we talk about React Native outperforming, we’re talking about these distribution points, not isolated outliers.</aside>
+  </section>
+
+  <!-- SLIDE 10 — TURNS OUT -->
+  <section class="slide blue center" data-number="10">
+    <div class="chrome">The data says so</div><div class="brand">RevenueCat</div>
+    <div><div class="kicker" style="text-align:center;margin-left:auto;margin-right:auto">Second year in a row</div><h1 class="mega" style="max-width:13ch">Turns out, React Native wins in (almost) everything</h1></div>
+    <aside class="speaker-note"><b>5:15</b> Turns out, React Native wins in (almost) everything. And it’s the second year in a row: the 2025 report showed similar results.</aside>
+  </section>
+
+  <!-- SLIDE 11 — SCOREBOARD -->
+  <section class="slide" data-number="11">
+    <div class="chrome">The data says so</div><div class="brand">RevenueCat</div>
+    <h2 class="title">React Native wins 4 out of 5</h2>
+    <table class="score">
+      <thead><tr><th>Median</th><th>Native</th><th>Flutter</th><th class="rn">React Native</th><th>Other</th></tr></thead>
+      <tbody>
+        <tr><td><span class="medal">🏆</span>Download to paid</td><td>2.0%</td><td>1.8%</td><td class="rn">2.5%</td><td>1.4%</td></tr>
+        <tr><td><span class="medal">🏆</span>Revenue per install · D14</td><td>$0.22</td><td>$0.19</td><td class="rn">$0.34</td><td>$0.19</td></tr>
+        <tr><td><span class="medal">🏆</span>Revenue per install · D60</td><td>$0.31</td><td>$0.29</td><td class="rn">$0.51</td><td>$0.28</td></tr>
+        <tr><td><span class="medal">🏆</span>LTV per customer · Y1</td><td>$20.88</td><td>$21.18</td><td class="rn">$31.78</td><td>$20.32</td></tr>
+        <tr class="lose"><td><span class="medal">🤔</span>Year 1 retention · annual</td><td>27.0%</td><td>27.8%</td><td class="rn" style="color:var(--muted)">27.1%</td><td>30.6%</td></tr>
+      </tbody>
+    </table>
+    <a class="data-source" href="https://www.revenuecat.com/state-of-subscription-apps/" target="_blank" rel="noreferrer">RevenueCat State of Subscription Apps 2026 · medians by framework</a>
+    <aside class="speaker-note"><b>5:45</b> Download to paid: win. Revenue per install: win, at day 14 and day 60. LTV per customer: win. Year 1 retention: not a win.<br><br>Let’s go through them one by one. After each chart, I’ll give you the key learning from it.</aside>
+  </section>
+
+  <!-- ============ PART 2 — FIVE KEY LEARNINGS (7:00–24:00) ============ -->
+
+  <!-- SLIDE 12 — DOWNLOAD TO PAID -->
+  <section class="slide" data-number="12">
+    <div class="chrome">🏆 Download to paid</div><div class="brand">RevenueCat</div>
+    <div class="chart-layout">
+      <div><div class="kicker">🏆 Download to paid</div><h2 class="title" style="font-size:4vh">React Native turns 25% more installs into paying customers</h2><p class="big-number" style="margin-top:3vh">2.5%</p><div class="delta"><div><b>+25%</b> vs. Native (2.0%)</div><div><b>+39%</b> vs. Flutter (1.8%)</div></div></div>
+      <div class="chart-card"><h3>Day 35 download-to-paid by framework</h3><div class="legend">Box = P25–P75 · line = median · whiskers = P10–P90</div>
+        <svg class="boxplot" data-unit="%" data-digits="1" data-series='[["Native",[0.13,0.68,1.98,4.36,8.27]],["Flutter",[0.19,0.62,1.81,4.34,8.57]],["React Native",[0.28,0.89,2.50,5.68,11.54]],["Other",[0.10,0.43,1.44,4.04,9.90]]]'></svg></div>
+    </div>
+    <a class="data-source" href="https://www.revenuecat.com/state-of-subscription-apps/#does-development-framework-affect-download-to-paid-conversion" target="_blank" rel="noreferrer">State of Subscription Apps 2026 · Day 35 download-to-paid by framework</a>
+    <aside class="speaker-note"><b>7:00</b> Download to paid: the share of installs that result in at least one paid subscription within 35 days.<br><br>React Native apps have the highest median conversion at 2.5%. That might not sound like much, but it’s 25% higher than native and 39% higher than Flutter.<br><br>Then look at the top whisker of React Native. Top React Native apps are outperforming the other stacks. At the same time, the results are very widespread. Some React Native apps do great, others don’t.</aside>
+  </section>
+
+  <!-- SLIDE 13 — LEARNING 1 -->
+  <section class="slide paper" data-number="13">
+    <div class="chrome">Key learning 1 / 5</div><div class="brand">RevenueCat</div>
+    <div class="stack">
+      <div class="learning-tag">Key learning 1 / 5</div>
+      <h1 class="display" style="max-width:17ch">Execution matters far more than stack choice</h1>
+      <p class="subtitle" style="margin-top:3.4vh;max-width:50ch">The variance within a stack absolutely dwarfs the variance between stacks. The top performers convert to paying customers 10+ times better than the bottom performers in their own stack.</p>
+      <p class="pull">Technology choice can enable you, but it is not a magic spell that doubles your conversion.</p>
+    </div>
+    <aside class="speaker-note"><b>8:30</b> If you look at the spread inside each stack, you start to see the real insight: the variance within a stack absolutely dwarfs the variance between stacks. The top performers convert 10+ times better than the bottom performers in their own stack.<br><br>So what’s pulling the top React Native apps ahead? Probably not the stack itself. More likely, it’s the teams building them. They have to focus on two things to win: building a great app and monetizing it effectively. Stack choice can enable you to do that, but it is not a magic spell that doubles your conversion.</aside>
+  </section>
+
+  <!-- SLIDE 14 — RPI D14 -->
+  <section class="slide" data-number="14">
+    <div class="chrome">🏆 Revenue per install</div><div class="brand">RevenueCat</div>
+    <div class="chart-layout">
+      <div><div class="kicker">🏆 Revenue per install · Day 14</div><h2 class="title" style="font-size:4vh">Every React Native install is worth 55% more in the first two weeks</h2><p class="big-number" style="margin-top:3vh">$0.34</p><div class="delta"><div><b>+55%</b> vs. Native ($0.22)</div><div><b>+79%</b> vs. Flutter ($0.19)</div></div></div>
+      <div class="chart-card"><h3>Day 14 revenue per install by framework</h3><div class="legend">Box = P25–P75 · line = median · whiskers = P10–P90</div>
+        <svg class="boxplot" data-unit="$" data-digits="2" data-series='[["Native",[0.01,0.07,0.22,0.55,1.27]],["Flutter",[0.01,0.05,0.19,0.59,1.59]],["React Native",[0.03,0.10,0.34,1.04,2.58]],["Other",[0.01,0.04,0.19,0.65,1.57]]]'></svg></div>
+    </div>
+    <a class="data-source" href="https://www.revenuecat.com/state-of-subscription-apps/#does-framework-choice-impact-d14-revenue-per-install" target="_blank" rel="noreferrer">State of Subscription Apps 2026 · Day 14 revenue per install by framework</a>
+    <aside class="speaker-note"><b>10:00</b> Revenue per install: how much revenue an app makes 14 days after a user installs it. React Native leads with a median of $0.34, 55% higher than native and 79% higher than Flutter. The top quartile of React Native apps is also making more than the top quartile of native or Flutter apps.<br><br>But again, there’s a huge difference between apps on the same stack. Some make $0.10 per install, others $2.58.</aside>
+  </section>
+
+  <!-- SLIDE 15 — LEARNING 2 -->
+  <section class="slide paper" data-number="15">
+    <div class="chrome">Key learning 2 / 5</div><div class="brand">RevenueCat</div>
+    <div class="stack">
+      <div class="learning-tag">Key learning 2 / 5</div>
+      <h1 class="display" style="max-width:17ch">Feedback loops</h1>
+      <p class="subtitle" style="margin-top:2.4vh;max-width:52ch">Building great products is largely about shortening the time between learning something from customers and acting on it.</p>
+      <div class="path" style="margin-top:4vh">
+        <div class="step"><b>01 · Learn</b><strong>What customers want</strong><span>Which features they value, what they’ll pay for</span></div>
+        <div class="step"><b>02 · Ship</b><strong>Without app review</strong><span>EAS Update, Codemagic</span></div>
+        <div class="step"><b>03 · Experiment</b><strong>Without a new release</strong><span>Pricing, offerings, and paywalls with RevenueCat</span></div>
+        <div class="step"><b>04 · Compound</b><strong>Repeat, faster</strong><span>Better experience, stronger monetization</span></div>
+      </div>
+    </div>
+    <aside class="speaker-note"><b>11:00</b> Successful subscription businesses optimize relentlessly based on customer feedback. Building great products is largely about shortening the time between learning something from customers and acting on it. The faster a team understands what customers want, which features they value, and what they’re willing to pay for, the faster it can improve the product. Over time this compounds into a better user experience and stronger monetization.<br><br>React Native is a strong fit for this. EAS and Codemagic let teams ship many changes instantly without app reviews, and RevenueCat lets you experiment with pricing, offerings, and paywalls without a new app release.<br><br>But React Native is not a prerequisite for strong monetization. The spread inside each stack is still bigger than the gap between them.</aside>
+  </section>
+
+  <!-- SLIDE 16 — RPI D60 -->
+  <section class="slide" data-number="16">
+    <div class="chrome">🏆 Revenue per install</div><div class="brand">RevenueCat</div>
+    <div class="chart-layout">
+      <div><div class="kicker">🏆 Revenue per install · Day 60</div><h2 class="title" style="font-size:4vh">React Native pulls further ahead by day 60</h2><p class="big-number" style="margin-top:3vh">$0.51</p><div class="delta"><div><b>+65%</b> vs. Native ($0.31) · was +55% at D14</div><div><b>+76%</b> vs. Flutter ($0.29)</div></div></div>
+      <div class="chart-card"><h3>Day 60 revenue per install by framework</h3><div class="legend">Box = P25–P75 · line = median · whiskers = P10–P90</div>
+        <svg class="boxplot" data-unit="$" data-digits="2" data-series='[["Native",[0.03,0.10,0.31,0.78,1.71]],["Flutter",[0.02,0.08,0.29,0.88,2.28]],["React Native",[0.05,0.16,0.51,1.50,3.60]],["Other",[0.01,0.06,0.28,0.92,2.21]]]'></svg></div>
+    </div>
+    <a class="data-source" href="https://www.revenuecat.com/state-of-subscription-apps/#how-does-d60-rpi-compare-by-framework" target="_blank" rel="noreferrer">State of Subscription Apps 2026 · Day 60 revenue per install by framework</a>
+    <aside class="speaker-note"><b>12:30</b> Download to paid and day-14 revenue tell us about early success. Day 60 tells a stronger story. React Native doesn’t just hold the gap, it widens it. Median revenue per install is $0.51, compared to $0.31 for native and $0.29 for Flutter. That’s 65% more than native, up from 55% at day 14, and 76% more than Flutter.<br><br>And again, the biggest differences are between apps, not stacks: within React Native alone, from about five cents at P10 to $3.60 at P90.</aside>
+  </section>
+
+  <!-- SLIDE 17 — LEARNING 3 -->
+  <section class="slide paper" data-number="17">
+    <div class="chrome">Key learning 3 / 5</div><div class="brand">RevenueCat</div>
+    <div class="stack">
+      <div class="learning-tag">Key learning 3 / 5</div>
+      <h1 class="display" style="max-width:17ch">Monetization is a product problem</h1>
+      <p class="subtitle" style="margin-top:3vh;max-width:52ch">If monetization gains persist for two months, the explanation probably isn’t a better payment process. Realistically, it’s about the product being great.</p>
+      <p class="pull">Most customers are not engineers. For them, it’s more important if the product solves the problem, not how.</p>
+    </div>
+    <aside class="speaker-note"><b>14:00</b> If monetization gains persist for two months, the explanation probably isn’t a better payment process. It’s about the product being great. Monetizing well beyond the first month means these are valuable products users want to pay for, and to get there you need to be a product-oriented person or team.<br><br>Something in React Native makes product-oriented teams choose it. When I posted about this, all the people who challenged the results were engineers. From an engineering perspective, React Native is easy to challenge: there’s a bunch of weird stuff compared to something like Swift.<br><br>But most customers are not engineers. And even if they are, they don’t approach the products they use from an engineering perspective. For them, it matters if the product solves the problem, not how.</aside>
+  </section>
+
+  <!-- SLIDE 18 — RETENTION -->
+  <section class="slide" data-number="18">
+    <div class="chrome">🤔 Year 1 retention</div><div class="brand">RevenueCat</div>
+    <div class="chart-layout">
+      <div><div class="kicker">🤔 Year 1 retention</div><h2 class="title">Retention: a tie</h2><p class="subtitle" style="margin-top:2.4vh">Every stack keeps about 27–31% of annual subscribers after a year</p><div class="delta"><div>React Native <b>27.1%</b> · Native <b>27.0%</b></div><div>Flutter <b>27.8%</b> · Other <b>30.6%</b></div></div></div>
+      <div class="chart-card"><h3>Year 1 retention, annual plans, by framework</h3><div class="legend">Box = P25–P75 · line = median · whiskers = P10–P90</div>
+        <svg class="boxplot" data-unit="%" data-digits="1" data-highlight="none" data-series='[["Native",[9.35,16.47,27.01,41.51,58.19]],["Flutter",[8.82,16.52,27.75,45.14,62.37]],["React Native",[9.76,17.30,27.14,43.64,59.04]],["Other",[12.51,20.05,30.57,47.44,67.50]]]'></svg></div>
+    </div>
+    <a class="data-source" href="https://www.revenuecat.com/state-of-subscription-apps/#does-framework-affect-subscriber-retention-over-a-year" target="_blank" rel="noreferrer">State of Subscription Apps 2026 · Year 1 retention per plan by framework</a>
+    <aside class="speaker-note"><b>15:30</b> Here’s the real story. Retention at one year barely differs between native, Flutter, React Native, or any other stack. Annual medians range from 27% to 31%. React Native’s lead in conversion and revenue cannot be explained by better long-term retention. Users don’t stay subscribed longer in React Native apps. They stay about the same.</aside>
+  </section>
+
+  <!-- SLIDE 19 — FRONT-LOADING VALUE -->
+  <section class="slide" data-number="19">
+    <div class="chrome">Where the advantage comes from</div><div class="brand">RevenueCat</div>
+    <div class="stack">
+      <div class="kicker">That tells us exactly where the advantage comes from</div>
+      <h1 class="display" style="max-width:19ch">React Native wins by front-loading value, not by keeping users longer</h1>
+      <div class="timeline">
+        <div class="tl"><b>Convert</b><strong>+25%</strong><span>more users earlier</span></div>
+        <div class="tl"><b>Monetize</b><strong>+65%</strong><span>more revenue per install by day 60</span></div>
+        <div class="tl flat"><b>Retain</b><strong>±0</strong><span>all stacks perform similarly</span></div>
+      </div>
+    </div>
+    <aside class="speaker-note"><b>16:30</b> That’s the interesting part, because it tells us exactly where the advantage comes from. React Native apps convert more users earlier. They extract more revenue per install. But when it comes to keeping customers for a year, all stacks perform similarly.<br><br>React Native wins by front-loading value, not by keeping users longer.</aside>
+  </section>
+
+  <!-- SLIDE 20 — LEARNING 4 -->
+  <section class="slide paper" data-number="20">
+    <div class="chrome">Key learning 4 / 5</div><div class="brand">RevenueCat</div>
+    <div class="stack">
+      <div class="learning-tag">Key learning 4 / 5</div>
+      <h1 class="display" style="max-width:17ch">Play long-term games</h1>
+      <p class="subtitle" style="margin-top:3vh;max-width:52ch">Your app business should not be about stacks and hacks, at least if you’re in it for the long term. The longer you keep your customers, the more money they make.</p>
+      <p class="pull">Customer loyalty is earned through product value, not technology choices.</p>
+    </div>
+    <aside class="speaker-note"><b>17:30</b> Stack choice has very little impact on whether customers stay subscribed. Your app business should not be about stacks and hacks, at least if you’re in it for the long term. You can build a decent business by monetizing a loved product with a small but significant audience, as long as you keep those customers.<br><br>Frameworks help teams move faster and experiment more often. But they can’t replace the fundamentals: understanding customer problems, building features people need, and delivering enough value to justify an ongoing subscription. The longer you keep your customers, the more money they make. Customer loyalty is earned through product value, not technology choices.</aside>
+  </section>
+
+  <!-- SLIDE 21 — LTV -->
+  <section class="slide" data-number="21">
+    <div class="chrome">🏆 LTV per customer</div><div class="brand">RevenueCat</div>
+    <div class="chart-layout">
+      <div><div class="kicker">🏆 LTV per customer · Year 1</div><h2 class="title" style="font-size:4vh">A React Native customer is worth $11 more after a year</h2><p class="big-number" style="margin-top:3vh">$31.78</p><div class="delta"><div><b>+52%</b> vs. Native ($20.88)</div><div><b>+50%</b> vs. Flutter ($21.18)</div><div>P90: <b>$95.32</b> vs. $74.68 Flutter · $61.81 Native</div></div></div>
+      <div class="chart-card"><h3>Year 1 realized LTV per payer by framework</h3><div class="legend">Box = P25–P75 · line = median · whiskers = P10–P90</div>
+        <svg class="boxplot" data-unit="$" data-digits="2" data-series='[["Native",[5.10,10.14,20.88,38.26,61.81]],["Flutter",[4.95,9.66,21.18,40.43,74.68]],["React Native",[6.68,15.13,31.78,58.23,95.32]],["Other",[4.48,7.94,20.32,43.47,71.73]]]'></svg></div>
+    </div>
+    <a class="data-source" href="https://www.revenuecat.com/state-of-subscription-apps/#does-framework-choice-impact-long-term-payer-value" target="_blank" rel="noreferrer">State of Subscription Apps 2026 · Y1 realized LTV per payer by framework</a>
+    <aside class="speaker-note"><b>19:00</b> If that brought some hope to people who think React Native is just an early-stage anomaly, this chart is going to shatter it. At least a bit.<br><br>Realized LTV: how much a paying customer generates during their first year. The median React Native app makes $31.78 per payer. Native and Flutter cluster around $21. That’s roughly 50% more. And it’s not only the median: top React Native apps reach $95.32, versus $74.68 for Flutter and $61.81 for native.<br><br>Same retention, yet significantly more value per payer. React Native apps appear to be doing a better job of monetizing the customers they acquire: pricing, packaging, positioning, customer quality, or all four.</aside>
+  </section>
+
+  <!-- SLIDE 22 — LEARNING 5 -->
+  <section class="slide paper" data-number="22">
+    <div class="chrome">Key learning 5 / 5</div><div class="brand">RevenueCat</div>
+    <div class="stack">
+      <div class="learning-tag">Key learning 5 / 5</div>
+      <h1 class="display" style="max-width:17ch">Valuable customers beat more customers</h1>
+      <p class="subtitle" style="margin-top:3vh;max-width:52ch">The apps that perform best are not necessarily the ones attracting the most customers. They’re often the ones creating the most value for the customers they already have.</p>
+      <p class="pull">Each customer becomes more valuable. Not because you’re extracting more from them, but because you’re giving them more reasons to stay.</p>
+    </div>
+    <aside class="speaker-note"><b>20:30</b> The best-performing apps are not necessarily the ones attracting the most customers. They’re often the ones creating the most value for the customers they already have.<br><br>That’s good news for builders. Success isn’t about growth at all costs. You don’t need to win every download or dominate every category. Sometimes the biggest opportunities come from deeply understanding a smaller group of customers and building something they’re genuinely happy to pay for. Each customer becomes more valuable, not because you’re extracting more from them, but because you’re giving them more reasons to stay.</aside>
+  </section>
+
+  <!-- ============ PART 3 — BUT WHY REACT NATIVE? (22:00–31:00) ============ -->
+
+  <!-- SLIDE 23 — BUT WHY -->
+  <section class="slide blue center" data-number="23">
+    <div class="chrome">Why React Native</div><div class="brand">RevenueCat</div>
+    <div><h1 class="mega">But why React Native?</h1><p class="subtitle" style="margin:3vh auto 0;color:#fff">Something in React Native makes product-oriented teams choose it</p></div>
+    <aside class="speaker-note"><b>22:00</b> So if it’s the teams, why do those teams choose React Native?</aside>
+  </section>
+
+  <!-- SLIDE 24 — PROVEN TECH -->
+  <section class="slide" data-number="24">
+    <div class="chrome">Why React Native</div><div class="brand">RevenueCat</div>
+    <div class="split wide">
+      <div><h2 class="title">Companies bet on what they can hire for</h2><ul class="bullets"><li>Companies are choosing proven technologies…</li><li>… for which it is easy to hire great developers</li><li>React devs are everywhere</li><li>Proven by giants: #2 on the App Store, #3 on Google Play</li></ul></div>
+      <div><img class="shot framed" src="assets/pragmatic-engineer-store-frameworks.png" alt="Top frameworks on the App Store and Google Play, with React Native second on App Store and third on Google Play"><div class="figure-caption">Cross-platform mobile development — The Pragmatic Engineer</div></div>
+    </div>
+    <aside class="speaker-note"><b>22:30</b> Companies are choosing proven technologies, for which it is easy to hire great developers. In other words, React Native. React devs are everywhere, and it’s proven by giants: among top apps, React Native is the second most-used framework on the App Store and third on Google Play.</aside>
+  </section>
+
+  <!-- SLIDE 25 — TOOLSET FOR SPEED -->
+  <section class="slide" data-number="25">
+    <div class="chrome">Why React Native</div><div class="brand">RevenueCat</div>
+    <div class="stack">
+      <h2 class="title">React Native is a toolset for speed</h2>
+      <div class="kicker" style="margin-top:3vh;color:var(--text)">Great apps are about delivering value fast, in order to learn fast</div>
+      <ul class="bullets" style="margin-top:1vh"><li>Cross-platform reach: iOS, Android, Web, whatever</li><li>“Native feel” is really really important</li><li>Faster development and time-to-market</li><li>Single code-base</li><li class="sub">Feature parity</li><li class="sub">Monetization parity</li></ul>
+    </div>
+    <aside class="speaker-note"><b>23:45</b> React Native: toolset for speed. Great apps are about delivering value fast, in order to learn fast. Cross-platform reach: iOS, Android, Web, whatever. “Native feel” is really really important. Faster development and time-to-market. Single code-base, which means feature parity and monetization parity.</aside>
+  </section>
+
+  <!-- SLIDE 26 — ONE CODEBASE -->
+  <section class="slide" data-number="26">
+    <div class="chrome">Why React Native</div><div class="brand">RevenueCat</div>
+    <div class="stack">
+      <h2 class="title">Faster to launch → faster to monetize</h2>
+      <p class="subtitle" style="margin-top:2vh">One codebase → Web + iOS + Android</p>
+      <img class="shot" src="assets/expo-three-platforms.png" alt="Android, iOS, and web devices built from a single codebase" style="max-height:44vh;margin-top:4vh">
+    </div>
+    <aside class="speaker-note"><b>25:00</b> One codebase: Web, iOS, and Android. Faster to launch means faster to monetize. Every week you’re not in a store is a week you’re not making money.</aside>
+  </section>
+
+  <!-- SLIDE 27 — CROSS-PLATFORM CONSISTENCY -->
+  <section class="slide" data-number="27">
+    <div class="chrome">Cross-platform consistency</div><div class="brand">RevenueCat</div>
+    <div class="stack">
+      <div class="kicker">Monetization parity</div>
+      <h2 class="title">One purchase. Every platform.</h2>
+      <div class="platform-row">
+        <div class="platform"><b>iOS</b><p>Same paywall, same prices, same access</p></div>
+        <div class="platform"><b>Android</b><p>Same paywall, same prices, same access</p></div>
+        <div class="platform"><b>Web</b><p>Same paywall, same prices, same access</p></div>
+      </div>
+      <p class="subtitle" style="margin-top:4vh;max-width:56ch">No platform two releases behind. Less friction in the funnel, and one feedback loop instead of three.</p>
+    </div>
+    <aside class="speaker-note"><b>26:00</b> Cross-platform consistency. With one codebase, the paywall, the prices, and the access are the same on every platform. You don’t have the Android version two releases behind with a different paywall. Less friction in the monetization funnel, and one feedback loop to learn from instead of three.</aside>
+  </section>
+
+  <!-- SLIDE 28 — WHERE NATIVE WINS -->
+  <section class="slide paper" data-number="28">
+    <div class="chrome">Where native may outperform</div><div class="brand">RevenueCat</div>
+    <div class="stack">
+      <div class="kicker">To be fair</div>
+      <h2 class="title">Native still wins at the edges</h2>
+      <div class="versus">
+        <div><h3 class="coral">Where native may outperform</h3><ul class="bullets"><li>Performance edge cases</li><li>Platform-specific UX polish</li><li>Widgets, Live Activities, Liquid Glass on day one</li></ul></div>
+        <div><h3 style="color:var(--blue)">So what should you do?</h3><ul class="bullets"><li>Evaluate stacks from a product perspective</li><li>Validate with the stack that gives you results the fastest</li><li>Nothing stops you moving to SwiftUI when your stack becomes the limit</li></ul></div>
+      </div>
+    </div>
+    <aside class="speaker-note"><b>28:00</b> There are still areas where native may outperform: performance edge cases and platform-specific UX polish.<br><br>So what does this mean for a developer building an app? First, evaluate the benefits of a stack from a product perspective: what gives you the best results with your current capabilities. Second, validate with the stack that gives you results the fastest. Nothing’s stopping you from going from React Native to SwiftUI after you’ve built the first version and feel your technology is the limit. As long as you don’t choose a technology based on what other engineers said, you’re probably good.</aside>
+  </section>
+
+  <!-- SLIDE 29 — MONEY ON THE TABLE -->
+  <section class="slide blue center" data-number="29">
+    <div class="chrome">The punchline</div><div class="brand">RevenueCat</div>
+    <h1 class="mega" style="max-width:15ch">You’re leaving money on the table if you aren’t monetizing</h1>
+    <aside class="speaker-note"><b>29:30</b> Call out the audience: you’re leaving money on the table if you aren’t monetizing. And if you are, here’s how to check how much.</aside>
+  </section>
+
+  <!-- SLIDE 30 — WHERE DO YOU STAND -->
+  <section class="slide" data-number="30">
+    <div class="chrome">Where do you stand?</div><div class="brand">RevenueCat</div>
+    <h2 class="title">Where does your React Native app stand?</h2>
+    <table class="score">
+      <thead><tr><th>React Native apps</th><th>Median</th><th class="rn">Top quartile</th><th>Top 10%</th></tr></thead>
+      <tbody>
+        <tr><td>Download to paid · D35</td><td>2.5%</td><td class="rn">5.7%</td><td>11.5%</td></tr>
+        <tr><td>Revenue per install · D14</td><td>$0.34</td><td class="rn">$1.04</td><td>$2.58</td></tr>
+        <tr><td>Revenue per install · D60</td><td>$0.51</td><td class="rn">$1.50</td><td>$3.60</td></tr>
+        <tr><td>LTV per customer · Y1</td><td>$31.78</td><td class="rn">$58.23</td><td>$95.32</td></tr>
+      </tbody>
+    </table>
+    <a class="data-source" href="https://www.revenuecat.com/state-of-subscription-apps/" target="_blank" rel="noreferrer">State of Subscription Apps 2026 · React Native benchmarks (P50 / P75 / P90)</a>
+    <aside class="speaker-note"><b>30:00</b> Take a photo of this one. If your app is below the median, the gap to the top quartile is money on the table. Above $1.04 revenue per install at day 14, you’re in the top quartile. Above $95 LTV per customer, you’re in the top 10%.</aside>
+  </section>
+
+  <!-- ============ PART 4 — PREDICTIONS (31:00–35:00) ============ -->
+
+  <!-- SLIDE 31 — SECTION -->
+  <section class="slide blue center" data-number="31">
+    <div class="chrome">Predictions</div><div class="brand">RevenueCat</div>
+    <div><div class="kicker" style="text-align:center;margin-left:auto;margin-right:auto">Two years of React Native leading</div><h1 class="mega" style="max-width:14ch">Will we see the same next year?</h1></div>
+    <aside class="speaker-note"><b>31:00</b> We now have two years of React Native leading the framework monetization section. The question is whether we’ll see similar results next year. Here are my predictions.</aside>
+  </section>
+
+  <!-- SLIDE 32 — PREDICTION 1 -->
+  <section class="slide" data-number="32">
+    <div class="chrome">Prediction 1 / 2</div><div class="brand">RevenueCat</div>
+    <div class="stack">
+      <div class="learning-tag dark-tag">Prediction 1 / 2</div>
+      <h1 class="display" style="max-width:18ch">Agents erase React Native’s beginner advantage</h1>
+      <p class="subtitle" style="margin-top:3vh;max-width:54ch">Previously, React Native was argued to be the easy stack to land on if you were a beginner or came from web development. Now that advantage is gone. You can easily build apps with any language, without having to understand it yourself.</p>
+    </div>
+    <aside class="speaker-note"><b>31:45</b> Last year we started to see the agentic coding workflow, and it’s now the default for most developers. Previously, React Native was argued to be the easy stack to land on if you were a beginner or came from web development. That advantage is gone. You can easily build apps in any language, without having to understand it yourself.</aside>
+  </section>
+
+  <!-- SLIDE 33 — GOING BACK TO NATIVE -->
+  <section class="slide paper" data-number="33">
+    <div class="chrome">Prediction 1 / 2 · It’s already happening</div><div class="brand">RevenueCat</div>
+    <div class="stack">
+      <div class="kicker">It’s already happening</div>
+      <h2 class="title" style="max-width:26ch">Shopify and Coinbase are leaving React Native for Swift and Kotlin</h2>
+      <div class="cases">
+        <div class="case"><b>Shopify · September 2026</b><p class="case-quote">“Coding agents changed what it costs to build mobile apps twice.”</p><ul><li>All-in on React Native since 2020: “that bet has been extremely successful”</li><li>Shop app rebuilt fully native in 12 weeks</li><li>“React Native apps can be fast. Ours are.”</li></ul><a href="https://shopify.engineering/back-to-native" target="_blank" rel="noreferrer">shopify.engineering/back-to-native ↗</a></div>
+        <div class="case"><b>Coinbase · consumer trading app</b><p class="case-quote">“AI coding agents have collapsed the cost of building a feature twice.”</p><ul><li>Faster startup, fewer crashes</li><li>Day-one access to new iOS and Android capabilities</li><li>“For an app where millions of people trade real money, that matters a lot.”</li></ul><a>Adam Wolf, Senior Engineering Manager · LinkedIn</a></div>
+      </div>
+    </div>
+    <aside class="speaker-note"><b>32:30</b> And this isn’t hypothetical. Shopify went all-in on React Native in 2020 and calls it an extremely successful bet. Last month they announced they’re moving back to Swift and Kotlin, because coding agents changed what it costs to build mobile apps twice. They rebuilt the Shop app as a fully native app in 12 weeks. And they say it themselves: React Native apps can be fast, theirs are.<br><br>Coinbase is doing the same with its consumer trading app. Same reasoning: AI coding agents have collapsed the cost of building a feature twice, and nothing sitting between your code and the platform means faster startup, fewer crashes, and day-one access to new platform capabilities.<br><br>Notice what they’re not saying. They’re not saying React Native can’t make money. They’re saying the cost of building twice went away. And look at what Shopify is investing in to make it work: fast feedback loops for their agents. Same lesson as before. The teams that iterate fastest win, whatever the stack.</aside>
+  </section>
+
+  <!-- SLIDE 34 — PREDICTION 2 -->
+  <section class="slide" data-number="34">
+    <div class="chrome">Prediction 2 / 2</div><div class="brand">RevenueCat</div>
+    <div class="split">
+      <div><div class="learning-tag dark-tag">Prediction 2 / 2</div><h1 class="display" style="max-width:16ch">More apps than ever. Smaller gaps between frameworks.</h1><p class="subtitle" style="margin-top:3vh">We will get more apps than ever before, built in a variety of technologies. Perhaps a slightly hopeful prediction is that differences between frameworks will get smaller.</p></div>
+      <div class="chart-card"><h3>New subscription apps launched per month</h3><div class="legend">iOS + Android, each January · 7× in four years</div>
+        <svg class="barchart" data-series='[["Jan 2022",2000],["Jan 2023",2727],["Jan 2024",3573],["Jan 2025",5901],["Jan 2026",14717]]'></svg></div>
+    </div>
+    <aside class="speaker-note"><b>33:30</b> What most likely happens is that we get more apps than ever before, built in a variety of technologies. If developers focus on the principles of building great apps, the ones I’ve hammered on in this talk, we’ll see the data stabilize. A slightly hopeful prediction is that the differences between frameworks get smaller. Hopefully not at the cost of conversion, retention, and LTV.</aside>
+  </section>
+
+  <!-- ============ PART 5 — CLOSING (35:00–40:00) ============ -->
+
+  <!-- SLIDE 35 — RECAP -->
+  <section class="slide" data-number="35">
+    <div class="chrome">Recap</div><div class="brand">RevenueCat</div>
+    <div class="stack">
+      <h2 class="title">Five key learnings</h2>
+      <div class="recap">
+        <div><b>01</b><span>Execution matters far more than stack choice</span></div>
+        <div><b>02</b><span>Feedback loops</span></div>
+        <div><b>03</b><span>Monetization is a product problem</span></div>
+        <div><b>04</b><span>Play long-term games</span></div>
+        <div><b>05</b><span>Valuable customers beat more customers</span></div>
+      </div>
+      <p class="subtitle" style="margin-top:3.6vh;max-width:60ch">React Native apps convert 25% more installs and earn 50% more per customer, with the same retention.</p>
+    </div>
+    <aside class="speaker-note"><b>35:00</b> To recap. React Native apps convert 25% more installs and earn about 50% more per customer, with the same retention. And the five key learnings: execution matters far more than stack choice. Feedback loops. Monetization is a product problem. Play long-term games. Valuable customers beat more customers.</aside>
+  </section>
+
+  <!-- SLIDE 36 — DOES IT MATTER -->
+  <section class="slide" data-number="36">
+    <div class="chrome">Does all of this really matter?</div><div class="brand">RevenueCat</div>
+    <div class="stack">
+      <h1 class="display" style="max-width:20ch">Does all of this really matter?</h1>
+      <ul class="bullets matter-list">
+        <li>We are working in an industry that is quickly changing. AI is making it easy to solve technology problems</li>
+        <li>It’s not making it significantly easier to solve human problems, like understanding needs and wants. If it was, statisticians would be the leaders of companies, since everything can be reduced to a number, right?</li>
+        <li>Not really, but you are no longer an engineer. You now need to be a product person</li>
+        <li>And for product people, the only thing that produces quality work is human effort, empathy, decision making, reflection, and more importantly, <span class="coral">mistakes</span></li>
+      </ul>
+    </div>
+    <aside class="speaker-note"><b>35:45</b> So, does all of this really matter?<br><br>We are working in an industry that is quickly changing. AI is making it easy to solve technology problems.<br><br>It’s not making it significantly easier to solve human problems, like understanding needs and wants. If it was, statisticians would be the leaders of companies, since everything can be reduced to a number, right?<br><br>Not really. But you are no longer an engineer. You now need to be a product person.<br><br>And for product people, the only thing that produces quality work is human effort, empathy, decision making, reflection, and more importantly, mistakes.</aside>
+  </section>
+
+  <!-- SLIDE 37 — MISTAKES -->
+  <section class="slide blue center" data-number="37">
+    <div class="chrome">Mistakes</div><div class="brand">RevenueCat</div>
+    <div><h1 class="mega" style="max-width:14ch">And mistakes are a powerful tool</h1><p class="subtitle" style="margin:3.4vh auto 0;color:#fff;font-size:3vh;max-width:40ch">You are a product of trillions of them. Evolution forged all sentient life using only that one tool.</p></div>
+    <aside class="speaker-note"><b>37:00</b> And mistakes are a powerful tool. You are a product of trillions of them. Evolution forged all sentient life using only that one tool: mistakes.</aside>
+  </section>
+
+  <!-- SLIDE 38 — USE WHAT LETS YOU DO THE MOST -->
+  <section class="slide" data-number="38">
+    <div class="chrome">So which technology?</div><div class="brand">RevenueCat</div>
+    <div class="stack">
+      <h1 class="display" style="max-width:18ch">Use the technology that enables you to do the most</h1>
+      <p class="subtitle" style="margin-top:3vh;max-width:56ch">For some teams that’s React Native. For Shopify and Coinbase, it’s now Swift and Kotlin. Pick the one that lets you ship, learn, and make your mistakes the fastest.</p>
+    </div>
+    <aside class="speaker-note"><b>37:45</b> So use the technology that enables you to do the most. For some teams that’s React Native. For Shopify and Coinbase, it’s now Swift and Kotlin. Pick the one that lets you ship, learn, and make your mistakes the fastest.</aside>
+  </section>
+
+  <!-- SLIDE 39 — CONCLUSION -->
+  <section class="slide blue center" data-number="39">
+    <div class="chrome">Conclusion</div><div class="brand">RevenueCat</div>
+    <h1 class="mega" style="max-width:19ch;font-size:clamp(3.2rem,7.6vh,7.4rem)">The teams that learn fastest, iterate fastest, and continuously improve their product are the ones most likely to win.</h1>
+    <aside class="speaker-note"><b>38:30</b> The lesson is simple: build a tight feedback loop with your customers. Whether you’re using React Native, Flutter, or native, the teams that learn fastest, iterate fastest, and continuously improve their product are the ones most likely to win. The strongest monetization outcomes don’t come from a secret framework feature or a growth hack. They come from building products people truly value.</aside>
+  </section>
+
+  <!-- SLIDE 40 — THAT'S IT -->
+  <section class="slide center" data-number="40">
+    <div class="chrome">Thank you</div><div class="brand">RevenueCat</div>
+    <div><h1 class="mega">That’s it</h1><p class="subtitle" style="margin:2.4vh auto 0;font-size:2.6vh">@plahteenlahti · perttu.dev · revenuecat.com</p>
+      <a class="report-qr" href="https://www.revenuecat.com/state-of-subscription-apps/" target="_blank" rel="noreferrer" style="text-align:left"><img src="assets/qr-revenuecat-sosa-2026.png" alt="QR code for RevenueCat State of Subscription Apps 2026"><div><strong>State of Subscription Apps 2026</strong><span>All the framework charts, and 330+ pages more ↗</span></div></a></div>
+    <aside class="speaker-note"><b>39:15</b> That’s it. Scan the QR code for the full State of Subscription Apps report. Questions?</aside>
+  </section>
+
+</div>
+
+<a class="home" href="../../" title="Presentation library">⌂</a>
+<button class="edit-toggle" id="edit" type="button" aria-pressed="false" title="Edit slide text in this browser">E · edit</button>
+<div class="controls"><button id="prev" type="button" aria-label="Previous slide">←</button><button id="next" type="button" aria-label="Next slide">→</button></div>
+<div class="progress" id="progress"></div>
+<div class="timer" id="timer">00:00</div>
+<div class="notes" id="notes"></div>
+
+<script>
+  /* Box plots: each <svg class="boxplot"> carries [label,[min,q1,median,q3,max]] pairs. */
+  const SVGNS='http://www.w3.org/2000/svg';
+  function el(name,attrs,text){const n=document.createElementNS(SVGNS,name);for(const k in attrs)n.setAttribute(k,attrs[k]);if(text!=null)n.textContent=text;return n}
+  function fmt(v,unit,digits){const s=v.toFixed(digits);return unit==='$'?`$${s}`:`${s}%`}
+  function niceStep(max){const raw=max/5,p=10**Math.floor(Math.log10(raw)),m=raw/p;return(m<=1?1:m<=2?2:m<=2.5?2.5:m<=5?5:10)*p}
+  document.querySelectorAll('svg.boxplot').forEach(svg=>{
+    const series=JSON.parse(svg.dataset.series),unit=svg.dataset.unit,digits=Number(svg.dataset.digits||1);
+    const highlight=svg.dataset.highlight??'React Native';
+    const W=1000,H=560,L=86,R=20,T=24,B=58;
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    const max=Math.max(...series.map(s=>s[1][4])),step=niceStep(max),top=Math.ceil(max/step)*step;
+    const y=v=>T+(H-T-B)*(1-v/top);
+    for(let v=0;v<=top+1e-9;v+=step){
+      svg.append(el('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),stroke:'rgba(255,255,255,.1)'}));
+      svg.append(el('text',{x:L-14,y:y(v)+7,'text-anchor':'end',fill:'#8d8c99','font-size':19,'font-family':'JetBrains Mono'},fmt(v,unit,v%1?Math.min(digits,2):0)));
+    }
+    const band=(W-L-R)/series.length;
+    series.forEach(([label,[mn,q1,md,q3,mx]],idx)=>{
+      const cx=L+band*idx+band/2,bw=band*.42,on=label===highlight;
+      const stroke=on?'#61dafb':'#9b9aa8',fill=on?'rgba(97,218,251,.2)':'rgba(255,255,255,.07)';
+      svg.append(el('line',{x1:cx,x2:cx,y1:y(mx),y2:y(mn),stroke,'stroke-width':2}));
+      [mn,mx].forEach(v=>svg.append(el('line',{x1:cx-bw*.22,x2:cx+bw*.22,y1:y(v),y2:y(v),stroke,'stroke-width':2})));
+      svg.append(el('rect',{x:cx-bw/2,y:y(q3),width:bw,height:Math.max(2,y(q1)-y(q3)),fill,stroke,'stroke-width':2,rx:3}));
+      svg.append(el('line',{x1:cx-bw/2,x2:cx+bw/2,y1:y(md),y2:y(md),stroke:on?'#fff':'#d8d7e0','stroke-width':4}));
+      svg.append(el('text',{x:cx+bw/2+10,y:y(md)+8,fill:on?'#fff':'#c9c8d2','font-size':on?26:21,'font-weight':700,'font-family':'Outfit'},fmt(md,unit,digits)));
+      svg.append(el('text',{x:cx+10,y:y(mx)-8,fill:'#77768a','font-size':16,'font-family':'JetBrains Mono'},fmt(mx,unit,digits)));
+      svg.append(el('text',{x:cx,y:H-18,'text-anchor':'middle',fill:on?'#61dafb':'#c9c8d2','font-size':22,'font-weight':on?700:600,'font-family':'Outfit'},label));
+    });
+  });
+
+  document.querySelectorAll('svg.barchart').forEach(svg=>{
+    const series=JSON.parse(svg.dataset.series),W=1000,H=520,L=20,R=20,T=56,B=56;
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    const max=Math.max(...series.map(s=>s[1])),band=(W-L-R)/series.length;
+    series.forEach(([label,v],idx)=>{
+      const h=(H-T-B)*v/max,x=L+band*idx+band*.18,w=band*.64,last=idx===series.length-1;
+      svg.append(el('rect',{x,y:H-B-h,width:w,height:h,rx:4,fill:last?'#61dafb':'rgba(255,255,255,.18)'}));
+      svg.append(el('text',{x:x+w/2,y:H-B-h-14,'text-anchor':'middle',fill:last?'#fff':'#c9c8d2','font-size':last?30:24,'font-weight':700,'font-family':'Outfit'},v.toLocaleString('en-US')));
+      svg.append(el('text',{x:x+w/2,y:H-16,'text-anchor':'middle',fill:'#c9c8d2','font-size':22,'font-family':'Outfit'},label));
+    });
+  });
+
+  const slides=[...document.querySelectorAll('.slide')];
+  const noteBox=document.getElementById('notes');
+  const editButton=document.getElementById('edit');
+  const slideVideos=[...document.querySelectorAll('.slide-video')];
+  let i=Math.max(0,Math.min(slides.length-1,(parseInt(location.hash.slice(1),10)||1)-1));
+  let editing=false;
+
+  const editableSelector='h1,h2,h3,p,li,.kicker,.chrome,.step strong,.step span,.step b,.stat strong,.stat span,.tl strong,.tl span,.platform p,.setup strong';
+  const editableElements=()=>[...document.querySelectorAll(`.slide :is(${editableSelector})`)].filter(el=>!el.closest('.speaker-note'));
+  function keyFor(el){
+    const slide=el.closest('.slide');
+    const items=[...slide.querySelectorAll(`:is(${editableSelector})`)].filter(item=>!item.closest('.speaker-note'));
+    return `rn-monetize-deck:${slide.dataset.number}:${items.indexOf(el)}`;
+  }
+  editableElements().forEach(el=>{
+    try{const saved=localStorage.getItem(keyFor(el));if(saved!==null)el.innerHTML=saved}catch{}
+    el.addEventListener('input',()=>{try{localStorage.setItem(keyFor(el),el.innerHTML)}catch{}});
+  });
+  function setEditing(next){
+    editing=next;
+    document.body.classList.toggle('editing',editing);
+    editButton.classList.toggle('active',editing);
+    editButton.setAttribute('aria-pressed',String(editing));
+    editableElements().forEach(el=>el.setAttribute('contenteditable',String(editing)));
+  }
+
+  function show(n){
+    i=(n+slides.length)%slides.length;
+    slides.forEach((slide,index)=>slide.classList.toggle('active',index===i));
+    slideVideos.forEach(video=>{
+      if(slides[i].contains(video)){video.currentTime=0;video.play().catch(()=>{})}
+      else video.pause();
+    });
+    document.getElementById('progress').style.width=`${(i+1)/slides.length*100}%`;
+    history.replaceState(null,'',`#${i+1}`);
+    noteBox.innerHTML=slides[i].querySelector('.speaker-note')?.innerHTML||'';
+    document.title=`${i+1}/${slides.length} · Why React Native apps monetize better`;
+  }
+
+  let timerStart=null;
+  const timerEl=document.getElementById('timer');
+  setInterval(()=>{if(timerStart===null)return;const s=Math.floor((Date.now()-timerStart)/1000);timerEl.textContent=`${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`},500);
+
+  function next(){if(timerStart===null)timerStart=Date.now();show(i+1)}
+  function prev(){show(i-1)}
+  document.getElementById('next').onclick=next;
+  document.getElementById('prev').onclick=prev;
+  editButton.onclick=()=>setEditing(!editing);
+  document.addEventListener('keydown',event=>{
+    if(event.target.isContentEditable){if(event.key==='Escape')setEditing(false);return}
+    const k=event.key.toLowerCase();
+    if(['ArrowRight','PageDown',' '].includes(event.key)){event.preventDefault();next()}
+    else if(['ArrowLeft','PageUp'].includes(event.key)){event.preventDefault();prev()}
+    else if(event.key==='Home')show(0);
+    else if(event.key==='End')show(slides.length-1);
+    else if(k==='f'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+    else if(k==='n')noteBox.classList.toggle('visible');
+    else if(k==='e')setEditing(!editing);
+    else if(k==='h')document.body.classList.toggle('controls-hidden');
+    else if(k==='t'){document.body.classList.toggle('show-timer');if(timerStart===null)timerStart=Date.now()}
+    else if(k==='r'){timerStart=Date.now()}
+  });
+  let startX=0;
+  document.addEventListener('touchstart',event=>startX=event.changedTouches[0].clientX,{passive:true});
+  document.addEventListener('touchend',event=>{const dx=event.changedTouches[0].clientX-startX;if(Math.abs(dx)>60)(dx<0?next:prev)()},{passive:true});
+  window.addEventListener('hashchange',()=>{const n=parseInt(location.hash.slice(1),10);if(n&&n-1!==i)show(n-1)});
+  show(i);
+</script>
+</body>
+</html>

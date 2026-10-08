@@ -31,6 +31,7 @@ its own subdomain. Every project connects to this same Git repository.
 | Flutter monetization | `presentations/make-money-flutter-flutter-friends` | `flutter-monetization.talks.example.com` |
 | Android monetization | `presentations/monetize-android-droidcon-usa-2026` | `android-monetization.talks.example.com` |
 | How not to ship slop | `presentations/how-not-to-ship-slop` | `ship-slop.talks.example.com` |
+| React Native monetization | `presentations/why-react-native-apps-monetize-better` | `react-native-monetization.talks.example.com` |
 
 For each project:
 
@@ -77,6 +78,7 @@ Then open `http://localhost:8080`.
 
 ## Talks
 
+- [Why React Native apps monetize better — next.app devCon 2026](./presentations/why-react-native-apps-monetize-better/)
 - [Make money with your Flutter app — Flutter & Friends](./presentations/make-money-flutter-flutter-friends/)
 - [Monetize your Android app the right way — Droidcon USA 2026](./presentations/monetize-android-droidcon-usa-2026/)
 - [AI doesn't ship slop. You do.](./presentations/how-not-to-ship-slop/)
